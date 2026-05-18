@@ -1,34 +1,36 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  Headphones,
   LifeBuoy,
   Route,
-  CreditCard,
-  CalendarCheck,
   MessageSquare,
-  PackageCheck,
-  Wrench,
-  ShieldCheck,
-  ClipboardList,
+  Moon,
+  CalendarCheck,
   Target,
-  UserCheck,
-  Car,
+  Workflow,
+  Sparkles,
+  CreditCard,
+  Network,
+  Languages,
+  Plug,
 } from "lucide-react";
 import type { ProductSlug } from "./products";
 import type { IndustrySlug } from "./industries";
 
 export type UseCaseSlug =
-  | "customer-care"
-  | "intelligent-routing"
-  | "payment-automation"
-  | "reservations-management"
-  | "quick-answers"
-  | "order-operations"
-  | "troubleshooting"
-  | "identity-verification"
-  | "exam-simulator"
-  | "lead-qualification"
-  | "candidate-screening"
-  | "drive-thru-ordering";
+  | "ai-receptionist"
+  | "customer-support-automation"
+  | "call-routing-prioritization"
+  | "faq-automation"
+  | "after-hours-support"
+  | "appointment-scheduling"
+  | "lead-qualification-intake"
+  | "workflow-automation"
+  | "customer-engagement"
+  | "billing-payment-assistance"
+  | "operational-coordination"
+  | "multilingual-communication"
+  | "integrations-connected-systems";
 
 export interface UseCase {
   slug: UseCaseSlug;
@@ -41,130 +43,202 @@ export interface UseCase {
 
 export const useCases: UseCase[] = [
   {
-    slug: "customer-care",
-    title: "Customer Care",
+    slug: "ai-receptionist",
+    title: "AI Receptionist",
     description:
-      "Resolve the most common 80% of inquiries instantly, with empathy. Escalate the rest with full context.",
-    icon: LifeBuoy,
-    productSlugs: ["smarttalk", "learnmate"],
+      "Modern businesses need to stay responsive at all times, even during peak hours or outside regular business operations. Cross Flows Synergy's AI Receptionist solutions help organizations manage incoming calls, customer inquiries, and communication requests through intelligent AI-powered systems designed to provide fast, professional, and consistent interactions. From answering common questions to routing calls and assisting with scheduling, AI reception systems help businesses improve customer experiences while reducing front-desk workload.",
+    icon: Headphones,
+    productSlugs: ["smarttalk"],
     industrySlugs: [
+      "healthcare-clinics",
       "consumer-services",
-      "financial-services",
-      "travel",
-      "utilities",
-      "retail-restaurants",
-      "clinics-hospitals",
+      "real-estate-property",
+      "restaurants-hospitality",
+      "schools-education",
+      "recruitment-staffing",
     ],
   },
   {
-    slug: "intelligent-routing",
-    title: "Intelligent Routing",
+    slug: "customer-support-automation",
+    title: "Customer Support Automation",
     description:
-      "Understand intent, sentiment, and urgency in seconds — then route to the team or workflow that can actually help.",
+      "Customers expect fast and reliable support across every interaction. Cross Flows Synergy helps businesses automate customer support workflows through intelligent AI-powered communication systems capable of handling inquiries, providing information, resolving common requests, and improving response efficiency. By automating repetitive support tasks, businesses can improve service quality, reduce operational pressure, and deliver more seamless customer experiences.",
+    icon: LifeBuoy,
+    productSlugs: ["smarttalk", "worksync"],
+    industrySlugs: [
+      "consumer-services",
+      "utilities-services",
+      "restaurants-hospitality",
+      "healthcare-clinics",
+      "logistics-operations",
+      "financial-services",
+    ],
+  },
+  {
+    slug: "call-routing-prioritization",
+    title: "Call Routing & Prioritization",
+    description:
+      "Efficient communication starts with directing customers to the right place quickly. Cross Flows Synergy's intelligent call routing solutions automatically analyze customer inquiries and route them to the appropriate department, workflow, or support team based on urgency, request type, or operational logic. This helps reduce wait times, improve workflow coordination, and create smoother customer experiences across high-volume communication environments.",
     icon: Route,
     productSlugs: ["smarttalk", "worksync"],
     industrySlugs: [
       "consumer-services",
-      "financial-services",
-      "logistics-supply-chain",
-      "utilities",
+      "utilities-services",
+      "healthcare-clinics",
+      "logistics-operations",
+      "schools-education",
     ],
   },
   {
-    slug: "payment-automation",
-    title: "Payment Automation",
+    slug: "faq-automation",
+    title: "FAQ Automation",
     description:
-      "Take payments, reconcile receipts, and chase failed transactions through fully PCI-aware voice and chat flows.",
-    icon: CreditCard,
-    productSlugs: ["smarttalk", "driveflow", "worksync"],
-    industrySlugs: ["financial-services", "utilities", "retail-restaurants"],
-  },
-  {
-    slug: "reservations-management",
-    title: "Reservations Management",
-    description:
-      "Book, modify, and confirm appointments across calendars and time zones — without picking up the phone twice.",
-    icon: CalendarCheck,
-    productSlugs: ["smarttalk", "worksync"],
-    industrySlugs: ["real-estate", "travel", "clinics-hospitals", "retail-restaurants"],
-  },
-  {
-    slug: "quick-answers",
-    title: "Quick Answers",
-    description:
-      "Knowledge-base-grounded answers in the channel customers prefer — with the source link always one tap away.",
+      "Businesses spend significant time answering repetitive customer questions every day. Cross Flows Synergy helps automate frequently asked questions through intelligent AI systems capable of instantly providing accurate information regarding services, appointments, pricing, schedules, operational hours, and more. FAQ automation improves response times, reduces manual workload, and ensures customers receive consistent information anytime they need support.",
     icon: MessageSquare,
-    productSlugs: ["smarttalk", "learnmate", "driveflow"],
+    productSlugs: ["smarttalk"],
     industrySlugs: [
       "consumer-services",
-      "real-estate",
-      "education",
-      "clinics-hospitals",
-      "retail-restaurants",
+      "healthcare-clinics",
+      "real-estate-property",
+      "restaurants-hospitality",
+      "utilities-services",
+      "schools-education",
     ],
   },
   {
-    slug: "order-operations",
-    title: "Order Operations",
+    slug: "after-hours-support",
+    title: "After-Hours Customer Support",
     description:
-      "Track, modify, and recover orders end-to-end. Status, ETAs, and exceptions — surfaced before customers have to ask.",
-    icon: PackageCheck,
-    productSlugs: ["driveflow", "worksync"],
-    industrySlugs: ["logistics-supply-chain", "retail-restaurants"],
+      "Customer inquiries do not stop after business hours. Cross Flows Synergy provides AI-powered after-hours communication support designed to help businesses remain accessible beyond standard operating schedules. Customers can continue receiving assistance, information, appointment support, and inquiry handling at any time, helping organizations improve responsiveness while reducing missed opportunities.",
+    icon: Moon,
+    productSlugs: ["smarttalk"],
+    industrySlugs: [
+      "healthcare-clinics",
+      "consumer-services",
+      "utilities-services",
+      "restaurants-hospitality",
+      "schools-education",
+      "real-estate-property",
+    ],
   },
   {
-    slug: "troubleshooting",
-    title: "Troubleshooting & Resolution",
+    slug: "appointment-scheduling",
+    title: "Appointment Scheduling & Reservations",
     description:
-      "Walk customers through diagnostics step by step — and dispatch a tech the moment the AI hits its ceiling.",
-    icon: Wrench,
+      "Managing appointments and reservations manually can create operational delays and increase administrative workload. Cross Flows Synergy simplifies scheduling through AI-powered appointment coordination systems that allow customers to book, confirm, reschedule, or cancel appointments efficiently. Automated scheduling workflows improve operational efficiency, reduce missed appointments, and create more convenient customer experiences.",
+    icon: CalendarCheck,
     productSlugs: ["smarttalk", "worksync"],
-    industrySlugs: ["utilities", "logistics-supply-chain", "consumer-services", "travel"],
+    industrySlugs: [
+      "healthcare-clinics",
+      "real-estate-property",
+      "restaurants-hospitality",
+      "schools-education",
+      "recruitment-staffing",
+      "consumer-services",
+    ],
   },
   {
-    slug: "identity-verification",
-    title: "Identity Verification",
+    slug: "lead-qualification-intake",
+    title: "Lead Qualification & Customer Intake",
     description:
-      "Verify callers with voice biometrics, knowledge-based questions, and multi-factor checks — without the queue.",
-    icon: ShieldCheck,
-    productSlugs: ["smarttalk", "worksync"],
-    industrySlugs: ["financial-services", "clinics-hospitals", "utilities"],
-  },
-  {
-    slug: "exam-simulator",
-    title: "Exam Simulator",
-    description:
-      "High-fidelity practice tests with AI-generated reasoning. Learners see why an answer is right, not just that it is.",
-    icon: ClipboardList,
-    productSlugs: ["learnmate"],
-    industrySlugs: ["education", "hr-recruiting", "financial-services", "clinics-hospitals"],
-  },
-  {
-    slug: "lead-qualification",
-    title: "Lead Qualification",
-    description:
-      "Engage inbound leads in seconds, score them in real time, and book the discovery call before they get distracted.",
+      "Businesses need faster and more organized ways to manage incoming inquiries and potential customers. Cross Flows Synergy helps automate lead qualification and customer intake processes by collecting essential information, categorizing inquiries, and routing opportunities to the appropriate teams. Intelligent intake workflows help improve response speed, reduce manual coordination, and support stronger customer engagement.",
     icon: Target,
     productSlugs: ["smarttalk", "worksync"],
-    industrySlugs: ["financial-services", "real-estate", "hr-recruiting"],
+    industrySlugs: [
+      "real-estate-property",
+      "recruitment-staffing",
+      "consumer-services",
+      "financial-services",
+    ],
   },
   {
-    slug: "candidate-screening",
-    title: "Candidate Screening",
+    slug: "workflow-automation",
+    title: "Workflow Automation",
     description:
-      "Run consistent, structured screening interviews at scale. Every candidate gets a fair, attentive first conversation.",
-    icon: UserCheck,
-    productSlugs: ["smarttalk", "learnmate", "worksync"],
-    industrySlugs: ["hr-recruiting"],
+      "Repetitive operational processes can slow down productivity and create inefficiencies across organizations. Cross Flows Synergy's workflow automation solutions help businesses streamline internal coordination, automate routine tasks, improve communication, and optimize operational workflows through intelligent AI-powered systems. Automated workflows allow teams to focus on higher-value activities while improving operational consistency and efficiency.",
+    icon: Workflow,
+    productSlugs: ["worksync", "driveflow"],
+    industrySlugs: [
+      "recruitment-staffing",
+      "logistics-operations",
+      "schools-education",
+      "healthcare-clinics",
+      "utilities-services",
+      "consumer-services",
+      "financial-services",
+    ],
   },
   {
-    slug: "drive-thru-ordering",
-    title: "Drive-Thru Ordering",
+    slug: "customer-engagement",
+    title: "Customer Engagement & Communication",
     description:
-      "Take orders at the speaker post, handle modifications and upsells, and write clean tickets straight to the POS.",
-    icon: Car,
-    productSlugs: ["driveflow"],
-    industrySlugs: ["retail-restaurants", "consumer-services"],
+      "Strong customer engagement requires fast, responsive, and personalized communication experiences. Cross Flows Synergy helps businesses improve customer interactions through intelligent AI-powered engagement systems designed to support conversations, automate communication workflows, and enhance responsiveness across customer touchpoints. Better engagement leads to improved customer satisfaction, stronger relationships, and more consistent service experiences.",
+    icon: Sparkles,
+    productSlugs: ["smarttalk", "learnmate"],
+    industrySlugs: [
+      "consumer-services",
+      "restaurants-hospitality",
+      "real-estate-property",
+      "schools-education",
+      "recruitment-staffing",
+    ],
+  },
+  {
+    slug: "billing-payment-assistance",
+    title: "Billing & Payment Assistance",
+    description:
+      "Billing-related inquiries often create high volumes of repetitive customer communication. Cross Flows Synergy helps businesses automate billing assistance workflows by providing customers with quick access to payment information, billing guidance, account support, and payment-related communication through intelligent AI-powered systems. This improves support efficiency while creating smoother customer experiences.",
+    icon: CreditCard,
+    productSlugs: ["smarttalk"],
+    industrySlugs: ["utilities-services", "consumer-services", "financial-services"],
+  },
+  {
+    slug: "operational-coordination",
+    title: "Operational Coordination & Internal Communication",
+    description:
+      "Modern businesses require efficient coordination between teams, departments, and operational workflows. Cross Flows Synergy helps organizations improve operational communication through centralized AI-powered systems designed to streamline updates, automate task coordination, improve workflow visibility, and support internal collaboration. Enhanced coordination helps reduce operational delays and improve overall business efficiency.",
+    icon: Network,
+    productSlugs: ["worksync", "driveflow"],
+    industrySlugs: [
+      "logistics-operations",
+      "schools-education",
+      "healthcare-clinics",
+      "real-estate-property",
+      "restaurants-hospitality",
+    ],
+  },
+  {
+    slug: "multilingual-communication",
+    title: "Multilingual Communication Support",
+    description:
+      "Businesses serving diverse communities need communication systems capable of supporting multiple languages and improving accessibility. Cross Flows Synergy provides multilingual AI-powered communication solutions designed to help organizations engage customers more effectively across different languages and communication preferences. This improves customer experiences, accessibility, and operational reach.",
+    icon: Languages,
+    productSlugs: ["smarttalk", "learnmate"],
+    industrySlugs: [
+      "schools-education",
+      "healthcare-clinics",
+      "consumer-services",
+      "real-estate-property",
+    ],
+  },
+  {
+    slug: "integrations-connected-systems",
+    title: "Integrations & Connected Systems",
+    description:
+      "Modern organizations rely on multiple systems and operational platforms to manage daily activities. Cross Flows Synergy's AI solutions are designed to integrate seamlessly with CRMs, scheduling systems, communication platforms, operational software, and business tools to support connected workflows and centralized operations. Integration capabilities help businesses modernize operations without disrupting existing infrastructure.",
+    icon: Plug,
+    productSlugs: ["smarttalk", "worksync", "driveflow", "learnmate"],
+    industrySlugs: [
+      "consumer-services",
+      "healthcare-clinics",
+      "logistics-operations",
+      "schools-education",
+      "utilities-services",
+      "real-estate-property",
+      "restaurants-hospitality",
+      "recruitment-staffing",
+      "financial-services",
+    ],
   },
 ];
 

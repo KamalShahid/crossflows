@@ -3,7 +3,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Loader2, Check } from "lucide-react";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
-import { products } from "../data/products";
+import CTAButton from "../components/CTAButton";
+import { bottomCTA } from "../data/home";
+
+const productInterestOptions = [
+  { value: "smarttalk", label: "SmartTalk™ — AI Communication Platform" },
+  { value: "learnmate", label: "LearnMate™ — Education & Learning Platform" },
+  { value: "worksync", label: "WorkSync™ — Workflow & Operations Platform" },
+  { value: "driveflow", label: "DriveFlow™ — Logistics & Coordination Platform" },
+  { value: "general", label: "General Inquiry" },
+];
 
 interface FormState {
   name: string;
@@ -82,7 +91,7 @@ export default function Contact() {
                 transition={{ duration: 0.55, delay: 0.05 }}
                 className="mt-4 font-display text-balance text-4xl font-bold leading-[1.06] tracking-tight sm:text-5xl md:text-6xl"
               >
-                Where intelligence meets action — starting with a conversation.
+                {bottomCTA.headline}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
@@ -90,9 +99,25 @@ export default function Contact() {
                 transition={{ duration: 0.55, delay: 0.15 }}
                 className="mt-5 max-w-md text-base leading-relaxed text-[var(--color-text-muted)]"
               >
-                Tell us what you’re trying to ship. We’ll come back within one business day with a
-                tailored demo plan and an honest read on fit.
+                {bottomCTA.subheading}
               </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.22 }}
+                className="mt-6 flex flex-wrap gap-3"
+              >
+                {bottomCTA.buttons.map((b, idx) => (
+                  <CTAButton
+                    key={b.label}
+                    to={b.to}
+                    variant={idx === 0 ? "primary" : "secondary"}
+                    withArrow={idx === 0}
+                  >
+                    {b.label}
+                  </CTAButton>
+                ))}
+              </motion.div>
             </div>
 
             <div className="flex flex-col gap-4 text-sm">
@@ -249,10 +274,9 @@ export default function Contact() {
                       onChange={(e) => update("productInterest", e.target.value)}
                       className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-4 py-3 text-sm text-[var(--color-text-primary)] focus:border-[var(--color-accent)] focus:outline-none"
                     >
-                      <option value="general">General — I’m exploring</option>
-                      {products.map((p) => (
-                        <option key={p.slug} value={p.slug}>
-                          {p.name} — {p.heroEyebrow}
+                      {productInterestOptions.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
                         </option>
                       ))}
                     </select>

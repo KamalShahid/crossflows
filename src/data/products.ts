@@ -13,6 +13,7 @@ export interface ProductFeature {
 export interface Product {
   slug: ProductSlug;
   name: string;
+  subtitle: string;
   tagline: string;
   shortDescription: string;
   longDescription: string;
@@ -22,204 +23,326 @@ export interface Product {
   features: ProductFeature[];
   useCaseSlugs: UseCaseSlug[];
   industrySlugs: IndustrySlug[];
+  idealFor: string[];
   videoCaption: string;
 }
 
 export const products: Product[] = [
   {
     slug: "smarttalk",
-    name: "SmartTalk",
-    tagline: "Human-like AI voice agents for every business conversation.",
+    name: "SmartTalk™",
+    subtitle: "AI-Powered Communication & Customer Engagement Platform",
+    tagline:
+      "Transform how your business communicates with customers — across every channel, around the clock.",
     shortDescription:
-      "Voice agents that answer, qualify, route, and resolve — at the quality your brand demands.",
+      "AI-Powered Communication & Customer Engagement Platform",
     longDescription:
-      "SmartTalk replaces brittle IVR menus and overwhelmed contact centers with voice agents that sound human, understand intent in real time, and resolve issues end-to-end. Train them on your data, watch them learn your tone, and give every caller a five-star experience — in 40+ languages, around the clock.",
+      "SmartTalk™ is Cross Flows Synergy's intelligent conversational AI platform designed to transform how businesses communicate with customers across voice and digital channels. Built to support high-volume customer interactions, SmartTalk™ helps organizations automate conversations, improve response efficiency, and deliver seamless customer experiences 24/7.",
     icon: Headphones,
     accent: "from-[#00d4ff] to-[#3a8dff]",
-    heroEyebrow: "Conversational Voice AI",
+    heroEyebrow: "AI-Powered Communication & Customer Engagement Platform",
     features: [
       {
-        title: "Sub-200ms latency",
+        title: "AI Voice Agents",
         description:
-          "Responses land before the caller can finish their next breath. Real conversation, not a walkie-talkie exchange.",
+          "Human-like AI agents capable of handling inbound and outbound conversations naturally and intelligently.",
       },
       {
-        title: "Brand-true voice synthesis",
+        title: "Intelligent Call Handling",
         description:
-          "Choose from premium neural voices or clone your own. Tone, cadence, and personality stay consistent across every call.",
+          "Automatically answer, prioritize, and route customer calls based on business rules, urgency, or inquiry type.",
       },
       {
-        title: "Native CRM & telephony stack",
+        title: "Appointment Scheduling",
         description:
-          "Plug into Salesforce, HubSpot, Zendesk, Twilio, Genesys, and 50+ enterprise systems out of the box.",
+          "Enable customers to book, reschedule, or confirm appointments without waiting for a live representative.",
       },
       {
-        title: "Live escalation, smarter handoff",
+        title: "Customer Support Automation",
         description:
-          "When a human is needed, SmartTalk warm-transfers with a full summary, sentiment score, and verified caller identity.",
+          "Automate common customer inquiries, FAQs, service requests, and information retrieval.",
       },
       {
-        title: "Continuous learning loop",
+        title: "Omnichannel Communication",
         description:
-          "Every call becomes training data. Quality scores, intent maps, and resolution trends compound week over week.",
+          "Support communication across voice, SMS, chat, and digital customer engagement channels.",
+      },
+      {
+        title: "Lead Capture & Qualification",
+        description:
+          "Capture customer information, qualify leads, and route opportunities to the right teams instantly.",
+      },
+      {
+        title: "Real-Time Escalation",
+        description:
+          "Transfer conversations to human agents when required while maintaining conversational context.",
+      },
+      {
+        title: "Conversation Analytics",
+        description:
+          "Track interaction trends, customer behavior, and operational performance through AI-driven reporting.",
       },
     ],
     useCaseSlugs: [
-      "customer-care",
-      "intelligent-routing",
-      "payment-automation",
-      "reservations-management",
-      "quick-answers",
-      "troubleshooting",
-      "identity-verification",
-      "lead-qualification",
+      "ai-receptionist",
+      "customer-support-automation",
+      "call-routing-prioritization",
+      "faq-automation",
+      "after-hours-support",
+      "appointment-scheduling",
+      "lead-qualification-intake",
+      "customer-engagement",
+      "billing-payment-assistance",
+      "multilingual-communication",
+      "integrations-connected-systems",
     ],
     industrySlugs: [
+      "healthcare-clinics",
+      "recruitment-staffing",
+      "real-estate-property",
+      "restaurants-hospitality",
       "consumer-services",
-      "financial-services",
-      "real-estate",
-      "travel",
-      "utilities",
-      "retail-restaurants",
-      "clinics-hospitals",
+      "utilities-services",
     ],
-    videoCaption: "See SmartTalk handle a live customer call",
-  },
-  {
-    slug: "driveflow",
-    name: "DriveFlow",
-    tagline: "AI that takes the order, upsells, and never asks customers to repeat themselves.",
-    shortDescription:
-      "Drive-thru voice automation that boosts throughput, accuracy, and average ticket — without changing your kitchen workflow.",
-    longDescription:
-      "DriveFlow brings restaurant-grade voice AI to the speaker post. It understands noisy speech, mixed languages, and complex menu modifiers in real time, surfaces personalized upsells, and writes clean tickets directly into your POS. Your team focuses on the food. DriveFlow handles the rest.",
-    icon: Car,
-    accent: "from-[#f5a623] to-[#ffce6e]",
-    heroEyebrow: "Drive-Thru Automation",
-    features: [
-      {
-        title: "Noise-resistant speech engine",
-        description:
-          "Trained on thousands of hours of real drive-thru audio — engines, wind, kids in the back seat, the whole orchestra.",
-      },
-      {
-        title: "Menu-aware reasoning",
-        description:
-          "Understands modifiers, combos, allergies, and substitutions natively. No more “sorry, can you repeat that?”",
-      },
-      {
-        title: "Personalized upsell",
-        description:
-          "Suggests the right add-on based on time of day, weather, and order context. Tested live to lift average ticket 6–11%.",
-      },
-      {
-        title: "POS-native integration",
-        description:
-          "Drops orders directly into Toast, Oracle Symphony, NCR, Xenial, and PAR — no parallel screens for the line cook.",
-      },
+    idealFor: [
+      "Healthcare & Clinics",
+      "Recruitment & Staffing",
+      "Real Estate & Property Management",
+      "Restaurants & Hospitality",
+      "Retail & Customer Support",
+      "Service-Based Businesses",
     ],
-    useCaseSlugs: [
-      "drive-thru-ordering",
-      "order-operations",
-      "payment-automation",
-      "quick-answers",
-    ],
-    industrySlugs: ["retail-restaurants", "consumer-services"],
-    videoCaption: "Watch DriveFlow take a peak-hour order, end to end",
+    videoCaption: "See SmartTalk™ in action — live customer conversations, automated end to end",
   },
   {
     slug: "learnmate",
-    name: "LearnMate",
-    tagline: "Personalized AI training simulations that build mastery, not just completion.",
-    shortDescription:
-      "Adaptive learning, exam simulators, and role-play coaching that meet every learner where they are.",
+    name: "LearnMate™",
+    subtitle: "Intelligent Education & Learning Support Platform",
+    tagline:
+      "Modernize educational experiences through intelligent automation, communication, and engagement.",
+    shortDescription: "Intelligent Education & Learning Support Platform",
     longDescription:
-      "LearnMate turns your training content into living simulations. Learners practice high-stakes conversations with AI agents that push back, adapt to skill level, and surface gaps automatically. Educators and L&D leaders get a real-time picture of where mastery lives — and where it’s missing.",
+      "LearnMate™ is an AI-powered education and academic support platform designed to help institutions, training providers, and learning organizations modernize educational experiences through intelligent automation, communication, and engagement systems. Built to support both administrative and learning-focused workflows, LearnMate™ helps streamline student interactions, automate academic processes, improve accessibility, and enhance educational operations through AI-powered solutions.",
     icon: GraduationCap,
     accent: "from-[#00d4ff] to-[#9b6bff]",
-    heroEyebrow: "Learning & Simulation",
+    heroEyebrow: "Intelligent Education & Learning Support Platform",
     features: [
       {
-        title: "Adaptive difficulty",
+        title: "Student Support Automation",
         description:
-          "Every simulation calibrates to the learner in real time. No more one-size-fits-all e-learning modules.",
+          "Provide instant responses to student inquiries regarding schedules, admissions, courses, policies, and academic services.",
       },
       {
-        title: "Realistic role-play partners",
+        title: "Enrollment & Admissions Assistance",
         description:
-          "Voice and chat-based AI characters that act like real customers, patients, students, or interview panels.",
+          "Automate inquiry handling, lead engagement, and applicant communication workflows.",
       },
       {
-        title: "Mastery analytics",
+        title: "AI Learning Assistance",
         description:
-          "Per-learner skill maps, knowledge decay alerts, and cohort heatmaps for L&D and academic leadership.",
+          "Support learners through intelligent educational guidance, study assistance, and academic resource delivery.",
       },
       {
-        title: "Exam simulator engine",
+        title: "Scheduling & Coordination",
         description:
-          "Build certified, weighted exams with reasoning explanations baked into every answer the AI generates.",
+          "Manage appointments, orientations, training sessions, and academic scheduling workflows.",
+      },
+      {
+        title: "Educational Workflow Automation",
+        description:
+          "Automate administrative processes such as reminders, notifications, follow-ups, and communication tasks.",
+      },
+      {
+        title: "AI Engagement Systems",
+        description:
+          "Improve communication between students, educators, and institutions through intelligent engagement workflows.",
+      },
+      {
+        title: "Academic Insights & Reporting",
+        description:
+          "Analyze engagement trends, operational workflows, and educational interaction data.",
+      },
+      {
+        title: "Multilingual Support",
+        description:
+          "Enable broader accessibility through multilingual AI-powered communication systems.",
       },
     ],
     useCaseSlugs: [
-      "exam-simulator",
-      "quick-answers",
-      "customer-care",
-      "candidate-screening",
+      "customer-support-automation",
+      "appointment-scheduling",
+      "multilingual-communication",
+      "customer-engagement",
+      "integrations-connected-systems",
     ],
-    industrySlugs: ["education", "hr-recruiting", "financial-services", "clinics-hospitals"],
-    videoCaption: "Step inside a LearnMate role-play simulation",
+    industrySlugs: ["schools-education", "healthcare-clinics", "recruitment-staffing"],
+    idealFor: [
+      "Schools & Educational Institutions",
+      "Training Providers",
+      "Universities & Colleges",
+      "Learning Platforms",
+      "Corporate Training Programs",
+      "Academic Support Services",
+    ],
+    videoCaption: "See LearnMate™ support real student and learner workflows",
   },
   {
     slug: "worksync",
-    name: "WorkSync",
-    tagline: "The AI workflow layer that connects every tool, decision, and human in your business.",
-    shortDescription:
-      "Agentic automation that reads, reasons, and executes across your stack — with the audit trail compliance needs.",
+    name: "WorkSync™",
+    subtitle: "Intelligent Workflow & Business Operations Platform",
+    tagline:
+      "Connect people, workflows, and systems into one intelligent automation ecosystem.",
+    shortDescription: "Intelligent Workflow & Business Operations Platform",
     longDescription:
-      "WorkSync is the orchestration layer for enterprise AI. Build agentic workflows that triage, decide, and act across your CRM, ERP, ticketing, finance, and data tools — with humans in the loop wherever it matters. Every step is logged, explainable, and reversible.",
+      "WorkSync™ is Cross Flows Synergy's AI-powered workflow automation and operational intelligence platform designed to help businesses streamline internal processes, automate repetitive tasks, improve coordination, and optimize operational performance. WorkSync™ connects people, workflows, systems, and operational activities into a centralized intelligent automation ecosystem that improves efficiency and supports scalable business growth.",
     icon: Workflow,
     accent: "from-[#3a8dff] to-[#00d4ff]",
-    heroEyebrow: "Workflow & Business Automation",
+    heroEyebrow: "Intelligent Workflow & Business Operations Platform",
     features: [
       {
-        title: "Visual agent builder",
+        title: "Workflow Automation",
         description:
-          "Drag-and-drop branching, tool calls, and approvals. Non-engineers can ship workflows in an afternoon.",
+          "Automate repetitive operational tasks, approvals, follow-ups, notifications, and internal coordination.",
       },
       {
-        title: "Universal connectors",
+        title: "Process Optimization",
         description:
-          "Salesforce, NetSuite, SAP, Workday, Jira, Slack, Google Workspace — plus REST and webhook escape hatches.",
+          "Identify inefficiencies and streamline operational workflows using intelligent AI-driven systems.",
       },
       {
-        title: "Human-in-the-loop guardrails",
+        title: "Smart Task Routing",
         description:
-          "Set risk thresholds. WorkSync pauses for human approval on anything above your bar, autopilots the rest.",
+          "Automatically assign tasks, requests, and workflows based on priority, business logic, or department.",
       },
       {
-        title: "Complete audit trail",
+        title: "AI Operational Assistance",
         description:
-          "Every input, decision, and output is logged with reasoning. SOC2 and GDPR-grade by default.",
+          "Support internal teams with AI-powered coordination, scheduling, reminders, and administrative workflows.",
+      },
+      {
+        title: "CRM & System Integrations",
+        description:
+          "Connect workflows with CRMs, communication systems, scheduling platforms, and operational software.",
+      },
+      {
+        title: "Operational Insights & Reporting",
+        description:
+          "Track workflow performance, operational bottlenecks, team productivity, and process efficiency.",
+      },
+      {
+        title: "Intelligent Escalation Systems",
+        description:
+          "Automatically escalate operational issues or high-priority workflows to the appropriate teams.",
+      },
+      {
+        title: "Centralized Workflow Visibility",
+        description:
+          "Provide real-time visibility into operational activities, process status, and workflow performance.",
       },
     ],
     useCaseSlugs: [
-      "intelligent-routing",
-      "payment-automation",
-      "order-operations",
-      "troubleshooting",
-      "identity-verification",
-      "lead-qualification",
-      "candidate-screening",
+      "workflow-automation",
+      "operational-coordination",
+      "lead-qualification-intake",
+      "call-routing-prioritization",
+      "customer-support-automation",
+      "integrations-connected-systems",
     ],
     industrySlugs: [
-      "financial-services",
-      "logistics-supply-chain",
-      "real-estate",
-      "hr-recruiting",
-      "utilities",
-      "retail-restaurants",
+      "recruitment-staffing",
+      "logistics-operations",
+      "healthcare-clinics",
+      "schools-education",
+      "real-estate-property",
+      "utilities-services",
+      "consumer-services",
     ],
-    videoCaption: "WorkSync orchestrates a multi-system claim, live",
+    idealFor: [
+      "Recruitment & Staffing Firms",
+      "Logistics & Operations Teams",
+      "Administrative Departments",
+      "Service-Based Businesses",
+      "Property Management Operations",
+      "Enterprise Workflow Management",
+    ],
+    videoCaption: "Watch WorkSync™ orchestrate a multi-system workflow, live",
+  },
+  {
+    slug: "driveflow",
+    name: "DriveFlow™",
+    subtitle: "AI-Powered Logistics, Coordination & Operational Flow Platform",
+    tagline:
+      "Streamline dispatch, coordination, and field operations with intelligent AI automation.",
+    shortDescription:
+      "AI-Powered Logistics, Coordination & Operational Flow Platform",
+    longDescription:
+      "DriveFlow™ is an intelligent AI-powered coordination and operational management platform designed to support logistics, transportation, dispatch, field operations, and service coordination workflows. Built for businesses managing high-volume operational activities, DriveFlow™ helps improve communication, streamline coordination, automate service workflows, and optimize operational efficiency across teams and locations.",
+    icon: Car,
+    accent: "from-[#f5a623] to-[#ffce6e]",
+    heroEyebrow: "AI-Powered Logistics, Coordination & Operational Flow Platform",
+    features: [
+      {
+        title: "Dispatch Coordination",
+        description:
+          "Automate scheduling, routing, communication, and coordination between teams, drivers, technicians, or field staff.",
+      },
+      {
+        title: "Service Request Automation",
+        description:
+          "Manage incoming service requests, operational inquiries, and workflow assignments intelligently.",
+      },
+      {
+        title: "Operational Communication Systems",
+        description:
+          "Improve communication between operations teams, clients, field staff, and management.",
+      },
+      {
+        title: "Scheduling & Route Optimization",
+        description:
+          "Coordinate schedules, assignments, and operational timelines more efficiently.",
+      },
+      {
+        title: "AI Workflow Monitoring",
+        description:
+          "Track workflow progress, operational activities, and service execution in real-time.",
+      },
+      {
+        title: "Intelligent Escalation Management",
+        description:
+          "Automatically identify delays, operational issues, or priority requests and escalate accordingly.",
+      },
+      {
+        title: "Operational Analytics & Insights",
+        description:
+          "Generate insights into operational performance, workflow trends, response times, and service efficiency.",
+      },
+      {
+        title: "Integration Infrastructure",
+        description:
+          "Connect with scheduling systems, CRMs, dispatch tools, communication platforms, and operational software.",
+      },
+    ],
+    useCaseSlugs: [
+      "operational-coordination",
+      "workflow-automation",
+      "integrations-connected-systems",
+    ],
+    industrySlugs: [
+      "logistics-operations",
+      "real-estate-property",
+      "consumer-services",
+      "restaurants-hospitality",
+      "utilities-services",
+    ],
+    idealFor: [
+      "Logistics & Transportation",
+      "Field Service Operations",
+      "Warehouse & Distribution",
+      "Delivery Coordination",
+      "Utility Service Providers",
+      "Mobile Workforce Operations",
+    ],
+    videoCaption: "See DriveFlow™ coordinate field operations end-to-end",
   },
 ];
 

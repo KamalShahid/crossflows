@@ -57,7 +57,7 @@ export default function UseCases() {
         <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-20 sm:px-8 sm:pt-28">
           <SectionHeader
             label="Use Cases"
-            heading="Twelve workflows. Real outcomes. Filter for yours."
+            heading="Production-grade AI workflows, ready to deploy."
             subheading="Each use case below is something Cross Flows Synergy ships to production today. Mix and match by product and industry to find the closest match to your reality."
             maxWidth="max-w-4xl"
           />

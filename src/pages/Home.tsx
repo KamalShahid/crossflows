@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
@@ -13,8 +13,24 @@ import { products } from "../data/products";
 import { industries } from "../data/industries";
 import { useCases } from "../data/useCases";
 import { features } from "../data/features";
+import {
+  whatWeDo,
+  industriesSection,
+  bottomCTA,
+  insightsSection,
+  securitySection,
+  productsSection,
+  useCasesSection,
+  featuresOverview,
+  videoSection,
+} from "../data/home";
+import {
+  integrationsSection,
+  integrationLogos,
+  integrationCategories,
+} from "../data/integrations";
 
-const heroWords = ["conversation", "drive-thru", "lesson", "workflow"];
+const heroWords = ["conversation", "appointment", "lesson", "workflow"];
 
 export default function Home() {
   const [wordIndex, setWordIndex] = useState(0);
@@ -27,7 +43,7 @@ export default function Home() {
   return (
     <PageShell
       title="Cross Flows Synergy — Where Intelligence Meets Action"
-      description="Cross Flows Synergy ships enterprise AI for voice, drive-thru, learning, and workflow. Where intelligence meets action."
+      description="Cross Flows Synergy ships AI-powered business solutions for communication, workflow, education, and operations. Where intelligence meets action."
     >
       {/* HERO */}
       <section className="relative isolate overflow-hidden">
@@ -41,7 +57,7 @@ export default function Home() {
           >
             <Sparkles className="h-3.5 w-3.5 text-[var(--color-accent)]" />
             <span className="font-mono uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-              Now shipping · WorkSync Agentic Layer
+              Now shipping · WorkSync™ Agentic Layer
             </span>
           </motion.div>
 
@@ -89,9 +105,9 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.35 }}
             className="max-w-2xl text-balance text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg md:text-xl"
           >
-            Cross Flows Synergy builds the enterprise AI layer that listens, decides, and acts —
-            from the speaker post to the C-suite. Four products. Twelve use cases. Forty-plus
-            languages. One platform that ships.
+            Cross Flows Synergy ships the AI layer that listens, decides, and acts — from the
+            first inbound call to the last operational handoff. Four products. Thirteen use cases.
+            Forty-plus languages. One platform that ships.
           </motion.p>
 
           <motion.div
@@ -155,13 +171,35 @@ export default function Home() {
       {/* Logos */}
       <LogoMarquee />
 
+      {/* What We Do */}
+      <section className="relative py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.2fr]">
+            <SectionHeader
+              label={whatWeDo.label}
+              heading={whatWeDo.headline}
+              maxWidth="max-w-md"
+            />
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+              className="text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
+            >
+              {whatWeDo.body}
+            </motion.p>
+          </div>
+        </div>
+      </section>
+
       {/* Products teaser */}
-      <section className="relative py-24 sm:py-32">
+      <section className="relative pb-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
-            label="Our Products"
-            heading="Four products. One platform that ships AI you can stake quarterly numbers on."
-            subheading="Each product is purpose-built for the highest-leverage moments in enterprise operations — and shares the same engine, security, and analytics layer underneath."
+            label={productsSection.label}
+            heading={productsSection.headline}
+            subheading={productsSection.subheading}
           />
 
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -210,8 +248,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <SectionHeader
-              label="Industries"
-              heading="Tuned for the operational reality of ten industries."
+              label={industriesSection.label}
+              heading={industriesSection.headline}
+              subheading={industriesSection.subheading}
               maxWidth="max-w-2xl"
             />
             <Link
@@ -256,9 +295,9 @@ export default function Home() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
-            label="Use Cases"
-            heading="Twelve production-grade use cases, ready to deploy."
-            subheading="Each one is a real workflow we run for real customers — not a slide."
+            label={useCasesSection.label}
+            heading={useCasesSection.headline}
+            subheading={useCasesSection.subheading}
           />
           <div className="mt-14 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {useCases.slice(0, 9).map((u, idx) => {
@@ -283,7 +322,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    {u.description}
+                    {u.description.split(". ").slice(0, 2).join(". ") + "."}
                   </p>
                   <Link
                     to="/use-cases"
@@ -298,7 +337,7 @@ export default function Home() {
           </div>
           <div className="mt-10 flex justify-center">
             <CTAButton to="/use-cases" variant="secondary" withArrow>
-              All 12 use cases
+              All {useCases.length} use cases
             </CTAButton>
           </div>
         </div>
@@ -308,8 +347,8 @@ export default function Home() {
       <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)]/40 py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
-            label="The Platform"
-            heading="Five capability pillars. Engineered to compound."
+            label={featuresOverview.label}
+            heading={featuresOverview.headline}
             align="center"
             maxWidth="max-w-3xl"
           />
@@ -345,13 +384,89 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Integrations */}
+      <section className="py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeader
+            label={integrationsSection.label}
+            heading={integrationsSection.headline}
+            subheading={integrationsSection.body}
+            maxWidth="max-w-3xl"
+          />
+          <div className="mt-12 grid items-center gap-6 sm:grid-cols-3 lg:grid-cols-7">
+            {integrationLogos.map((logo, idx) => (
+              <motion.div
+                key={logo.name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.04 }}
+                className="group flex flex-col items-center gap-2 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition hover:border-[var(--color-accent)]/60"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--color-accent)] to-[#3a8dff] font-mono text-sm font-semibold text-black">
+                  {logo.initials}
+                </span>
+                <span className="font-display text-xs font-medium text-[var(--color-text-primary)]/85">
+                  {logo.name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {integrationCategories.map((category) => (
+              <span
+                key={category}
+                className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-text-muted)]"
+              >
+                {category}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Insights & Analytics */}
+      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)]/40 py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeader
+            label={insightsSection.label}
+            heading={insightsSection.headline}
+            subheading={insightsSection.body}
+            maxWidth="max-w-3xl"
+          />
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {insightsSection.benefits.map((b, idx) => {
+              const Icon = b.icon;
+              return (
+                <motion.div
+                  key={b.label}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: idx * 0.05 }}
+                  whileHover={{ y: -4 }}
+                  className="flex items-center gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)]/60 p-5 transition hover:border-[var(--color-accent)]/60"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
+                    <Icon className="h-5 w-5" strokeWidth={2.1} />
+                  </span>
+                  <span className="font-display text-base font-semibold leading-snug tracking-tight">
+                    {b.label}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Video */}
       <section className="py-24">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <SectionHeader
-            label="See it live"
-            heading="Three minutes inside the Cross Flows Synergy platform."
-            subheading="A walkthrough of how the four products and the WorkSync orchestration layer fit together."
+            label={videoSection.label}
+            heading={videoSection.headline}
+            subheading={videoSection.subheading}
             align="center"
             maxWidth="max-w-3xl"
           />
@@ -366,7 +481,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Demo CTA */}
+      {/* Security & Trust */}
+      <section className="border-t border-[var(--color-border)] py-24">
+        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-[auto_1fr]">
+            <motion.span
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-[var(--color-accent)] to-[#3a8dff] text-black shadow-[0_20px_60px_rgba(0,212,255,0.35)]"
+            >
+              <ShieldCheck className="h-12 w-12" strokeWidth={1.8} />
+            </motion.span>
+            <div className="flex flex-col gap-4">
+              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--color-accent)]">
+                {securitySection.label}
+              </span>
+              <h2 className="font-display text-balance text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+                {securitySection.headline}
+              </h2>
+              <p className="text-base leading-relaxed text-[var(--color-text-muted)]">
+                {securitySection.body}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
       <section className="relative overflow-hidden py-24">
         <div className="absolute inset-0 -z-10">
           <div
@@ -379,35 +522,23 @@ export default function Home() {
         </div>
         <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
           <SectionHeader
-            label="Ready when you are"
-            heading="See how Cross Flows Synergy handles your hardest workflow."
-            subheading="Tell us where you’d start. We’ll get back to you within one business day with a tailored demo plan."
+            label={bottomCTA.label}
+            heading={bottomCTA.headline}
+            subheading={bottomCTA.subheading}
             align="center"
           />
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const data = new FormData(e.currentTarget);
-              console.log("[Demo CTA submission]", Object.fromEntries(data.entries()));
-              (e.currentTarget as HTMLFormElement).reset();
-              alert("Thanks — we’ll be in touch within 24 hours.");
-            }}
-            className="mx-auto mt-10 flex w-full max-w-xl flex-col gap-3 sm:flex-row"
-          >
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="you@company.com"
-              className="flex-1 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/70 px-5 py-3 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none"
-            />
-            <CTAButton type="submit" variant="primary" withArrow>
-              Book a Demo
-            </CTAButton>
-          </form>
-          <p className="mt-4 text-xs text-[var(--color-text-muted)]">
-            By submitting, you agree to our privacy policy. No spam, ever.
-          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {bottomCTA.buttons.map((b, idx) => (
+              <CTAButton
+                key={b.label}
+                to={b.to}
+                variant={idx === 0 ? "primary" : "secondary"}
+                withArrow={idx === 0}
+              >
+                {b.label}
+              </CTAButton>
+            ))}
+          </div>
         </div>
       </section>
     </PageShell>

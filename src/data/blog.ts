@@ -36,7 +36,7 @@ export const blogPosts: BlogPost[] = [
     cover: "https://placehold.co/1200x720/0f1420/00d4ff?text=Voice+AI+2026",
     body: {
       intro:
-        "When we launched SmartTalk in early 2024, the question we heard most often was, “Can it actually replace a phone tree?” In 2026, that question is gone — replaced by something much harder.",
+        "When we launched SmartTalk™ in early 2024, the question we heard most often was, “Can it actually replace a phone tree?” In 2026, that question is gone — replaced by something much harder.",
       sections: [
         {
           heading: "From containment metrics to outcome metrics",
@@ -62,23 +62,23 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "driveflow-launch",
-    title: "DriveFlow is live: rebuilding the drive-thru without changing the kitchen",
+    title: "DriveFlow™ is live: rebuilding the drive-thru without changing the kitchen",
     excerpt:
-      "DriveFlow is now generally available across North America. Here’s why we built it, what it actually does, and how to pilot it.",
+      "DriveFlow™ is now generally available across North America. Here’s why we built it, what it actually does, and how to pilot it.",
     category: "Product Updates",
     author: "Jordan Mensah",
-    authorRole: "Lead PM, DriveFlow",
+    authorRole: "Lead PM, DriveFlow™",
     date: "2026-04-10",
     readMinutes: 5,
-    cover: "https://placehold.co/1200x720/0f1420/f5a623?text=DriveFlow+Launch",
+    cover: "https://placehold.co/1200x720/0f1420/f5a623?text=DriveFlow™+Launch",
     body: {
       intro:
-        "Most drive-thru AI projects fail in the same place: they try to replace the line cook too. DriveFlow doesn’t. It replaces the part of the system everyone — staff and customers — already knows is broken.",
+        "Most drive-thru AI projects fail in the same place: they try to replace the line cook too. DriveFlow™ doesn’t. It replaces the part of the system everyone — staff and customers — already knows is broken.",
       sections: [
         {
-          heading: "What DriveFlow actually changes",
+          heading: "What DriveFlow™ actually changes",
           paragraphs: [
-            "DriveFlow listens, clarifies, suggests, and writes a clean ticket to your POS. That’s it. The kitchen workflow you spent years tuning stays untouched.",
+            "DriveFlow™ listens, clarifies, suggests, and writes a clean ticket to your POS. That’s it. The kitchen workflow you spent years tuning stays untouched.",
             "Pilot operators see throughput lifts of 8–14% during peak windows and average-ticket gains of 6–11% from context-aware upsells.",
           ],
         },
@@ -96,7 +96,7 @@ export const blogPosts: BlogPost[] = [
     slug: "regional-bank-payment-automation",
     title: "Case study: a regional bank cut payment-recovery cost 41% in a quarter",
     excerpt:
-      "How a 200-branch regional bank deployed SmartTalk and WorkSync to fully automate failed-payment recovery — without touching their core ledger.",
+      "How a 200-branch regional bank deployed SmartTalk™ and WorkSync™ to fully automate failed-payment recovery — without touching their core ledger.",
     category: "Case Studies",
     author: "Priya Raghunathan",
     authorRole: "Director, Financial Services",
@@ -116,7 +116,7 @@ export const blogPosts: BlogPost[] = [
         {
           heading: "What we shipped",
           paragraphs: [
-            "SmartTalk handles the outbound call, identity check, and payment flow. WorkSync orchestrates the case across the bank’s ledger, CRM, and compliance log. Humans take the hard cases, the AI handles the rest.",
+            "SmartTalk™ handles the outbound call, identity check, and payment flow. WorkSync™ orchestrates the case across the bank’s ledger, CRM, and compliance log. Humans take the hard cases, the AI handles the rest.",
           ],
         },
         {
@@ -164,7 +164,7 @@ export const blogPosts: BlogPost[] = [
     slug: "series-c-funding",
     title: "Announcing our Series C: doubling down on agentic workflows",
     excerpt:
-      "We’ve raised $84M to accelerate WorkSync, expand our security and compliance footprint, and open offices in Singapore and São Paulo.",
+      "We’ve raised $84M to accelerate WorkSync™, expand our security and compliance footprint, and open offices in Singapore and São Paulo.",
     category: "Company News",
     author: "Daniel Park",
     authorRole: "CEO",
@@ -178,7 +178,7 @@ export const blogPosts: BlogPost[] = [
         {
           heading: "What we’re investing in",
           paragraphs: [
-            "Most of the capital is going into WorkSync — our agentic workflow layer — and into the compliance footprint our largest customers need to keep buying more.",
+            "Most of the capital is going into WorkSync™ — our agentic workflow layer — and into the compliance footprint our largest customers need to keep buying more.",
             "We’re also opening go-to-market offices in Singapore and São Paulo to better serve customers in APAC and LATAM.",
           ],
         },
@@ -190,7 +190,7 @@ export const blogPosts: BlogPost[] = [
     slug: "healthcare-triage-pilot",
     title: "Field notes: triage scripting in a regional hospital network",
     excerpt:
-      "Lessons from a 90-day pilot deploying SmartTalk for after-hours triage scripting across 12 clinics.",
+      "Lessons from a 90-day pilot deploying SmartTalk™ for after-hours triage scripting across 12 clinics.",
     category: "Industry Insights",
     author: "Dr. Lena Sørensen",
     authorRole: "Clinical Strategy Lead",
@@ -204,7 +204,7 @@ export const blogPosts: BlogPost[] = [
         {
           heading: "What the pilot looked like",
           paragraphs: [
-            "Twelve clinics, 90 days, after-hours only. SmartTalk handled intake, triage scripting, and scheduling. Every call had a clinician on standby and a hard escalation threshold.",
+            "Twelve clinics, 90 days, after-hours only. SmartTalk™ handled intake, triage scripting, and scheduling. Every call had a clinician on standby and a hard escalation threshold.",
           ],
         },
         {

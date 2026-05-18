@@ -57,6 +57,26 @@ export default function ProductPage({ product }: ProductPageProps) {
               {product.longDescription}
             </motion.p>
             <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.15 }}
+              className="flex flex-col gap-2"
+            >
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-accent)]">
+                Ideal For
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {product.idealFor.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs text-[var(--color-text-primary)]/85"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.2 }}

@@ -11,7 +11,7 @@ export default function Products() {
   return (
     <PageShell
       title="Products · Cross Flows Synergy"
-      description="SmartTalk, DriveFlow, LearnMate, WorkSync — four products built for the highest-leverage moments in enterprise operations."
+      description="SmartTalk™, DriveFlow™, LearnMate™, WorkSync™ — four AI-powered products built for the highest-leverage moments in modern business operations."
     >
       <section className="relative isolate overflow-hidden">
         <HeroBackground variant="subtle" />

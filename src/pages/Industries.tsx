@@ -20,8 +20,8 @@ export default function Industries() {
         <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-20 sm:px-8 sm:pt-28">
           <SectionHeader
             label="Industries"
-            heading="Ten industries. Each with its own version of “the workflow that keeps everyone up at night.”"
-            subheading="Cross Flows Synergy ships templates, voices, integrations, and security postures tuned for the operational reality of every vertical we serve."
+            heading="Supporting Businesses Across Multiple Industries"
+            subheading="Cross Flows Synergy develops AI-powered business solutions tailored for industries where communication, efficiency, and customer experience are critical."
             maxWidth="max-w-4xl"
           />
         </div>

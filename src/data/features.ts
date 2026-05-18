@@ -24,10 +24,10 @@ export const features: Feature[] = [
     slug: "technology",
     number: "01",
     label: "Technology",
-    heading: "An AI engine engineered for real conversations, not demos.",
+    heading: "An AI engine engineered for real, human-grade conversations.",
     copy: [
       "Cross Flows Synergy ships its own conversational stack — streaming speech, intent reasoning, retrieval, and synthesis all aligned around a single end-to-end latency budget.",
-      "Every layer is tuned for the moment a customer is actually waiting on the other end. That means under-200ms response, fluent turn-taking, and graceful recovery when the line gets noisy.",
+      "AI engine powering human-like conversations, sub-200ms response latency, and intelligent decision-making across all communication channels.",
     ],
     bullets: [
       "Streaming ASR with sub-200ms response latency",
@@ -45,7 +45,7 @@ export const features: Feature[] = [
     heading: "Forty-plus languages. One brand voice. Zero compromise.",
     copy: [
       "Customers shouldn’t have to switch to your default language to be heard. Cross Flows Synergy detects, translates, and responds in the language each caller actually uses — including regional accents and code-switching.",
-      "Voices, vocabulary, and tone stay on-brand whether you’re serving Lisbon, Lagos, or Lahore.",
+      "Multilingual AI-powered communication across 40+ languages with real-time comprehension and response capabilities for diverse communities.",
     ],
     bullets: [
       "40+ languages with native-quality voices",
@@ -62,14 +62,14 @@ export const features: Feature[] = [
     label: "Integration",
     heading: "Plugs into the systems your team already lives in.",
     copy: [
-      "Out-of-the-box connectors for the CRMs, ERPs, ticketing tools, and telephony stacks enterprise IT already runs.",
-      "When something custom is needed, REST APIs, webhooks, and a SDK get you live in days — not quarters.",
+      "Seamlessly connect with Salesforce, HubSpot, Zoho, Twilio, Microsoft Teams, Google Calendar, Slack, and custom APIs without disrupting your existing infrastructure.",
+      "When something custom is needed, REST APIs, webhooks, and a typed SDK get you live in days — not quarters.",
     ],
     bullets: [
-      "Pre-built connectors for Salesforce, HubSpot, NetSuite, SAP",
+      "Pre-built connectors for Salesforce, HubSpot, Zoho, NetSuite",
       "Telephony adapters for Twilio, Genesys, Five9, Amazon Connect",
+      "Microsoft Teams, Slack, Google Calendar, and operational tools",
       "REST and webhook escape hatches with typed SDKs",
-      "Pre-baked templates for common enterprise workflows",
     ],
     icon: Plug,
     image: "https://placehold.co/1200x780/0f1420/3a8dff?text=Universal+Connectors",
@@ -80,7 +80,7 @@ export const features: Feature[] = [
     label: "Data & Insights",
     heading: "Every conversation becomes signal you can act on.",
     copy: [
-      "Live dashboards turn raw conversations into intent maps, sentiment trends, and resolution KPIs — without a separate analytics project.",
+      "Real-time dashboards, interaction analytics, workflow performance tracking, and AI-powered reporting to support smarter operational decisions.",
       "Export clean, structured data to your warehouse and let your BI team go to town.",
     ],
     bullets: [
@@ -98,7 +98,7 @@ export const features: Feature[] = [
     label: "Security",
     heading: "Built so your security team can sleep at night.",
     copy: [
-      "SOC 2 Type II, end-to-end encryption, fine-grained access controls, and full data residency options.",
+      "Responsible AI implementation with enterprise-grade security practices, workflow transparency, and reliable business integrations designed for modern organizations.",
       "GDPR, HIPAA, and PCI workflows are first-class — not afterthoughts wired in for the deal.",
     ],
     bullets: [
