@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import PageShell from "./PageShell";
 import HeroBackground from "./HeroBackground";
 import SectionHeader from "./SectionHeader";
 import VideoPlayer from "./VideoPlayer";
 import CTAButton from "./CTAButton";
+import ExpandableDescription from "./ExpandableDescription";
 import type { Product } from "../data/products";
 import { useCases } from "../data/useCases";
 import { industries } from "../data/industries";
@@ -62,7 +63,7 @@ export default function ProductPage({ product }: ProductPageProps) {
               transition={{ duration: 0.55, delay: 0.15 }}
               className="flex flex-col gap-2"
             >
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-accent)]">
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[var(--color-accent)]">
                 Ideal For
               </span>
               <div className="flex flex-wrap gap-1.5">
@@ -111,7 +112,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                   <Icon className="h-12 w-12" strokeWidth={1.9} />
                 </motion.span>
                 <div className="space-y-2">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                  <div className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
                     Live across
                   </div>
                   <div className="font-display text-2xl font-bold tracking-tight">
@@ -145,77 +146,107 @@ export default function ProductPage({ product }: ProductPageProps) {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Capabilities */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
             label="Capabilities"
             heading={`What makes ${product.name} different.`}
+            align="center"
             maxWidth="max-w-2xl"
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2">
-            {product.features.map((f, idx) => (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10% 0px" }}
-                transition={{ duration: 0.5, delay: idx * 0.06 }}
-                whileHover={{ y: -4 }}
-                className="flex flex-col gap-3 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition hover:border-[var(--color-accent)]/60"
-              >
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
-                  <Check className="h-4 w-4" strokeWidth={3} />
-                </span>
-                <h3 className="font-display text-lg font-semibold tracking-tight">
-                  {f.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-                  {f.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use cases */}
-      <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)]/30 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            label="Use Cases"
-            heading={`Where ${product.name} earns its keep.`}
-            maxWidth="max-w-2xl"
-          />
-          <div className="mt-10 flex flex-wrap gap-3">
-            {relatedUseCases.map((u) => {
-              const UIcon = u.icon;
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 sm:gap-x-6">
+            {product.features.map((f, idx) => {
+              const restingY = idx % 2 === 0 ? -12 : 12;
               return (
-                <Link
-                  key={u.slug}
-                  to="/use-cases"
-                  className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-4 py-2 text-sm transition hover:border-[var(--color-accent)]/60 hover:bg-[var(--color-surface-2)]"
+                <motion.div
+                  key={f.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: restingY }}
+                  viewport={{ once: true, margin: "-10% 0px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.06, ease: "easeOut" }}
+                  whileHover={{ y: restingY - 4 }}
+                  className="capability-card flex flex-col gap-3 rounded-2xl bg-[var(--color-surface)] p-6 pl-7 transition-shadow duration-200"
+                  style={{
+                    border: "1px solid var(--color-border)",
+                    boxShadow: "inset 2px 0 0 0 var(--color-accent)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow =
+                      "inset 4px 0 0 0 var(--color-accent), 0 18px 50px rgba(0,212,255,0.18)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow =
+                      "inset 2px 0 0 0 var(--color-accent)";
+                  }}
                 >
-                  <UIcon className="h-4 w-4 text-[var(--color-accent)]" />
-                  {u.title}
-                  <ArrowRight className="h-3 w-3 opacity-0 transition group-hover:opacity-100" />
-                </Link>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+                    <Sparkles size={28} strokeWidth={1.9} />
+                  </span>
+                  <h3 className="font-display text-lg font-semibold tracking-tight">
+                    {f.title}
+                  </h3>
+                  <ExpandableDescription
+                    text={f.description}
+                    className="text-sm leading-relaxed text-[var(--color-text-muted)]"
+                  />
+                </motion.div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Industries */}
+      {/* Use cases — tag cloud */}
+      <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)]/30 py-20">
+        <div className="mx-auto flex max-w-7xl flex-col items-center px-5 text-center sm:px-8">
+          <span className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--color-accent)]">
+            Use Cases
+          </span>
+          <h2 className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
+            Applicable Use Cases
+          </h2>
+          <div className="mt-10 flex flex-wrap justify-center gap-2.5">
+            {relatedUseCases.map((u) => (
+              <Link
+                key={u.slug}
+                to={`/use-cases#${u.slug}`}
+                className="use-case-pill transition-colors duration-150 ease-out"
+                style={{
+                  backgroundColor: "var(--color-surface-2)",
+                  border: "1px solid var(--color-border)",
+                  color: "var(--color-text-muted)",
+                  borderRadius: 999,
+                  padding: "5px 14px",
+                  fontSize: "0.8rem",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--color-accent)";
+                  e.currentTarget.style.color = "var(--color-text-primary)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--color-border)";
+                  e.currentTarget.style.color = "var(--color-text-muted)";
+                }}
+              >
+                {u.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries Served — max 4 in 2x2 */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
             label="Industries Served"
-            heading={`Tuned for the operational reality of ${relatedIndustries.length} verticals.`}
+            heading="Built for the industries that need it most."
+            align="center"
             maxWidth="max-w-2xl"
           />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {relatedIndustries.map((ind, idx) => {
+          <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
+            {relatedIndustries.slice(0, 4).map((ind, idx) => {
               const IIcon = ind.icon;
               return (
                 <motion.div
@@ -227,16 +258,30 @@ export default function ProductPage({ product }: ProductPageProps) {
                   whileHover={{ y: -4 }}
                   className="flex flex-col gap-3 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-accent)]/50"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-surface-2)] text-[var(--color-accent)]">
-                    <IIcon className="h-4 w-4" strokeWidth={2.2} />
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-surface-2)] text-[var(--color-accent)]">
+                    <IIcon size={20} strokeWidth={2.1} />
                   </span>
-                  <div className="font-display text-sm font-semibold">{ind.name}</div>
+                  <Link
+                    to={`/industries/${ind.slug}`}
+                    className="font-display text-base font-semibold tracking-tight text-[var(--color-text-primary)] transition-colors duration-150 hover:text-[var(--color-accent)]"
+                  >
+                    {ind.name}
+                  </Link>
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">
                     {ind.description}
                   </p>
                 </motion.div>
               );
             })}
+          </div>
+          <div className="mt-8 flex justify-center">
+            <Link
+              to="/industries"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-accent)] transition-colors duration-150 hover:text-[var(--color-text-primary)]"
+            >
+              View all industries
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

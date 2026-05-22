@@ -28,7 +28,6 @@ export const bottomCTA = {
     "Discover how Cross Flows Synergy can help automate communication, streamline workflows, improve customer engagement, and support operational growth through intelligent AI-powered solutions.",
   buttons: [
     { label: "Book a Demo", to: "/contact" },
-    { label: "Schedule a Consultation", to: "/contact" },
     { label: "Explore Solutions", to: "/solutions" },
   ],
 };

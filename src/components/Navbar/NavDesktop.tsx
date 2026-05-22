@@ -8,6 +8,7 @@ import ProductsPanel from "./panels/ProductsPanel";
 import IndustriesPanel from "./panels/IndustriesPanel";
 import SolutionsPanel from "./panels/SolutionsPanel";
 import UseCasesPanel from "./panels/UseCasesPanel";
+import FeaturesPanel from "./panels/FeaturesPanel";
 import { isDropdownItem, type NavItem, type PanelId } from "./types";
 
 const NAVBAR_HEIGHT_DESKTOP = 72;
@@ -17,7 +18,7 @@ const navItems: NavItem[] = [
   { label: "Industries", panelId: "industries" },
   { label: "Solutions", panelId: "solutions" },
   { label: "Use Cases", panelId: "useCases" },
-  { label: "Features", href: "/features" },
+  { label: "Features", panelId: "features" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -26,6 +27,7 @@ const panelAriaLabels: Record<PanelId, string> = {
   industries: "Industries",
   solutions: "Solutions",
   useCases: "Use Cases",
+  features: "Features",
 };
 
 const HOVER_OPEN_DELAY_MS = 150;
@@ -149,6 +151,8 @@ export default function NavDesktop() {
         return <SolutionsPanel onNavigate={closePanel} />;
       case "useCases":
         return <UseCasesPanel onNavigate={closePanel} />;
+      case "features":
+        return <FeaturesPanel onNavigate={closePanel} />;
       default:
         return null;
     }
@@ -172,7 +176,7 @@ export default function NavDesktop() {
       >
         {/* Logo */}
         <Link to="/" className="flex shrink-0 items-center" aria-label="Cross Flows Synergy home">
-          <Logo size={32} />
+          <Logo size={38} />
         </Link>
 
         {/* Center-left nav links */}

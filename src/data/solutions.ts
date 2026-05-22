@@ -9,6 +9,8 @@ import {
   CalendarClock,
   Sparkles,
 } from "lucide-react";
+import type { ProductSlug } from "./products";
+import type { IndustrySlug } from "./industries";
 
 export type SolutionSlug =
   | "ai-reception-call-handling"
@@ -27,7 +29,17 @@ export interface Solution {
   icon: LucideIcon;
   accent: string;
   poster: string;
+  productSlugs: ProductSlug[];
+  industrySlugs: IndustrySlug[];
 }
+
+/**
+ * UI display title without the leading "AI " prefix.
+ * Used in cards, headings, and nav. The full title is kept for
+ * page metadata, alt text, and the solution detail hero.
+ */
+export const toDisplayTitle = (title: string): string =>
+  title.replace(/^AI\s/, "");
 
 export const solutionsSectionHeadline =
   "AI-Powered Solutions Designed for Real Business Problems";
@@ -45,6 +57,14 @@ export const solutions: Solution[] = [
     accent: "from-[#00d4ff] to-[#3a8dff]",
     poster:
       "https://placehold.co/1920x1080/080b12/00d4ff?text=AI+Reception+%26+Call+Handling",
+    productSlugs: ["smarttalk"],
+    industrySlugs: [
+      "consumer-services",
+      "healthcare-clinics",
+      "real-estate-property",
+      "restaurants-hospitality",
+      "utilities-services",
+    ],
   },
   {
     slug: "ai-appointment-management",
@@ -55,6 +75,13 @@ export const solutions: Solution[] = [
     accent: "from-[#00d4ff] to-[#7af9ff]",
     poster:
       "https://placehold.co/1920x1080/080b12/7af9ff?text=AI+Appointment+Management",
+    productSlugs: ["smarttalk", "worksync"],
+    industrySlugs: [
+      "healthcare-clinics",
+      "real-estate-property",
+      "restaurants-hospitality",
+      "schools-education",
+    ],
   },
   {
     slug: "ai-lead-qualification",
@@ -65,6 +92,13 @@ export const solutions: Solution[] = [
     accent: "from-[#9b6bff] to-[#00d4ff]",
     poster:
       "https://placehold.co/1920x1080/080b12/9b6bff?text=AI+Lead+Qualification",
+    productSlugs: ["smarttalk", "worksync"],
+    industrySlugs: [
+      "real-estate-property",
+      "recruitment-staffing",
+      "financial-services",
+      "consumer-services",
+    ],
   },
   {
     slug: "ai-workflow-automation",
@@ -75,6 +109,14 @@ export const solutions: Solution[] = [
     accent: "from-[#3a8dff] to-[#00d4ff]",
     poster:
       "https://placehold.co/1920x1080/080b12/3a8dff?text=AI+Workflow+Automation",
+    productSlugs: ["worksync"],
+    industrySlugs: [
+      "recruitment-staffing",
+      "logistics-operations",
+      "healthcare-clinics",
+      "schools-education",
+      "utilities-services",
+    ],
   },
   {
     slug: "ai-support-systems",
@@ -85,6 +127,13 @@ export const solutions: Solution[] = [
     accent: "from-[#00d4ff] to-[#3a8dff]",
     poster:
       "https://placehold.co/1920x1080/080b12/00d4ff?text=AI+Support+Systems",
+    productSlugs: ["smarttalk", "worksync"],
+    industrySlugs: [
+      "consumer-services",
+      "utilities-services",
+      "restaurants-hospitality",
+      "healthcare-clinics",
+    ],
   },
   {
     slug: "ai-communication-management",
@@ -95,6 +144,15 @@ export const solutions: Solution[] = [
     accent: "from-[#f5a623] to-[#00d4ff]",
     poster:
       "https://placehold.co/1920x1080/080b12/f5a623?text=AI+Communication+Management",
+    productSlugs: ["smarttalk"],
+    industrySlugs: [
+      "consumer-services",
+      "healthcare-clinics",
+      "real-estate-property",
+      "restaurants-hospitality",
+      "schools-education",
+      "utilities-services",
+    ],
   },
   {
     slug: "ai-scheduling-systems",
@@ -105,6 +163,14 @@ export const solutions: Solution[] = [
     accent: "from-[#00d4ff] to-[#9b6bff]",
     poster:
       "https://placehold.co/1920x1080/080b12/00d4ff?text=AI+Scheduling+Systems",
+    productSlugs: ["smarttalk", "worksync", "driveflow"],
+    industrySlugs: [
+      "healthcare-clinics",
+      "real-estate-property",
+      "restaurants-hospitality",
+      "schools-education",
+      "logistics-operations",
+    ],
   },
   {
     slug: "ai-operational-assistance",
@@ -115,5 +181,16 @@ export const solutions: Solution[] = [
     accent: "from-[#7af9ff] to-[#3a8dff]",
     poster:
       "https://placehold.co/1920x1080/080b12/7af9ff?text=AI+Operational+Assistance",
+    productSlugs: ["worksync", "driveflow"],
+    industrySlugs: [
+      "logistics-operations",
+      "healthcare-clinics",
+      "schools-education",
+      "real-estate-property",
+      "recruitment-staffing",
+    ],
   },
 ];
+
+export const getSolution = (slug: SolutionSlug): Solution | undefined =>
+  solutions.find((s) => s.slug === slug);

@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Filter, X } from "lucide-react";
 import PageShell from "../components/PageShell";
@@ -11,6 +12,20 @@ import { industries, type IndustrySlug } from "../data/industries";
 export default function UseCases() {
   const [productFilter, setProductFilter] = useState<Set<ProductSlug>>(new Set());
   const [industryFilter, setIndustryFilter] = useState<Set<IndustrySlug>>(new Set());
+  const [highlightedSlug, setHighlightedSlug] = useState<string | null>(null);
+  const location = useLocation();
+
+  // Hash deep-link: scroll the target card into view and briefly highlight it
+  useEffect(() => {
+    const hash = location.hash.replace(/^#/, "");
+    if (!hash) return;
+    const target = document.getElementById(`uc-${hash}`);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    setHighlightedSlug(hash);
+    const t = window.setTimeout(() => setHighlightedSlug(null), 2400);
+    return () => window.clearTimeout(t);
+  }, [location.hash]);
 
   const filtered = useMemo(() => {
     return useCases.filter((u) => {
@@ -140,16 +155,24 @@ export default function UseCases() {
             <AnimatePresence mode="popLayout">
               {filtered.map((u, idx) => {
                 const Icon = u.icon;
+                const isHighlighted = highlightedSlug === u.slug;
                 return (
                   <motion.div
                     key={u.slug}
+                    id={`uc-${u.slug}`}
                     layout
                     initial={{ opacity: 0, y: 18, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: 0.35, delay: idx * 0.03 }}
                     whileHover={{ y: -4 }}
-                    className="flex flex-col gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition hover:border-[var(--color-accent)]/60 hover:shadow-[0_18px_50px_rgba(0,212,255,0.15)]"
+                    style={{ scrollMarginTop: 120 }}
+                    className={
+                      "flex flex-col gap-4 rounded-2xl border bg-[var(--color-surface)] p-6 transition-shadow hover:border-[var(--color-accent)]/60 hover:shadow-[0_18px_50px_rgba(0,212,255,0.15)] " +
+                      (isHighlighted
+                        ? "border-[var(--color-accent)] shadow-[0_0_0_2px_var(--color-accent),0_18px_50px_rgba(0,212,255,0.25)]"
+                        : "border-[var(--color-border)]")
+                    }
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-surface-2)] text-[var(--color-accent)]">
                       <Icon className="h-5 w-5" strokeWidth={2.1} />

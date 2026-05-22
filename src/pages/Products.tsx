@@ -5,6 +5,7 @@ import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import SectionHeader from "../components/SectionHeader";
 import CTAButton from "../components/CTAButton";
+import ExpandableDescription from "../components/ExpandableDescription";
 import { products } from "../data/products";
 
 export default function Products() {
@@ -76,7 +77,7 @@ export default function Products() {
                       <Icon className="h-7 w-7" strokeWidth={2} />
                     </span>
                     <div>
-                      <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-accent)]">
+                      <div className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[var(--color-accent)]">
                         {p.heroEyebrow}
                       </div>
                       <div className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
@@ -99,21 +100,24 @@ export default function Products() {
                   <p className="text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
                     {p.longDescription}
                   </p>
-                  <ul className="flex flex-col gap-3">
+                  <ul className="flex flex-col gap-4">
                     {p.features.slice(0, 3).map((f) => (
                       <li
                         key={f.title}
                         className="flex items-start gap-3 text-sm leading-relaxed text-[var(--color-text-primary)]/85"
                       >
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
+                        <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
                           <Check className="h-3 w-3" strokeWidth={3} />
                         </span>
-                        <span>
-                          <span className="font-display font-semibold text-[var(--color-text-primary)]">
-                            {f.title}.
-                          </span>{" "}
-                          <span className="text-[var(--color-text-muted)]">{f.description}</span>
-                        </span>
+                        <div className="flex-1">
+                          <div className="font-display font-semibold text-[var(--color-text-primary)]">
+                            {f.title}
+                          </div>
+                          <ExpandableDescription
+                            text={f.description}
+                            className="text-sm leading-relaxed text-[var(--color-text-muted)]"
+                          />
+                        </div>
                       </li>
                     ))}
                   </ul>

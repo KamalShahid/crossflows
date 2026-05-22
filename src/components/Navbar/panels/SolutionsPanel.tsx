@@ -11,7 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { solutions, type SolutionSlug } from "../../../data/solutions";
+import { solutions, toDisplayTitle, type SolutionSlug } from "../../../data/solutions";
 
 interface PanelProps {
   onNavigate: () => void;
@@ -42,7 +42,7 @@ export default function SolutionsPanel({ onNavigate }: PanelProps) {
               return (
                 <Link
                   key={s.slug}
-                  to="/solutions"
+                  to={`/solutions/${s.slug}`}
                   onClick={onNavigate}
                   className="group flex items-start gap-3 rounded-lg border border-l-2 border-[var(--color-border)] border-l-transparent bg-transparent px-4 py-3 transition-[background-color,border-color] duration-150 ease-out hover:border-l-[var(--color-accent)] hover:bg-[var(--color-surface)]"
                 >
@@ -51,7 +51,7 @@ export default function SolutionsPanel({ onNavigate }: PanelProps) {
                   </span>
                   <span className="flex min-w-0 flex-1 flex-col gap-0.5">
                     <span className="font-display text-sm font-semibold tracking-tight text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)]">
-                      {s.title}
+                      {toDisplayTitle(s.title)}
                     </span>
                     <span className="text-xs leading-snug text-[var(--color-text-muted)]">
                       {s.description}

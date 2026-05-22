@@ -24,8 +24,9 @@ import Logo from "./Logo";
 import { useScrollLock } from "../../hooks/useScrollLock";
 import { products, type ProductSlug } from "../../data/products";
 import { industries } from "../../data/industries";
-import { solutions, type SolutionSlug } from "../../data/solutions";
+import { solutions, toDisplayTitle, type SolutionSlug } from "../../data/solutions";
 import { useCases } from "../../data/useCases";
+import { features } from "../../data/features";
 import type { PanelId } from "./types";
 
 const productIconOverrides: Record<ProductSlug, LucideIcon> = {
@@ -56,10 +57,10 @@ const drawerSections: DrawerSection[] = [
   { panelId: "industries", label: "Industries" },
   { panelId: "solutions", label: "Solutions" },
   { panelId: "useCases", label: "Use Cases" },
+  { panelId: "features", label: "Features" },
 ];
 
 const plainLinks: { label: string; href: string }[] = [
-  { label: "Features", href: "/features" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -105,7 +106,7 @@ export default function NavMobile() {
         }}
       >
         <Link to="/" aria-label="Cross Flows Synergy home" className="flex items-center">
-          <Logo size={28} />
+          <Logo size={34} />
         </Link>
 
         <button
@@ -141,7 +142,7 @@ export default function NavMobile() {
                 borderBottom: "1px solid var(--color-border)",
               }}
             >
-              <Logo size={28} />
+              <Logo size={34} />
               <button
                 type="button"
                 aria-label="Close navigation menu"
@@ -234,7 +235,7 @@ export default function NavMobile() {
                                 return (
                                   <Link
                                     key={s.slug}
-                                    to="/solutions"
+                                    to={`/solutions/${s.slug}`}
                                     onClick={closeAll}
                                     className="mx-1 flex items-center gap-3 rounded-md px-3 py-2.5 transition-colors duration-150 ease-out hover:bg-[var(--color-surface-2)]"
                                   >
@@ -242,7 +243,7 @@ export default function NavMobile() {
                                       <Icon size={15} strokeWidth={2.1} />
                                     </span>
                                     <span className="font-display text-sm font-medium text-[var(--color-text-primary)]">
-                                      {s.title}
+                                      {toDisplayTitle(s.title)}
                                     </span>
                                   </Link>
                                 );
@@ -263,6 +264,31 @@ export default function NavMobile() {
                                   />
                                 </Link>
                               ))}
+
+                            {section.panelId === "features" &&
+                              features.map((f) => {
+                                const FIcon = f.icon;
+                                return (
+                                  <Link
+                                    key={f.slug}
+                                    to={`/features#${f.slug}`}
+                                    onClick={closeAll}
+                                    className="mx-1 flex items-center gap-3 rounded-md px-3 py-2.5 transition-colors duration-150 ease-out hover:bg-[var(--color-surface-2)]"
+                                  >
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--color-surface-2)] text-[var(--color-accent)]">
+                                      <FIcon size={15} strokeWidth={2.1} />
+                                    </span>
+                                    <span className="flex min-w-0 flex-col">
+                                      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                                        {f.number}
+                                      </span>
+                                      <span className="font-display text-sm font-medium text-[var(--color-text-primary)]">
+                                        {f.label}
+                                      </span>
+                                    </span>
+                                  </Link>
+                                );
+                              })}
                           </div>
                         </motion.div>
                       )}

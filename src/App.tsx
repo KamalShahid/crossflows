@@ -8,8 +8,10 @@ import DriveFlow from "./pages/products/DriveFlow";
 import LearnMate from "./pages/products/LearnMate";
 import WorkSync from "./pages/products/WorkSync";
 import Industries from "./pages/Industries";
+import IndustryDetail from "./pages/IndustryDetail";
 import UseCases from "./pages/UseCases";
 import Solutions from "./pages/Solutions";
+import SolutionDetail from "./pages/SolutionDetail";
 import Features from "./pages/Features";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
@@ -28,8 +30,10 @@ export default function App() {
         <Route path="/products/learnmate" element={<LearnMate />} />
         <Route path="/products/worksync" element={<WorkSync />} />
         <Route path="/industries" element={<Industries />} />
+        <Route path="/industries/:slug" element={<IndustryDetail />} />
         <Route path="/use-cases" element={<UseCases />} />
         <Route path="/solutions" element={<Solutions />} />
+        <Route path="/solutions/:slug" element={<SolutionDetail />} />
         <Route path="/features" element={<Features />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />

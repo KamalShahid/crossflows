@@ -1,6 +1,11 @@
 import type { LucideIcon } from "lucide-react";
 
-export type PanelId = "products" | "industries" | "solutions" | "useCases";
+export type PanelId =
+  | "products"
+  | "industries"
+  | "solutions"
+  | "useCases"
+  | "features";
 
 export interface PlainNavItem {
   label: string;

@@ -1,12 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Stethoscope,
-  Sparkles,
+  HeartPulse,
   Users,
+  Briefcase,
   Building2,
-  Utensils,
+  UtensilsCrossed,
   Zap,
-  BookOpen,
+  GraduationCap,
   Truck,
   Landmark,
 } from "lucide-react";
@@ -61,7 +61,7 @@ export const industries: Industry[] = [
     headline: "Intelligent AI Solutions for Modern Healthcare Communication",
     intro:
       "Cross Flows Synergy helps healthcare providers improve patient communication, streamline administrative workflows, and enhance operational efficiency through intelligent AI-powered systems designed for modern clinics and healthcare environments.",
-    icon: Stethoscope,
+    icon: HeartPulse,
     accent: "from-[#00d4ff] to-[#3a8dff]",
     productSlugs: ["smarttalk", "worksync", "learnmate"],
     useCaseSlugs: [
@@ -195,7 +195,7 @@ export const industries: Industry[] = [
     headline: "AI Solutions for High-Volume Customer Interactions",
     intro:
       "Cross Flows Synergy helps consumer service businesses automate customer communication, streamline appointment handling, improve response times, and support customers 24/7 through intelligent AI-powered systems.",
-    icon: Sparkles,
+    icon: Users,
     accent: "from-[#00d4ff] to-[#7af9ff]",
     productSlugs: ["smarttalk", "worksync", "driveflow"],
     useCaseSlugs: [
@@ -273,7 +273,7 @@ export const industries: Industry[] = [
     headline: "AI Solutions for Recruitment & Staffing Operations",
     intro:
       "Cross Flows Synergy helps staffing firms and recruitment agencies automate communication, improve candidate engagement, streamline hiring workflows, and optimize operational coordination through intelligent AI-powered systems.",
-    icon: Users,
+    icon: Briefcase,
     accent: "from-[#9b6bff] to-[#00d4ff]",
     productSlugs: ["smarttalk", "worksync", "learnmate"],
     useCaseSlugs: [
@@ -395,7 +395,7 @@ export const industries: Industry[] = [
     headline: "AI Solutions for Restaurants, Hospitality & Guest Experiences",
     intro:
       "Cross Flows Synergy helps restaurants and hospitality businesses improve guest communication, automate reservations, streamline operations, and enhance customer experiences through intelligent AI systems.",
-    icon: Utensils,
+    icon: UtensilsCrossed,
     accent: "from-[#f5a623] to-[#ffce6e]",
     productSlugs: ["smarttalk", "worksync", "driveflow"],
     useCaseSlugs: [
@@ -513,7 +513,7 @@ export const industries: Industry[] = [
     headline: "AI Solutions for Schools, Educational Institutions & Learning Environments",
     intro:
       "Cross Flows Synergy helps schools and educational institutions improve communication, streamline administrative workflows, enhance student engagement, and support academic operations through intelligent AI-powered systems designed for modern learning environments.",
-    icon: BookOpen,
+    icon: GraduationCap,
     accent: "from-[#9b6bff] to-[#3a8dff]",
     productSlugs: ["learnmate", "smarttalk", "worksync"],
     useCaseSlugs: [

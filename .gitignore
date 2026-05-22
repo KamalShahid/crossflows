@@ -13,3 +13,10 @@ dist-ssr
 
 # Local design references (kept out of git)
 poly.ai_en.png
+
+# Working docs / change logs (kept out of git)
+CF website changes.pdf
+
+# MS Word lock files
+~$*.docx
+~$*.doc

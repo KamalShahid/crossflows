@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import CTAButton from "../components/CTAButton";
-import LogoMarquee from "../components/LogoMarquee";
+import LiveTalkWidget from "../components/LiveTalkWidget";
+import IndustryMarquee from "../components/IndustryMarquee";
+import IntegrationsMarquee from "../components/IntegrationsMarquee";
 import StatBar from "../components/StatBar";
 import SectionHeader from "../components/SectionHeader";
 import VideoPlayer from "../components/VideoPlayer";
@@ -24,11 +26,14 @@ import {
   featuresOverview,
   videoSection,
 } from "../data/home";
-import {
-  integrationsSection,
-  integrationLogos,
-  integrationCategories,
-} from "../data/integrations";
+
+const pillarAccents = [
+  "var(--color-accent)",
+  "#00B8D9",
+  "var(--color-accent-warm)",
+  "#E8943A",
+  "#6ECFB0",
+];
 
 const heroWords = ["conversation", "appointment", "lesson", "workflow"];
 
@@ -48,19 +53,9 @@ export default function Home() {
       {/* HERO */}
       <section className="relative isolate overflow-hidden">
         <HeroBackground />
-        <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-10 px-5 pb-24 pt-20 sm:px-8 sm:pt-28 md:pt-32 md:pb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/70 px-4 py-1.5 text-xs font-medium text-[var(--color-text-primary)] backdrop-blur-md"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-[var(--color-accent)]" />
-            <span className="font-mono uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-              Now shipping · WorkSync™ Agentic Layer
-            </span>
-          </motion.div>
-
+        <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-5 pb-24 pt-20 sm:px-8 sm:pt-28 md:pt-32 md:pb-32">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-16">
+            <div className="flex flex-col items-start gap-7">
           <motion.h1
             initial="hidden"
             animate="visible"
@@ -123,13 +118,20 @@ export default function Home() {
               Explore Products
             </CTAButton>
           </motion.div>
+            </div>
+
+            {/* Right column — Live Talk widget */}
+            <div className="mx-auto w-full max-w-[380px] sm:max-w-[420px] lg:mx-0 lg:max-w-none lg:justify-self-end">
+              <LiveTalkWidget />
+            </div>
+          </div>
 
           {/* Hero floating preview card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.55 }}
-            className="relative mt-10 w-full max-w-5xl self-stretch overflow-hidden rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.55)] sm:mt-12 sm:p-8"
+            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.55)] sm:p-8"
           >
             <div className="grid gap-6 sm:grid-cols-3">
               {[
@@ -168,8 +170,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Logos */}
-      <LogoMarquee />
+      {/* Industry marquee */}
+      <IndustryMarquee />
 
       {/* What We Do */}
       <section className="relative py-24">
@@ -185,7 +187,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 0.55, ease: "easeOut" }}
-              className="text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
+              className="text-left text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
             >
               {whatWeDo.body}
             </motion.p>
@@ -223,18 +225,18 @@ export default function Home() {
                   >
                     <Icon className="h-5 w-5" strokeWidth={2.2} />
                   </span>
-                  <h3 className="font-display text-xl font-bold tracking-tight text-[var(--color-text-primary)]">
+                  <h3 className="font-display text-lg font-bold tracking-tight text-[var(--color-text-primary)]">
                     {p.name}
                   </h3>
-                  <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+                  <p className="line-clamp-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {p.shortDescription}
                   </p>
                   <Link
                     to={`/products/${p.slug}`}
-                    className="mt-auto inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-accent)] transition group-hover:text-white"
+                    className="mt-auto inline-flex items-center gap-1 text-[0.8rem] font-medium text-[var(--color-accent)] opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100"
                   >
-                    Explore {p.name}
-                    <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                    Read more
+                    <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </motion.div>
               );
@@ -273,7 +275,7 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: idx * 0.04 }}
                 >
                   <Link
-                    to="/industries"
+                    to={`/industries/${ind.slug}`}
                     className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-4 py-2 text-sm text-[var(--color-text-primary)] backdrop-blur-md transition hover:border-[var(--color-accent)]/70 hover:bg-[var(--color-surface-2)]"
                   >
                     <Icon className="h-4 w-4 text-[var(--color-accent)]" />
@@ -303,6 +305,10 @@ export default function Home() {
             {useCases.slice(0, 9).map((u, idx) => {
               const Icon = u.icon;
               const span = idx === 0 ? "lg:col-span-2" : "";
+              const excerpt =
+                u.description.length > 100
+                  ? u.description.slice(0, 100).trimEnd() + "…"
+                  : u.description;
               return (
                 <motion.div
                   key={u.slug}
@@ -311,7 +317,7 @@ export default function Home() {
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                   whileHover={{ y: -4 }}
-                  className={`group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-shadow hover:shadow-[0_20px_50px_rgba(0,212,255,0.15)] ${span}`}
+                  className={`group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-5 transition-shadow hover:shadow-[0_20px_50px_rgba(0,212,255,0.15)] ${span}`}
                 >
                   <div className="flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-2)] text-[var(--color-accent)]">
@@ -322,14 +328,14 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    {u.description.split(". ").slice(0, 2).join(". ") + "."}
+                    {excerpt}
                   </p>
                   <Link
-                    to="/use-cases"
-                    className="mt-auto inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-accent)] opacity-0 transition group-hover:opacity-100"
+                    to={`/use-cases#${u.slug}`}
+                    className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)] transition hover:text-white"
                   >
-                    See it in action
-                    <ArrowRight className="h-3 w-3" />
+                    Read more
+                    <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
                   </Link>
                 </motion.div>
               );
@@ -352,24 +358,50 @@ export default function Home() {
             align="center"
             maxWidth="max-w-3xl"
           />
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
             {features.map((f, idx) => {
               const Icon = f.icon;
+              const accent = pillarAccents[idx % pillarAccents.length];
+              const restingY = idx % 2 === 0 ? -12 : 12;
               return (
                 <motion.div
                   key={f.slug}
                   initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: restingY }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: idx * 0.06 }}
-                  whileHover={{ y: -4 }}
-                  className="group relative flex flex-col gap-3 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)]/60 p-5 transition hover:border-[var(--color-accent)]/60"
+                  transition={{ duration: 0.5, delay: idx * 0.06, ease: "easeOut" }}
+                  whileHover={{ y: restingY - 4 }}
+                  className="pillar-card group relative flex flex-col gap-3 overflow-hidden rounded-2xl bg-[var(--color-bg)]/70 p-5 pl-6 transition-shadow duration-200"
+                  style={{
+                    border: "1px solid var(--color-border)",
+                    boxShadow: `inset 2px 0 0 0 ${accent}`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `inset 4px 0 0 0 ${accent}, 0 18px 50px ${accent}33`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = `inset 2px 0 0 0 ${accent}`;
+                  }}
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-surface-2)] text-[var(--color-accent)]">
-                    <Icon className="h-5 w-5" strokeWidth={2.1} />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-3 top-1 select-none font-mono font-bold leading-none"
+                    style={{
+                      fontSize: "4rem",
+                      opacity: 0.06,
+                      color: "var(--color-text-primary)",
+                    }}
+                  >
+                    {f.number}
+                  </span>
+                  <span
+                    className="relative flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-surface-2)]"
+                    style={{ color: accent }}
+                  >
+                    <Icon size={28} strokeWidth={2} />
                   </span>
                   <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                    {f.number}
+                    Pillar · {f.number}
                   </div>
                   <h3 className="font-display text-base font-semibold leading-tight tracking-tight">
                     {f.label}
@@ -384,46 +416,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Integrations */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            label={integrationsSection.label}
-            heading={integrationsSection.headline}
-            subheading={integrationsSection.body}
-            maxWidth="max-w-3xl"
-          />
-          <div className="mt-12 grid items-center gap-6 sm:grid-cols-3 lg:grid-cols-7">
-            {integrationLogos.map((logo, idx) => (
-              <motion.div
-                key={logo.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.04 }}
-                className="group flex flex-col items-center gap-2 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition hover:border-[var(--color-accent)]/60"
-              >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--color-accent)] to-[#3a8dff] font-mono text-sm font-semibold text-black">
-                  {logo.initials}
-                </span>
-                <span className="font-display text-xs font-medium text-[var(--color-text-primary)]/85">
-                  {logo.name}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {integrationCategories.map((category) => (
-              <span
-                key={category}
-                className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-text-muted)]"
-              >
-                {category}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Integrations marquee */}
+      <IntegrationsMarquee />
 
       {/* Insights & Analytics */}
       <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)]/40 py-24">
@@ -432,6 +426,7 @@ export default function Home() {
             label={insightsSection.label}
             heading={insightsSection.headline}
             subheading={insightsSection.body}
+            align="center"
             maxWidth="max-w-3xl"
           />
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

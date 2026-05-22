@@ -11,8 +11,8 @@ interface Stat {
 const stats: Stat[] = [
   { value: 40, suffix: "+", label: "Languages Supported" },
   { value: 99.9, suffix: "%", decimals: 1, label: "Platform Uptime" },
-  { value: 12, suffix: "", label: "Production Use Cases" },
-  { value: 10, suffix: "", label: "Industries Served" },
+  { value: 15, suffix: "+", label: "Production Use Cases" },
+  { value: 20, suffix: "+", label: "Industries Served" },
 ];
 
 export default function StatBar() {
