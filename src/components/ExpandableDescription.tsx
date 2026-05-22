@@ -35,7 +35,11 @@ export default function ExpandableDescription({
       </motion.div>
       <button
         type="button"
-        onClick={() => setExpanded((p) => !p)}
+        onClick={(e) => {
+          // Stop bubbling so a parent (e.g. a card-level onClick) doesn't also fire
+          e.stopPropagation();
+          setExpanded((p) => !p);
+        }}
         aria-expanded={expanded}
         className="mt-2 inline-flex items-center gap-1 text-[0.85rem] font-medium text-[var(--color-accent)] transition-colors duration-150 ease-out hover:text-[var(--color-text-primary)]"
       >

@@ -1,17 +1,17 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  PhoneIncoming,
   Headphones,
-  LifeBuoy,
-  Route,
-  MessageSquare,
+  GitBranch,
+  MessageCircleQuestion,
   Moon,
   CalendarCheck,
-  Target,
-  Workflow,
-  Sparkles,
+  UserCheck,
+  Zap,
+  Radio,
   CreditCard,
   Network,
-  Languages,
+  Globe,
   Plug,
 } from "lucide-react";
 import type { ProductSlug } from "./products";
@@ -47,7 +47,7 @@ export const useCases: UseCase[] = [
     title: "AI Receptionist",
     description:
       "Modern businesses need to stay responsive at all times, even during peak hours or outside regular business operations. Cross Flows Synergy's AI Receptionist solutions help organizations manage incoming calls, customer inquiries, and communication requests through intelligent AI-powered systems designed to provide fast, professional, and consistent interactions. From answering common questions to routing calls and assisting with scheduling, AI reception systems help businesses improve customer experiences while reducing front-desk workload.",
-    icon: Headphones,
+    icon: PhoneIncoming,
     productSlugs: ["smarttalk"],
     industrySlugs: [
       "healthcare-clinics",
@@ -63,7 +63,7 @@ export const useCases: UseCase[] = [
     title: "Customer Support Automation",
     description:
       "Customers expect fast and reliable support across every interaction. Cross Flows Synergy helps businesses automate customer support workflows through intelligent AI-powered communication systems capable of handling inquiries, providing information, resolving common requests, and improving response efficiency. By automating repetitive support tasks, businesses can improve service quality, reduce operational pressure, and deliver more seamless customer experiences.",
-    icon: LifeBuoy,
+    icon: Headphones,
     productSlugs: ["smarttalk", "worksync"],
     industrySlugs: [
       "consumer-services",
@@ -79,7 +79,7 @@ export const useCases: UseCase[] = [
     title: "Call Routing & Prioritization",
     description:
       "Efficient communication starts with directing customers to the right place quickly. Cross Flows Synergy's intelligent call routing solutions automatically analyze customer inquiries and route them to the appropriate department, workflow, or support team based on urgency, request type, or operational logic. This helps reduce wait times, improve workflow coordination, and create smoother customer experiences across high-volume communication environments.",
-    icon: Route,
+    icon: GitBranch,
     productSlugs: ["smarttalk", "worksync"],
     industrySlugs: [
       "consumer-services",
@@ -94,7 +94,7 @@ export const useCases: UseCase[] = [
     title: "FAQ Automation",
     description:
       "Businesses spend significant time answering repetitive customer questions every day. Cross Flows Synergy helps automate frequently asked questions through intelligent AI systems capable of instantly providing accurate information regarding services, appointments, pricing, schedules, operational hours, and more. FAQ automation improves response times, reduces manual workload, and ensures customers receive consistent information anytime they need support.",
-    icon: MessageSquare,
+    icon: MessageCircleQuestion,
     productSlugs: ["smarttalk"],
     industrySlugs: [
       "consumer-services",
@@ -142,7 +142,7 @@ export const useCases: UseCase[] = [
     title: "Lead Qualification & Customer Intake",
     description:
       "Businesses need faster and more organized ways to manage incoming inquiries and potential customers. Cross Flows Synergy helps automate lead qualification and customer intake processes by collecting essential information, categorizing inquiries, and routing opportunities to the appropriate teams. Intelligent intake workflows help improve response speed, reduce manual coordination, and support stronger customer engagement.",
-    icon: Target,
+    icon: UserCheck,
     productSlugs: ["smarttalk", "worksync"],
     industrySlugs: [
       "real-estate-property",
@@ -156,7 +156,7 @@ export const useCases: UseCase[] = [
     title: "Workflow Automation",
     description:
       "Repetitive operational processes can slow down productivity and create inefficiencies across organizations. Cross Flows Synergy's workflow automation solutions help businesses streamline internal coordination, automate routine tasks, improve communication, and optimize operational workflows through intelligent AI-powered systems. Automated workflows allow teams to focus on higher-value activities while improving operational consistency and efficiency.",
-    icon: Workflow,
+    icon: Zap,
     productSlugs: ["worksync", "driveflow"],
     industrySlugs: [
       "recruitment-staffing",
@@ -173,7 +173,7 @@ export const useCases: UseCase[] = [
     title: "Customer Engagement & Communication",
     description:
       "Strong customer engagement requires fast, responsive, and personalized communication experiences. Cross Flows Synergy helps businesses improve customer interactions through intelligent AI-powered engagement systems designed to support conversations, automate communication workflows, and enhance responsiveness across customer touchpoints. Better engagement leads to improved customer satisfaction, stronger relationships, and more consistent service experiences.",
-    icon: Sparkles,
+    icon: Radio,
     productSlugs: ["smarttalk", "learnmate"],
     industrySlugs: [
       "consumer-services",
@@ -212,7 +212,7 @@ export const useCases: UseCase[] = [
     title: "Multilingual Communication Support",
     description:
       "Businesses serving diverse communities need communication systems capable of supporting multiple languages and improving accessibility. Cross Flows Synergy provides multilingual AI-powered communication solutions designed to help organizations engage customers more effectively across different languages and communication preferences. This improves customer experiences, accessibility, and operational reach.",
-    icon: Languages,
+    icon: Globe,
     productSlugs: ["smarttalk", "learnmate"],
     industrySlugs: [
       "schools-education",
