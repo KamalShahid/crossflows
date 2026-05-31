@@ -107,16 +107,13 @@ export default function Contact() {
                 transition={{ duration: 0.55, delay: 0.22 }}
                 className="mt-6 flex flex-wrap gap-3"
               >
-                {bottomCTA.buttons.map((b, idx) => (
-                  <CTAButton
-                    key={b.label}
-                    to={b.to}
-                    variant={idx === 0 ? "primary" : "secondary"}
-                    withArrow={idx === 0}
-                  >
-                    {b.label}
-                  </CTAButton>
-                ))}
+                {bottomCTA.buttons
+                  .filter((b) => b.label !== "Book a Demo")
+                  .map((b) => (
+                    <CTAButton key={b.label} to={b.to} variant="secondary">
+                      {b.label}
+                    </CTAButton>
+                  ))}
               </motion.div>
             </div>
 
@@ -284,7 +281,7 @@ export default function Contact() {
 
                   <label className="flex flex-col gap-2">
                     <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                      What are you trying to ship?
+                      What business challenge are you solving?
                     </span>
                     <textarea
                       value={form.message}

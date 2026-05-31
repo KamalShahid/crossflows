@@ -59,9 +59,9 @@ export const securitySection = {
 
 export const productsSection = {
   label: "Our Products",
-  headline: "Four products. One platform engineered to ship.",
+  headline: "Four products. One unified AI platform built to execute.",
   subheading:
-    "Each product is purpose-built for the highest-leverage moments in enterprise operations — and shares the same engine, security, and analytics layer underneath.",
+    "Purpose-built for high-value operational workflows, every product runs on the same intelligent orchestration, analytics, and security backbone.",
 };
 
 export const useCasesSection = {
@@ -69,6 +69,12 @@ export const useCasesSection = {
   headline: "Production-grade workflows, ready to deploy.",
   subheading:
     "Each one is a real workflow we run for real customers — not a slide.",
+};
+
+export const statsSection = {
+  headline: "Built for Scale. Trusted for Performance.",
+  subheading:
+    "Enterprise-ready AI infrastructure designed to support multilingual communication, operational",
 };
 
 export const featuresOverview = {

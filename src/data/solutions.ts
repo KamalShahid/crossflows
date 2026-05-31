@@ -24,8 +24,14 @@ export type SolutionSlug =
 
 export interface Solution {
   slug: SolutionSlug;
+  /** Full canonical name with "AI " prefix — used in <title>, alt, aria. */
   title: string;
+  /** Display label without the "AI " prefix — used in cards, nav, headings. */
+  displayTitle: string;
+  /** Full paragraph copy used on the detail page. */
   description: string;
+  /** Tightened single-sentence copy used in cards/teasers. */
+  shortDescription: string;
   icon: LucideIcon;
   accent: string;
   poster: string;
@@ -35,8 +41,8 @@ export interface Solution {
 
 /**
  * UI display title without the leading "AI " prefix.
- * Used in cards, headings, and nav. The full title is kept for
- * page metadata, alt text, and the solution detail hero.
+ * Kept for back-compat with call sites; new entries also carry a
+ * `displayTitle` field on the data object for direct access.
  */
 export const toDisplayTitle = (title: string): string =>
   title.replace(/^AI\s/, "");
@@ -51,8 +57,11 @@ export const solutions: Solution[] = [
   {
     slug: "ai-reception-call-handling",
     title: "AI Reception & Call Handling",
+    displayTitle: "Reception & Call Handling",
     description:
-      "Ensure every inbound call is answered, routed, and resolved without burdening your team.",
+      "AI-powered voice systems that answer, route, and resolve customer inquiries automatically — ensuring every call is handled efficiently, 24/7.",
+    shortDescription:
+      "AI-powered voice systems that answer, route, and resolve customer inquiries automatically.",
     icon: PhoneIncoming,
     accent: "from-[#00d4ff] to-[#3a8dff]",
     poster:
@@ -69,8 +78,11 @@ export const solutions: Solution[] = [
   {
     slug: "ai-appointment-management",
     title: "AI Appointment Management",
+    displayTitle: "Appointment Management",
     description:
-      "Let customers self-schedule, confirm, or reschedule in real time without manual coordination.",
+      "Automate scheduling, confirmations, reminders, cancellations, and rescheduling across teams, locations, and customer workflows.",
+    shortDescription:
+      "Automate scheduling, confirmations, reminders, cancellations, and rescheduling across teams.",
     icon: CalendarCheck,
     accent: "from-[#00d4ff] to-[#7af9ff]",
     poster:
@@ -86,8 +98,11 @@ export const solutions: Solution[] = [
   {
     slug: "ai-lead-qualification",
     title: "AI Lead Qualification",
+    displayTitle: "Lead Qualification",
     description:
-      "Capture and qualify leads instantly before they reach your sales team.",
+      "Capture, qualify, and prioritize inbound leads instantly through intelligent AI conversations and automated engagement workflows.",
+    shortDescription:
+      "Capture, qualify, and prioritize inbound leads instantly through intelligent AI conversations.",
     icon: Target,
     accent: "from-[#9b6bff] to-[#00d4ff]",
     poster:
@@ -103,8 +118,11 @@ export const solutions: Solution[] = [
   {
     slug: "ai-workflow-automation",
     title: "AI Workflow Automation",
+    displayTitle: "Workflow Automation",
     description:
-      "Replace repetitive manual tasks with intelligent, connected automation systems.",
+      "Eliminate repetitive manual tasks through intelligent automation that connects systems, teams, and operational processes.",
+    shortDescription:
+      "Eliminate repetitive manual tasks through intelligent automation that connects systems and teams.",
     icon: Workflow,
     accent: "from-[#3a8dff] to-[#00d4ff]",
     poster:
@@ -121,8 +139,11 @@ export const solutions: Solution[] = [
   {
     slug: "ai-support-systems",
     title: "AI Support Systems",
+    displayTitle: "Support Systems",
     description:
-      "Deliver fast, consistent customer support at scale — without increasing headcount.",
+      "Deliver fast, scalable customer and internal support through AI-powered assistance across voice, chat, and digital channels.",
+    shortDescription:
+      "Deliver fast, scalable support through AI-powered assistance across voice, chat, and digital channels.",
     icon: LifeBuoy,
     accent: "from-[#00d4ff] to-[#3a8dff]",
     poster:
@@ -138,8 +159,11 @@ export const solutions: Solution[] = [
   {
     slug: "ai-communication-management",
     title: "AI Communication Management",
+    displayTitle: "Communication Management",
     description:
-      "Unify voice, chat, SMS, and digital communication under one intelligent platform.",
+      "Unify voice, SMS, chat, and digital communication into one intelligent platform for seamless engagement and coordination.",
+    shortDescription:
+      "Unify voice, SMS, chat, and digital communication into one intelligent platform.",
     icon: MessagesSquare,
     accent: "from-[#f5a623] to-[#00d4ff]",
     poster:
@@ -157,8 +181,11 @@ export const solutions: Solution[] = [
   {
     slug: "ai-scheduling-systems",
     title: "AI Scheduling Systems",
+    displayTitle: "Scheduling Systems",
     description:
-      "Coordinate appointments, dispatch, and resource scheduling across teams and locations.",
+      "Coordinate appointments, dispatching, resources, and operational schedules efficiently across teams and locations.",
+    shortDescription:
+      "Coordinate appointments, dispatching, resources, and operational schedules across teams.",
     icon: CalendarClock,
     accent: "from-[#00d4ff] to-[#9b6bff]",
     poster:
@@ -175,8 +202,11 @@ export const solutions: Solution[] = [
   {
     slug: "ai-operational-assistance",
     title: "AI Operational Assistance",
+    displayTitle: "Operational Assistance",
     description:
-      "Support internal teams with intelligent coordination, reminders, and workflow guidance.",
+      "Support internal operations with AI-powered coordination, reminders, workflow guidance, and real-time operational intelligence.",
+    shortDescription:
+      "Support internal operations with AI-powered coordination, reminders, and workflow guidance.",
     icon: Sparkles,
     accent: "from-[#7af9ff] to-[#3a8dff]",
     poster:

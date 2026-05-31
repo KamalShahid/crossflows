@@ -186,6 +186,128 @@ a {
   border-radius: 4px;
 }
 
+/* Hash-anchor target pulse — Industries page section glow (2px ring) */
+@keyframes sectionPulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 212, 255, 0);
+    border-color: var(--color-border);
+  }
+  15% {
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.5);
+    border-color: var(--color-accent);
+  }
+  60% {
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.25);
+    border-color: var(--color-accent);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(0, 212, 255, 0);
+    border-color: var(--color-border);
+  }
+}
+.section--highlighted {
+  animation: sectionPulse 2.5s ease-out forwards;
+}
+
+/* Hash-anchor target pulse — Use Cases page card glow (1px ring) */
+@keyframes cardPulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 212, 255, 0);
+  }
+  15% {
+    box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.6);
+  }
+  60% {
+    box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(0, 212, 255, 0);
+  }
+}
+.card--highlighted {
+  animation: cardPulse 2.5s ease-out forwards;
+}
+
+/* Audio demo placeholder — passive flowing waveform bars */
+@keyframes waveBar {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 0.8;
+  }
+}
+
+/* Ecosystem grid — "STACK NOMINAL" green status dot pulse */
+@keyframes nominalPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+.ecosystem-nominal-dot {
+  animation: nominalPulse 2.5s ease-in-out infinite;
+}
+
+/* Industries orbit pill — hover/focus styling for the hover-reveal section.
+   Background/border/color/scale transition together. Layout/typography
+   (padding, font-size) are set inline so the mobile variant can override. */
+.industries-orbit-pill {
+  display: inline-block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+.industries-orbit-pill:hover,
+.industries-orbit-pill:focus-visible {
+  background: var(--color-surface-2);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: scale(1.05);
+}
+
+/* Industry orbit — outer ring spin + per-icon counter-spin (keeps icons upright) */
+@keyframes industry-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes industry-orbit-spin-reverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.animate-spin-slow {
+  animation: industry-orbit-spin 40s linear infinite;
+}
+.animate-spin-reverse {
+  animation: industry-orbit-spin-reverse 40s linear infinite;
+}
+
 /* Live Talk widget — live state dot pulse */
 @keyframes livePulse {
   0%, 100% {

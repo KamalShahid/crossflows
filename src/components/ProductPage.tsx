@@ -7,6 +7,7 @@ import SectionHeader from "./SectionHeader";
 import VideoPlayer from "./VideoPlayer";
 import CTAButton from "./CTAButton";
 import ExpandableDescription from "./ExpandableDescription";
+import UseCasesShowcase from "./UseCasesShowcase";
 import type { Product } from "../data/products";
 import { useCases } from "../data/useCases";
 import { industries } from "../data/industries";
@@ -44,9 +45,8 @@ export default function ProductPage({ product }: ProductPageProps) {
               transition={{ duration: 0.55, ease: "easeOut" }}
               className="font-display text-balance text-5xl font-bold leading-[1.04] tracking-tight sm:text-6xl md:text-7xl"
             >
-              {product.name}.
-              <span className="block bg-gradient-to-br from-white via-[#cfeaff] to-[var(--color-accent)] bg-clip-text text-transparent">
-                {product.tagline}
+              <span className="bg-gradient-to-br from-white via-[#cfeaff] to-[var(--color-accent)] bg-clip-text text-transparent">
+                {product.heroHeading}
               </span>
             </motion.h1>
             <motion.p
@@ -55,7 +55,7 @@ export default function ProductPage({ product }: ProductPageProps) {
               transition={{ duration: 0.55, delay: 0.1 }}
               className="max-w-xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
             >
-              {product.longDescription}
+              {product.heroDescription}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 14 }}
@@ -83,11 +83,11 @@ export default function ProductPage({ product }: ProductPageProps) {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="flex flex-wrap gap-3"
             >
-              <CTAButton to="/contact" variant="primary" withArrow>
-                Request a Demo
+              <CTAButton to="#capabilities" variant="primary" withArrow>
+                Explore {product.name}
               </CTAButton>
-              <CTAButton to="/products" variant="secondary">
-                Compare products
+              <CTAButton to="/contact" variant="secondary">
+                Talk to Sales
               </CTAButton>
             </motion.div>
           </div>
@@ -147,7 +147,7 @@ export default function ProductPage({ product }: ProductPageProps) {
       </section>
 
       {/* Capabilities */}
-      <section className="py-20">
+      <section id="capabilities" className="py-20" style={{ scrollMarginTop: 120 }}>
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
             label="Capabilities"
@@ -197,44 +197,8 @@ export default function ProductPage({ product }: ProductPageProps) {
         </div>
       </section>
 
-      {/* Use cases — tag cloud */}
-      <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)]/30 py-20">
-        <div className="mx-auto flex max-w-7xl flex-col items-center px-5 text-center sm:px-8">
-          <span className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--color-accent)]">
-            Use Cases
-          </span>
-          <h2 className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
-            Applicable Use Cases
-          </h2>
-          <div className="mt-10 flex flex-wrap justify-center gap-2.5">
-            {relatedUseCases.map((u) => (
-              <Link
-                key={u.slug}
-                to={`/use-cases#${u.slug}`}
-                className="use-case-pill transition-colors duration-150 ease-out"
-                style={{
-                  backgroundColor: "var(--color-surface-2)",
-                  border: "1px solid var(--color-border)",
-                  color: "var(--color-text-muted)",
-                  borderRadius: 999,
-                  padding: "5px 14px",
-                  fontSize: "0.8rem",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "var(--color-accent)";
-                  e.currentTarget.style.color = "var(--color-text-primary)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "var(--color-border)";
-                  e.currentTarget.style.color = "var(--color-text-muted)";
-                }}
-              >
-                {u.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Use cases — animated showcase grid */}
+      <UseCasesShowcase productSlug={product.slug} />
 
       {/* Industries Served — max 4 in 2x2 */}
       <section className="py-20">
@@ -283,30 +247,6 @@ export default function ProductPage({ product }: ProductPageProps) {
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Mockup */}
-      <section className="py-20">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]"
-          >
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/60 to-transparent" />
-            <img
-              src={`https://placehold.co/1600x900/0f1420/00d4ff?text=${encodeURIComponent(
-                product.name + " · Live Console",
-              )}`}
-              alt={`${product.name} interface preview`}
-              className="w-full"
-              loading="lazy"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-transparent to-transparent" />
-          </motion.div>
         </div>
       </section>
 

@@ -15,6 +15,10 @@ export interface Product {
   name: string;
   subtitle: string;
   tagline: string;
+  /** Headline rendered as the H1 on the product subpage hero. */
+  heroHeading: string;
+  /** Lead paragraph rendered below the H1 on the product subpage hero. */
+  heroDescription: string;
   shortDescription: string;
   longDescription: string;
   icon: LucideIcon;
@@ -31,9 +35,12 @@ export const products: Product[] = [
   {
     slug: "smarttalk",
     name: "SmartTalk™",
-    subtitle: "AI-Powered Communication & Customer Engagement Platform",
+    subtitle: "Modern AI communication for modern businesses.",
     tagline:
       "Transform how your business communicates with customers — across every channel, around the clock.",
+    heroHeading: "Modern AI communication for modern businesses.",
+    heroDescription:
+      "SmartTalk™ automates customer conversations across voice and digital channels with enterprise-grade scalability and 24/7 availability.",
     shortDescription:
       "AI-Powered Communication & Customer Engagement Platform",
     longDescription:
@@ -120,6 +127,10 @@ export const products: Product[] = [
     subtitle: "Intelligent Education & Learning Support Platform",
     tagline:
       "Modernize educational experiences through intelligent automation, communication, and engagement.",
+    heroHeading:
+      "AI-powered education and academic support for modern learning environments.",
+    heroDescription:
+      "LearnMate™ helps institutions automate workflows, improve communication, and enhance student experiences at scale.",
     shortDescription: "Intelligent Education & Learning Support Platform",
     longDescription:
       "LearnMate™ is an AI-powered education and academic support platform designed to help institutions, training providers, and learning organizations modernize educational experiences through intelligent automation, communication, and engagement systems. Built to support both administrative and learning-focused workflows, LearnMate™ helps streamline student interactions, automate academic processes, improve accessibility, and enhance educational operations through AI-powered solutions.",
@@ -192,6 +203,10 @@ export const products: Product[] = [
     subtitle: "Intelligent Workflow & Business Operations Platform",
     tagline:
       "Connect people, workflows, and systems into one intelligent automation ecosystem.",
+    heroHeading:
+      "Connect people, workflows, and systems through intelligent AI-powered automation.",
+    heroDescription:
+      "WorkSync™ helps businesses streamline operations, automate repetitive processes, improve coordination, and optimize performance through one connected operational ecosystem.",
     shortDescription: "Intelligent Workflow & Business Operations Platform",
     longDescription:
       "WorkSync™ is Cross Flows Synergy's AI-powered workflow automation and operational intelligence platform designed to help businesses streamline internal processes, automate repetitive tasks, improve coordination, and optimize operational performance. WorkSync™ connects people, workflows, systems, and operational activities into a centralized intelligent automation ecosystem that improves efficiency and supports scalable business growth.",
@@ -273,6 +288,10 @@ export const products: Product[] = [
     subtitle: "AI-Powered Logistics, Coordination & Operational Flow Platform",
     tagline:
       "Streamline dispatch, coordination, and field operations with intelligent AI automation.",
+    heroHeading:
+      "Streamline dispatch, coordination, and field operations through intelligent AI automation.",
+    heroDescription:
+      "DriveFlow™ helps businesses optimize logistics, service coordination, and operational workflows with real-time communication, automated dispatching, and connected operational intelligence.",
     shortDescription:
       "AI-Powered Logistics, Coordination & Operational Flow Platform",
     longDescription:

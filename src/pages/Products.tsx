@@ -31,7 +31,7 @@ export default function Products() {
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.05 }}
             className="mt-4 font-display text-balance text-5xl font-bold leading-[1.04] tracking-tight sm:text-6xl md:text-7xl"
           >
-            Four products. One platform engineered to ship.
+            Four products. One unified AI platform built to execute.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -39,8 +39,9 @@ export default function Products() {
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.15 }}
             className="mt-6 max-w-2xl text-base text-[var(--color-text-muted)] sm:text-lg"
           >
-            Every product shares the same speech, reasoning, security, and analytics layer.
-            Buy one. Add the next when you’re ready. Deploy in days, not quarters.
+            Every product runs on the same AI engine, security framework, and analytics
+            infrastructure. Start with one solution and expand seamlessly as you grow with deployment
+            measured in days, not quarters.
           </motion.p>
         </div>
       </section>

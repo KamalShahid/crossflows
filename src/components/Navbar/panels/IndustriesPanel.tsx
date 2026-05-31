@@ -14,7 +14,7 @@ export default function IndustriesPanel({ onNavigate }: PanelProps) {
         {industries.map((ind) => (
           <Link
             key={ind.slug}
-            to="/industries"
+            to={`/industries#${ind.slug}`}
             onClick={onNavigate}
             className="group flex items-center gap-1.5 py-1.5 text-[0.875rem] text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text-primary)]"
           >

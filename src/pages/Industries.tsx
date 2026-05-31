@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
@@ -9,7 +10,45 @@ import { industries } from "../data/industries";
 import { getProduct } from "../data/products";
 import { getUseCase } from "../data/useCases";
 
+const NAVBAR_OFFSET_PX = 72;
+const HIGHLIGHT_DURATION_MS = 2500;
+
 export default function Industries() {
+  const location = useLocation();
+  const [highlightedSlug, setHighlightedSlug] = useState<string | null>(null);
+
+  // Smooth-scroll to the hash target and pulse its card when the URL hash
+  // changes (e.g. arriving from the navbar Industries dropdown).
+  useEffect(() => {
+    const hash = location.hash.replace(/^#/, "");
+    if (!hash) {
+      setHighlightedSlug(null);
+      return;
+    }
+
+    let timer: number | undefined;
+    const raf = requestAnimationFrame(() => {
+      const target = document.getElementById(hash);
+      if (!target) return;
+
+      const elementTop = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementTop - NAVBAR_OFFSET_PX - 24,
+        behavior: "smooth",
+      });
+
+      setHighlightedSlug(hash);
+      timer = window.setTimeout(
+        () => setHighlightedSlug(null),
+        HIGHLIGHT_DURATION_MS,
+      );
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      if (timer !== undefined) window.clearTimeout(timer);
+    };
+  }, [location.hash]);
 
   return (
     <PageShell
@@ -38,12 +77,17 @@ export default function Industries() {
               return (
                 <motion.div
                   key={ind.slug}
+                  id={ind.slug}
                   initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                   whileHover={{ y: -6 }}
-                  className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-shadow hover:border-[var(--color-accent)]/60 hover:shadow-[0_20px_60px_rgba(0,212,255,0.18)]"
+                  style={{ scrollMarginTop: NAVBAR_OFFSET_PX + 24 }}
+                  className={
+                    "group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-shadow hover:border-[var(--color-accent)]/60 hover:shadow-[0_20px_60px_rgba(0,212,255,0.18)]" +
+                    (highlightedSlug === ind.slug ? " section--highlighted" : "")
+                  }
                 >
                   {/* Stretched link covers the whole card — inner links sit above via z-10 */}
                   <Link

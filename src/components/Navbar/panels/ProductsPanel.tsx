@@ -29,7 +29,7 @@ export default function ProductsPanel({ onNavigate }: PanelProps) {
           Our Products
         </span>
         <h3 className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight text-[var(--color-text-primary)]">
-          Our AI Products
+          Enterprise AI, Purpose-Built.
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
           Four intelligent platforms built to automate communication, streamline operations, and

@@ -24,13 +24,8 @@ export default function FeaturesPanel({ onNavigate }: PanelProps) {
                 <Icon size={17} strokeWidth={2.1} />
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                <span className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                    {f.number}
-                  </span>
-                  <span className="font-display text-sm font-semibold tracking-tight text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)]">
-                    {f.label}
-                  </span>
+                <span className="font-display text-sm font-semibold tracking-tight text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)]">
+                  {f.label}
                 </span>
                 <span className="text-xs leading-snug text-[var(--color-text-muted)]">
                   {f.bullets[0]}

@@ -1,29 +1,29 @@
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import CTAButton from "../components/CTAButton";
 import LiveTalkWidget from "../components/LiveTalkWidget";
-import IndustryMarquee from "../components/IndustryMarquee";
-import IntegrationsMarquee from "../components/IntegrationsMarquee";
+import IntegrationsOrbit from "../components/IntegrationsOrbit";
+import EcosystemGrid from "../components/EcosystemGrid";
+import SecuritySection from "../components/SecuritySection";
+import IndustriesOrbit from "../components/IndustriesOrbit";
 import StatBar from "../components/StatBar";
 import SectionHeader from "../components/SectionHeader";
 import VideoPlayer from "../components/VideoPlayer";
 import { products } from "../data/products";
-import { industries } from "../data/industries";
 import { useCases } from "../data/useCases";
 import { features } from "../data/features";
 import {
   whatWeDo,
-  industriesSection,
   bottomCTA,
   insightsSection,
-  securitySection,
   productsSection,
   useCasesSection,
   featuresOverview,
+  statsSection,
   videoSection,
 } from "../data/home";
 
@@ -78,15 +78,20 @@ export default function Home() {
                 {word}
               </motion.span>
             ))}
-            <span className="relative inline-block align-baseline">
+            <span className="relative inline-block overflow-hidden align-baseline">
+              {/* Invisible spacer locks the wrapper to the widest rotating word so the
+                  headline doesn't reflow as the active word changes. */}
+              <span aria-hidden="true" className="invisible whitespace-nowrap">
+                conversation.
+              </span>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={heroWords[wordIndex]}
-                  initial={{ y: 26, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -26, opacity: 0 }}
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "-100%", opacity: 0 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="inline-block bg-gradient-to-br from-white via-[#cfeaff] to-[var(--color-accent)] bg-clip-text text-transparent"
+                  className="absolute left-0 top-0 whitespace-nowrap bg-gradient-to-br from-white via-[#cfeaff] to-[var(--color-accent)] bg-clip-text text-transparent"
                 >
                   {heroWords[wordIndex]}.
                 </motion.span>
@@ -98,11 +103,14 @@ export default function Home() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.35 }}
-            className="max-w-2xl text-balance text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg md:text-xl"
+            className="max-w-2xl text-balance text-justify text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg md:text-xl"
           >
-            Cross Flows Synergy ships the AI layer that listens, decides, and acts — from the
-            first inbound call to the last operational handoff. Four products. Thirteen use cases.
-            Forty-plus languages. One platform that ships.
+            Cross Flows Synergy powers intelligent business communication through AI that
+            listens, decides, and acts in real time streamlining operations from customer
+            engagement to workflow execution.
+            <br />
+            Four AI-driven products. Thirteen operational use cases. 40+ supported
+            languages. One scalable platform built for modern enterprises.
           </motion.p>
 
           <motion.div
@@ -126,12 +134,13 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hero floating preview card */}
+          {/* Hero floating preview card — spans the full container width so its
+              right edge aligns with the LiveTalkWidget above */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.55 }}
-            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.55)] sm:p-8"
+            className="relative w-full overflow-hidden rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.55)] sm:p-8"
           >
             <div className="grid gap-6 sm:grid-cols-3">
               {[
@@ -141,7 +150,7 @@ export default function Home() {
               ].map((s) => (
                 <div
                   key={s.label}
-                  className="flex flex-col gap-2 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)]/70 p-5"
+                  className="flex flex-col items-center gap-2 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)]/70 p-5 text-center"
                 >
                   <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
                     {s.label}
@@ -153,7 +162,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
               <div className="flex items-center gap-2 text-xs text-[var(--color-text-muted)]">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent)]" />
                 <span>Live across 14 regions</span>
@@ -169,9 +178,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      {/* Industry marquee */}
-      <IndustryMarquee />
 
       {/* What We Do */}
       <section className="relative py-24">
@@ -245,52 +251,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industries strip */}
-      <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)]/50 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-            <SectionHeader
-              label={industriesSection.label}
-              heading={industriesSection.headline}
-              subheading={industriesSection.subheading}
-              maxWidth="max-w-2xl"
-            />
-            <Link
-              to="/industries"
-              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.22em] text-[var(--color-accent)] hover:text-white"
-            >
-              View all industries
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {industries.map((ind, idx) => {
-              const Icon = ind.icon;
-              return (
-                <motion.div
-                  key={ind.slug}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.04 }}
-                >
-                  <Link
-                    to={`/industries/${ind.slug}`}
-                    className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-4 py-2 text-sm text-[var(--color-text-primary)] backdrop-blur-md transition hover:border-[var(--color-accent)]/70 hover:bg-[var(--color-surface-2)]"
-                  >
-                    <Icon className="h-4 w-4 text-[var(--color-accent)]" />
-                    {ind.name}
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/* Industries — hover-reveal orbit */}
+      <IndustriesOrbit />
 
       {/* Stat bar */}
       <section className="py-20">
-        <StatBar />
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeader
+            heading={statsSection.headline}
+            subheading={statsSection.subheading}
+            align="center"
+            maxWidth="max-w-3xl"
+          />
+        </div>
+        <div className="mt-12">
+          <StatBar />
+        </div>
       </section>
 
       {/* Use cases bento */}
@@ -302,7 +278,7 @@ export default function Home() {
             subheading={useCasesSection.subheading}
           />
           <div className="mt-14 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {useCases.slice(0, 9).map((u, idx) => {
+            {useCases.slice(0, 5).map((u, idx) => {
               const Icon = u.icon;
               const span = idx === 0 ? "lg:col-span-2" : "";
               const excerpt =
@@ -343,7 +319,7 @@ export default function Home() {
           </div>
           <div className="mt-10 flex justify-center">
             <CTAButton to="/use-cases" variant="secondary" withArrow>
-              All {useCases.length} use cases
+              View All Use Cases
             </CTAButton>
           </div>
         </div>
@@ -416,8 +392,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Integrations marquee */}
-      <IntegrationsMarquee />
+      {/* Integrations — interactive hub + connectors */}
+      <IntegrationsOrbit />
 
       {/* Insights & Analytics */}
       <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)]/40 py-24">
@@ -476,33 +452,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Security & Trust */}
-      <section className="border-t border-[var(--color-border)] py-24">
-        <div className="mx-auto max-w-5xl px-5 sm:px-8">
-          <div className="grid items-center gap-10 lg:grid-cols-[auto_1fr]">
-            <motion.span
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-[var(--color-accent)] to-[#3a8dff] text-black shadow-[0_20px_60px_rgba(0,212,255,0.35)]"
-            >
-              <ShieldCheck className="h-12 w-12" strokeWidth={1.8} />
-            </motion.span>
-            <div className="flex flex-col gap-4">
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--color-accent)]">
-                {securitySection.label}
-              </span>
-              <h2 className="font-display text-balance text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-                {securitySection.headline}
-              </h2>
-              <p className="text-base leading-relaxed text-[var(--color-text-muted)]">
-                {securitySection.body}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Security & Trust — animated terminal handshake */}
+      <SecuritySection />
+
+      {/* Foundation of Enterprise AI — ecosystem grid + compliance panel */}
+      <EcosystemGrid />
 
       {/* Bottom CTA */}
       <section className="relative overflow-hidden py-24">

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import SectionHeader from "../components/SectionHeader";
-import VideoPlayer from "../components/VideoPlayer";
+import AudioDemoPlaceholder from "../components/AudioDemoPlaceholder";
 import CTAButton from "../components/CTAButton";
 import {
   solutions,
@@ -94,8 +94,61 @@ export default function Solutions() {
                   transition={{ duration: 0.6, delay: 0.08 }}
                   className="relative z-10"
                 >
-                  {/* TODO: Add problem/solution video URL */}
-                  <VideoPlayer src="" poster={s.poster} caption={s.title} />
+                  {/* Image preview */}
+                  <div
+                    style={{
+                      width: "100%",
+                      borderRadius: 16,
+                      overflow: "hidden",
+                      border: "1px solid var(--color-border)",
+                      position: "relative",
+                      aspectRatio: "16 / 9",
+                    }}
+                  >
+                    <img
+                      src={`https://placehold.co/1200x675/0F1420/00D4FF?text=${encodeURIComponent(
+                        s.displayTitle,
+                      )}`}
+                      alt={`${s.title} overview`}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background:
+                          "linear-gradient(to bottom, transparent 40%, rgba(8,11,24,0.7) 100%)",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: 16,
+                        left: 16,
+                        fontFamily:
+                          '"JetBrains Mono", ui-monospace, monospace',
+                        fontSize: "0.68rem",
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "var(--color-accent)",
+                        background: "rgba(8,11,24,0.7)",
+                        border: "1px solid rgba(0,212,255,0.2)",
+                        borderRadius: 6,
+                        padding: "4px 10px",
+                      }}
+                    >
+                      {/* TODO: Replace placeholder with real solution screenshot or branded image */}
+                      Preview
+                    </div>
+                  </div>
+
+                  {/* Audio demo placeholder */}
+                  <AudioDemoPlaceholder />
                 </motion.div>
               </div>
             </div>

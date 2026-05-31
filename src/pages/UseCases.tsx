@@ -6,6 +6,7 @@ import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import SectionHeader from "../components/SectionHeader";
 import ExpandableDescription from "../components/ExpandableDescription";
+import AudioDemoPlaceholder from "../components/AudioDemoPlaceholder";
 import { useCases, type UseCaseSlug, getUseCase } from "../data/useCases";
 import { products, getProduct, type ProductSlug } from "../data/products";
 import { industries, getIndustry, type IndustrySlug } from "../data/industries";
@@ -14,15 +15,40 @@ export default function UseCases() {
   const [productFilter, setProductFilter] = useState<Set<ProductSlug>>(new Set());
   const [industryFilter, setIndustryFilter] = useState<Set<IndustrySlug>>(new Set());
   const [selectedSlug, setSelectedSlug] = useState<UseCaseSlug | null>(null);
+  const [highlightedSlug, setHighlightedSlug] = useState<string | null>(null);
   const location = useLocation();
   const detailRef = useRef<HTMLDivElement | null>(null);
 
-  // Hash deep-link: open the detail panel for that slug and scroll to it
+  // Hash deep-link from the navbar dropdown: smooth-scroll to the matching
+  // card and pulse it. Does NOT open the detail panel — that stays
+  // click-only via setSelectedSlug below.
   useEffect(() => {
-    const hash = location.hash.replace(/^#/, "") as UseCaseSlug;
-    if (!hash) return;
-    if (!getUseCase(hash)) return;
-    setSelectedSlug(hash);
+    const hash = location.hash.replace(/^#/, "");
+    if (!hash) {
+      setHighlightedSlug(null);
+      return;
+    }
+
+    let timer: number | undefined;
+    const raf = requestAnimationFrame(() => {
+      const target = document.getElementById(hash);
+      if (!target) return;
+
+      const navbarHeight = 72;
+      const elementTop = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementTop - navbarHeight - 24,
+        behavior: "smooth",
+      });
+
+      setHighlightedSlug(hash);
+      timer = window.setTimeout(() => setHighlightedSlug(null), 2500);
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      if (timer !== undefined) window.clearTimeout(timer);
+    };
   }, [location.hash]);
 
   // Smooth scroll the detail panel into view when it opens / changes
@@ -256,7 +282,7 @@ export default function UseCases() {
                 return (
                   <motion.div
                     key={u.slug}
-                    id={`uc-${u.slug}`}
+                    id={u.slug}
                     layout
                     initial={{ opacity: 0, y: 18, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -274,7 +300,8 @@ export default function UseCases() {
                       "group flex cursor-pointer flex-col gap-4 rounded-2xl border bg-[var(--color-surface)] px-6 py-5 transition-shadow hover:border-[var(--color-accent)]/60 hover:shadow-[0_18px_50px_rgba(0,212,255,0.15)] focus-visible:outline-none " +
                       (isSelected
                         ? "border-[var(--color-accent)] shadow-[0_0_0_2px_var(--color-accent),0_18px_50px_rgba(0,212,255,0.25)]"
-                        : "border-[var(--color-border)]")
+                        : "border-[var(--color-border)]") +
+                      (highlightedSlug === u.slug ? " card--highlighted" : "")
                     }
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-surface-2)] text-[var(--color-accent)]">
@@ -362,6 +389,8 @@ export default function UseCases() {
                   <p className="max-w-3xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
                     {selected.description}
                   </p>
+
+                  <AudioDemoPlaceholder />
 
                   {selectedProducts.length > 0 && (
                     <div className="flex flex-col gap-2 pt-2">
