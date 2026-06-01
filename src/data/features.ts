@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Cpu, Languages, Plug, BarChart3, Shield } from "lucide-react";
+import { Cpu, Globe, Plug, BarChart3, ShieldCheck } from "lucide-react";
 
 export type FeatureSlug =
   | "technology"
@@ -8,15 +8,21 @@ export type FeatureSlug =
   | "data-insights"
   | "security";
 
+export type ImagePosition = "left" | "right";
+
 export interface Feature {
   slug: FeatureSlug;
   number: string;
   label: string;
   heading: string;
-  copy: string[];
+  /** Two body paragraphs rendered in order. */
+  copy: [string, string];
   bullets: string[];
   icon: LucideIcon;
-  image: string;
+  /** Bold label rendered inside the dark image panel. */
+  panelLabel: string;
+  /** Which side the dark panel sits on at desktop widths. */
+  imagePosition: ImagePosition;
 }
 
 export const features: Feature[] = [
@@ -36,7 +42,8 @@ export const features: Feature[] = [
       "Real-time barge-in and interruption handling",
     ],
     icon: Cpu,
-    image: "https://placehold.co/1200x780/0f1420/00d4ff?text=Engine+%E2%9A%A1+Architecture",
+    panelLabel: "Engine ✦ Architecture",
+    imagePosition: "left",
   },
   {
     slug: "languages",
@@ -53,8 +60,9 @@ export const features: Feature[] = [
       "Accent and dialect adaptation",
       "Domain glossaries to keep terminology consistent",
     ],
-    icon: Languages,
-    image: "https://placehold.co/1200x780/0f1420/7af9ff?text=Multilingual+Mesh",
+    icon: Globe,
+    panelLabel: "Multilingual Mesh",
+    imagePosition: "right",
   },
   {
     slug: "integration",
@@ -72,7 +80,8 @@ export const features: Feature[] = [
       "REST and webhook escape hatches with typed SDKs",
     ],
     icon: Plug,
-    image: "https://placehold.co/1200x780/0f1420/3a8dff?text=Universal+Connectors",
+    panelLabel: "Universal Connectors",
+    imagePosition: "left",
   },
   {
     slug: "data-insights",
@@ -90,7 +99,8 @@ export const features: Feature[] = [
       "One-click exports to Snowflake, BigQuery, Redshift",
     ],
     icon: BarChart3,
-    image: "https://placehold.co/1200x780/0f1420/00d4ff?text=Live+Insights+Dashboard",
+    panelLabel: "Live Insights Dashboard",
+    imagePosition: "right",
   },
   {
     slug: "security",
@@ -98,16 +108,17 @@ export const features: Feature[] = [
     label: "Security",
     heading: "Built so your security team can sleep at night.",
     copy: [
-      "Responsible AI implementation with enterprise-grade security practices, workflow transparency, and reliable business integrations designed for modern organizations.",
-      "GDPR, HIPAA, and PCI workflows are first-class — not afterthoughts wired in for the deal.",
+      "Every data path in Cross Flows Synergy is encrypted, access-controlled, and auditable. SOC 2 Type II, HIPAA-ready, and PCI-DSS aligned from day one — not bolted on after.",
+      "We don’t just pass audits. We make compliance a competitive advantage by building controls directly into the product layer.",
     ],
     bullets: [
-      "SOC 2 Type II, ISO 27001, HIPAA, PCI-DSS aligned",
-      "AES-256 at rest, TLS 1.3 in transit",
-      "Regional data residency (US, EU, UK, APAC)",
-      "Role-based access, SSO, and full audit logs",
+      "SOC 2 Type II certified with annual third-party audit",
+      "HIPAA-ready with BAA support for healthcare customers",
+      "AES-256 encryption at rest and in transit",
+      "Zero-retention memory architecture for sensitive flows",
     ],
-    icon: Shield,
-    image: "https://placehold.co/1200x780/0f1420/f5a623?text=Security+%26+Compliance",
+    icon: ShieldCheck,
+    panelLabel: "Zero-Trust Compliance Layer",
+    imagePosition: "left",
   },
 ];
