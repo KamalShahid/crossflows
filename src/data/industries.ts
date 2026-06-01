@@ -671,3 +671,1260 @@ export const industries: Industry[] = [
 
 export const getIndustry = (slug: IndustrySlug): Industry | undefined =>
   industries.find((i) => i.slug === slug);
+
+
+// ─── industry detail extensions ───────────────────────────────────────
+// Display-layer content used by the IndustryDetail page. Slugs match the
+// industries[] entries above; lookup via getIndustryDetail(slug).
+
+export interface IndustryStat {
+  value: string;
+  label: string;
+  sublabel: string;
+}
+
+export interface IndustryProduct {
+  productId: ProductSlug;
+  productName: string;
+  roleInIndustry: string;
+  features: string[];
+  metric: string;
+  accentColor: string;
+}
+
+export interface WorkflowStep {
+  ordinal: number;
+  trigger: string;
+  label: string;
+  description: string;
+}
+
+export interface IndustryUseCase {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface IndustryDetailExtension {
+  heroTagline: string;
+  heroAccentColor: string;
+  heroSecondaryColor: string;
+  stats: IndustryStat[];
+  products: IndustryProduct[];
+  workflow: WorkflowStep[];
+  useCases: IndustryUseCase[];
+}
+
+export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtension> = {
+  "healthcare-clinics": {
+    heroTagline: "AI SOLUTIONS FOR HEALTHCARE & CLINICS",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
+    stats: [
+      {
+        value: "70%",
+        label: "Faster Patient Response",
+        sublabel: "→ Real-time AI communication"
+      },
+      {
+        value: "35%",
+        label: "Fewer No-Shows",
+        sublabel: "→ Smart reminders & follow-ups"
+      },
+      {
+        value: "50%",
+        label: "Less Administrative Work",
+        sublabel: "→ Automate repetitive tasks"
+      },
+      {
+        value: "24/7",
+        label: "Patient Support",
+        sublabel: "→ Always-on AI assistance"
+      },
+      {
+        value: "99.9%",
+        label: "Service Availability",
+        sublabel: "→ Reliable, always compliant"
+      },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "AI Voice & Patient Communication",
+        features: [
+          "Appointment Booking",
+          "Automated Reminders",
+          "After-Hours Support",
+          "Call Overflow Handling"
+        ],
+        metric: "+ 60% Fewer Missed Calls",
+        accentColor: "#00D4FF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Healthcare Workflow Automation",
+        features: [
+          "Staff Scheduling",
+          "Request Routing",
+          "Internal Communication",
+          "Process Automation"
+        ],
+        metric: "+ 50% Less Admin Work",
+        accentColor: "#F5A623"
+      },
+      {
+        productId: "learnmate",
+        productName: "LearnMate™",
+        roleInIndustry: "Training & Knowledge Support",
+        features: [
+          "Staff Onboarding",
+          "Instant Knowledge Access",
+          "Training Assistance",
+          "Learning Support"
+        ],
+        metric: "+ 40% Faster Onboarding",
+        accentColor: "#7B6FF0"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "Patient Contacts Your Clinic",
+        label: "Call or message via any channel",
+        description: "Calls or messages your clinic via phone, SMS, or web."
+      },
+      {
+        ordinal: 2,
+        trigger: "SmartTalk™ Answers Instantly",
+        label: "AI handles inquiry immediately",
+        description: "A human-like AI agent answers, identifies the need, and routes appropriately."
+      },
+      {
+        ordinal: 3,
+        trigger: "Appointment Confirmed",
+        label: "Patient gets confirmation with reminders",
+        description: "Patient receives confirmation, reminders, and can cancel/reschedule automatically."
+      },
+      {
+        ordinal: 4,
+        trigger: "WorkSync™ Updates Staff",
+        label: "Schedules, tasks & requests are updated",
+        description: "Staff schedules, tasks & requests are updated in real-time."
+      },
+      {
+        ordinal: 5,
+        trigger: "LearnMate™ Supports Team",
+        label: "Provides knowledge to keep team efficient",
+        description: "Provides knowledge, training resources, and guidance to keep staff efficient."
+      },
+    ],
+    useCases: [
+      {
+        icon: "CalendarCheck",
+        title: "Appointment Scheduling",
+        description: "Smart scheduling with AI-powered booking, rescheduling, and cancellation workflows."
+      },
+      {
+        icon: "Bell",
+        title: "Patient Follow-Ups",
+        description: "Automated follow-up reminders and post-appointment patient communication."
+      },
+      {
+        icon: "MessageCircle",
+        title: "FAQ & Information Support",
+        description: "Instant answers to patient inquiries about services, hours, and policies."
+      },
+      {
+        icon: "Users",
+        title: "Staff Coordination",
+        description: "Operational team communication, task routing, and scheduling coordination."
+      },
+      {
+        icon: "ClipboardList",
+        title: "Internal Request Management",
+        description: "Route and resolve internal staff requests, approvals, and operational tasks."
+      },
+      {
+        icon: "GraduationCap",
+        title: "New Staff Training",
+        description: "Onboarding workflows and knowledge delivery for new healthcare team members."
+      },
+    ]
+  },
+  "consumer-services": {
+    heroTagline: "AI SOLUTIONS FOR CONSUMER SERVICES",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#F5A623",
+    stats: [
+      {
+        value: "70%",
+        label: "Self-Service Containment",
+        sublabel: "→ Routine requests resolved without a human agent"
+      },
+      {
+        value: "3×",
+        label: "Faster First Response",
+        sublabel: "→ Sub-200ms voice latency on every inbound call"
+      },
+      {
+        value: "24/7",
+        label: "Always-On Coverage",
+        sublabel: "→ Multilingual support across 40+ languages"
+      },
+      {
+        value: "+45%",
+        label: "CSAT Lift",
+        sublabel: "→ Measured across 90 days of deployment"
+      },
+      {
+        value: "99.9%",
+        label: "Platform Uptime",
+        sublabel: "→ SOC2 Type II infrastructure with regional failover"
+      },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Voice-first customer service agent",
+        features: [
+          "Handles inbound calls in 40+ languages with sub-200ms latency",
+          "Verifies identity via account number, DOB, and voiceprint matching",
+          "Books, reschedules, and cancels appointments through calendar APIs",
+          "Escalates to human agents with full conversation transcript and sentiment tags"
+        ],
+        metric: "+ 60% Fewer Missed Calls",
+        accentColor: "#00D4FF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Back-office workflow orchestrator",
+        features: [
+          "Auto-creates tickets in Zendesk, Salesforce, and HubSpot from voice calls",
+          "Routes refund and warranty requests based on policy rules and order value",
+          "Syncs customer history across CRM, billing, and support tools in real time",
+          "Triggers SMS and email follow-ups with branded templates and tracked delivery"
+        ],
+        metric: "+ 4 Hours Saved Per Agent Daily",
+        accentColor: "#F5A623"
+      },
+      {
+        productId: "driveflow",
+        productName: "DriveFlow™",
+        roleInIndustry: "Field service dispatch engine",
+        features: [
+          "Assigns service technicians by proximity, skill match, and SLA priority",
+          "Sends customers live ETA updates and technician profiles via SMS",
+          "Reroutes jobs dynamically when delays, traffic, or cancellations occur",
+          "Captures proof-of-service photos, signatures, and parts used on mobile"
+        ],
+        metric: "+ 35% More Jobs Completed Per Day",
+        accentColor: "#3A8DFF"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "Customer Calls In",
+        label: "Inbound request hits the platform",
+        description: "A customer dials the service line at 2 AM about a broken appliance and SmartTalk™ answers on the first ring."
+      },
+      {
+        ordinal: 2,
+        trigger: "SmartTalk™ Verifies & Diagnoses",
+        label: "Identity confirmed, issue classified instantly",
+        description: "The agent authenticates the caller, pulls warranty status from the CRM, and triages the issue against a troubleshooting library."
+      },
+      {
+        ordinal: 3,
+        trigger: "WorkSync™ Orchestrates",
+        label: "Ticket created across all systems",
+        description: "A service ticket is generated in Salesforce, warranty validated in the billing system, and the case is tagged with urgency and parts required."
+      },
+      {
+        ordinal: 4,
+        trigger: "DriveFlow™ Dispatches",
+        label: "Technician routed with live ETA",
+        description: "The best-fit technician is assigned by location and skill, and the customer receives an SMS with arrival time and technician profile."
+      },
+      {
+        ordinal: 5,
+        trigger: "Service Completed & Logged",
+        label: "Closeout, survey, and analytics sync",
+        description: "Proof-of-service is captured on mobile, the customer receives a CSAT survey, and outcome data flows back into the CRM for reporting."
+      },
+    ],
+    useCases: [
+      {
+        icon: "Headphones",
+        title: "24/7 Customer Care",
+        description: "Resolve account questions, service inquiries, and complaints around the clock without staffing overnight call centers. Every interaction is logged and transcribed."
+      },
+      {
+        icon: "CalendarCheck",
+        title: "Appointment Booking",
+        description: "Schedule installations, repairs, and consultations directly through voice — with automatic calendar sync and confirmation SMS sent to the customer."
+      },
+      {
+        icon: "Truck",
+        title: "Field Service Dispatch",
+        description: "Match incoming jobs to the right technician by proximity, certification, and SLA. Customers receive live tracking links from booking to arrival."
+      },
+      {
+        icon: "Receipt",
+        title: "Billing & Payments",
+        description: "Take secure PCI-compliant payments over the phone, explain charges line-by-line, and handle disputes with full audit trails for every transaction."
+      },
+      {
+        icon: "AlertCircle",
+        title: "Issue Troubleshooting",
+        description: "Walk customers through guided diagnostics for common product issues before dispatching a technician, deflecting 40% of avoidable truck rolls."
+      },
+      {
+        icon: "Star",
+        title: "Loyalty & Retention",
+        description: "Proactively reach out to at-risk customers, deliver renewal offers, and capture survey feedback through natural voice conversations at scale."
+      },
+    ]
+  },
+  "recruitment-staffing": {
+    heroTagline: "AI SOLUTIONS FOR RECRUITMENT & STAFFING",
+    heroAccentColor: "#7B6FF0",
+    heroSecondaryColor: "#00D4FF",
+    stats: [
+      {
+        value: "80%",
+        label: "Faster Candidate Screening",
+        sublabel: "→ AI voice interviews qualify applicants in under 7 minutes"
+      },
+      {
+        value: "3×",
+        label: "More Placements Per Recruiter",
+        sublabel: "→ Automated outreach and scheduling free 22 hours weekly"
+      },
+      {
+        value: "24/7",
+        label: "Applicant Engagement",
+        sublabel: "→ SmartTalk answers candidate questions across every timezone"
+      },
+      {
+        value: "+65%",
+        label: "Interview Show-Up Rate",
+        sublabel: "→ Multi-channel reminders and rescheduling reduce no-shows"
+      },
+      {
+        value: "40+",
+        label: "Languages Supported",
+        sublabel: "→ Screen global talent pools without translator overhead"
+      },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Voice-first candidate screening and outreach",
+        features: [
+          "Conducts structured pre-screen interviews with 12-question rubrics in 40+ languages",
+          "Books, confirms, and reschedules recruiter interviews directly inside ATS calendars",
+          "Calls passive candidates from sourced lists at scale with personalized scripts",
+          "Captures availability, salary expectations, and work authorization in real time"
+        ],
+        metric: "+ 80% Faster Time-to-Shortlist",
+        accentColor: "#00D4FF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "End-to-end requisition and onboarding orchestration",
+        features: [
+          "Syncs candidate data bi-directionally with Bullhorn, Greenhouse, Workday, and Salesforce",
+          "Triggers offer letters, background checks, and I-9 verifications from a single workflow",
+          "Routes hot candidates to the right recruiter based on skills, geography, and load",
+          "Auto-generates compliance audit trails for EEOC, GDPR, and SOC2 reporting"
+        ],
+        metric: "+ 3× Recruiter Productivity",
+        accentColor: "#F5A623"
+      },
+      {
+        productId: "learnmate",
+        productName: "LearnMate™",
+        roleInIndustry: "Pre-placement training and credential prep",
+        features: [
+          "Delivers role-specific onboarding modules before day-one with proficiency scoring",
+          "Simulates client interviews and technical assessments with adaptive difficulty",
+          "Tracks certification expirations across temp and contract workforce rosters",
+          "Issues verifiable digital badges synced to candidate ATS profiles automatically"
+        ],
+        metric: "+ 45% Higher First-Week Retention",
+        accentColor: "#7B6FF0"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "Candidate Applies",
+        label: "Application hits ATS or careers page",
+        description: "WorkSync ingests the application, parses the resume, and routes it to SmartTalk for outbound screening within 90 seconds."
+      },
+      {
+        ordinal: 2,
+        trigger: "SmartTalk™ Screens",
+        label: "AI voice agent runs structured interview",
+        description: "SmartTalk calls the candidate, runs a role-specific rubric in their preferred language, and scores answers against requisition criteria."
+      },
+      {
+        ordinal: 3,
+        trigger: "WorkSync™ Shortlists",
+        label: "Qualified profiles routed to recruiter",
+        description: "Top-scoring candidates are auto-assigned to the right recruiter and pushed into the ATS pipeline with full transcripts attached."
+      },
+      {
+        ordinal: 4,
+        trigger: "LearnMate™ Prepares",
+        label: "Pre-interview coaching and assessments",
+        description: "Shortlisted candidates receive adaptive prep modules and skills tests, with results visible to the recruiter before the client interview."
+      },
+      {
+        ordinal: 5,
+        trigger: "Placement & Onboard",
+        label: "Offer, compliance, and day-one ready",
+        description: "WorkSync triggers the offer, background check, and onboarding paperwork while LearnMate delivers pre-placement training automatically."
+      },
+    ],
+    useCases: [
+      {
+        icon: "PhoneCall",
+        title: "Candidate Screening",
+        description: "SmartTalk runs structured voice interviews 24/7, scoring candidates against requisition rubrics and routing qualified profiles to recruiters in minutes."
+      },
+      {
+        icon: "CalendarCheck",
+        title: "Interview Scheduling",
+        description: "AI coordinates calendars across candidates, recruiters, and hiring managers, handling reschedules and confirmations without human touch."
+      },
+      {
+        icon: "UserCheck",
+        title: "Identity & Right-to-Work",
+        description: "Automated verification of work authorization, ID documents, and reference checks before candidates reach the recruiter shortlist."
+      },
+      {
+        icon: "GraduationCap",
+        title: "Pre-Placement Training",
+        description: "LearnMate delivers role-specific onboarding and skills certification before day one, raising first-week retention and client satisfaction."
+      },
+      {
+        icon: "Send",
+        title: "Passive Outreach",
+        description: "SmartTalk dials sourced lists with personalized pitches, qualifies interest, and books warm calls directly into recruiter calendars."
+      },
+      {
+        icon: "ClipboardList",
+        title: "Compliance Reporting",
+        description: "WorkSync auto-generates EEOC, GDPR, and SOC2 audit trails from every candidate interaction, eliminating manual compliance overhead."
+      },
+    ]
+  },
+  "real-estate-property": {
+    heroTagline: "AI SOLUTIONS FOR REAL ESTATE & PROPERTY MANAGEMENT",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#3A8DFF",
+    stats: [
+      {
+        value: "85%",
+        label: "Inquiries Resolved Without Agent",
+        sublabel: "→ SmartTalk handles tour bookings, rent questions, and lease renewals end-to-end"
+      },
+      {
+        value: "3×",
+        label: "Faster Lead-to-Tour Time",
+        sublabel: "→ Qualified prospects scheduled in under 90 seconds from first contact"
+      },
+      {
+        value: "24/7",
+        label: "After-Hours Maintenance Triage",
+        sublabel: "→ Tenant issues routed to on-call vendors any time of day"
+      },
+      {
+        value: "+62%",
+        label: "Tour-to-Lease Conversion Lift",
+        sublabel: "→ AI-qualified leads convert at nearly double the industry average"
+      },
+      {
+        value: "99.9%",
+        label: "Tenant Hotline Uptime",
+        sublabel: "→ Multi-region failover keeps emergency lines live during outages"
+      },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Voice front door for prospects and tenants",
+        features: [
+          "Books property tours into Yardi, AppFolio, and Buildium calendars in real time",
+          "Qualifies leads on budget, move-in date, pets, and credit before routing",
+          "Answers tenant rent balance, lease end date, and amenity questions 24/7",
+          "Captures maintenance requests with photo links sent via SMS follow-up"
+        ],
+        metric: "+ 85% of Tenant Calls Resolved Without a Human",
+        accentColor: "#00D4FF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Maintenance and leasing workflow engine",
+        features: [
+          "Auto-creates work orders in your PMS with priority scoring by issue type",
+          "Dispatches vendors based on trade, geography, and historical response time",
+          "Syncs lease applications, background checks, and e-signatures across systems",
+          "Triggers rent reminder sequences across SMS, email, and outbound voice"
+        ],
+        metric: "+ 70% Reduction in Manual Work Order Handling",
+        accentColor: "#F5A623"
+      },
+      {
+        productId: "driveflow",
+        productName: "DriveFlow™",
+        roleInIndustry: "Field tech and showing agent dispatch",
+        features: [
+          "Routes maintenance techs across multi-property portfolios with live ETA updates",
+          "Coordinates self-guided tour access codes synced to prospect arrival windows",
+          "Optimizes turnover crew routing between vacant units on move-out day",
+          "Tracks vendor SLA compliance with geofenced check-in and time-on-site logs"
+        ],
+        metric: "+ 40% More Service Stops Completed Per Day",
+        accentColor: "#3A8DFF"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "Prospect Calls Listing",
+        label: "SmartTalk answers within one ring",
+        description: "AI greets the caller, identifies the property of interest, and answers pricing and availability questions instantly."
+      },
+      {
+        ordinal: 2,
+        trigger: "Lead Qualified Live",
+        label: "Budget, timing, and criteria captured",
+        description: "SmartTalk verifies move-in date, household size, pet status, and income range, then scores the lead for fit."
+      },
+      {
+        ordinal: 3,
+        trigger: "Tour Booked Automatically",
+        label: "Calendar slot reserved in PMS",
+        description: "The system writes the tour into the leasing agent's calendar and sends the prospect a confirmation with directions."
+      },
+      {
+        ordinal: 4,
+        trigger: "WorkSync Activates Pipeline",
+        label: "Application, screening, and lease packet sent",
+        description: "After the tour, WorkSync triggers the application link, runs background and credit checks, and prepares the lease."
+      },
+      {
+        ordinal: 5,
+        trigger: "DriveFlow Coordinates Move-In",
+        label: "Turnover crew and keys dispatched",
+        description: "DriveFlow routes cleaning, inspection, and key handoff so the unit is ready the moment the lease is signed."
+      },
+    ],
+    useCases: [
+      {
+        icon: "CalendarCheck",
+        title: "Tour Scheduling",
+        description: "Prospects book in-person or self-guided tours through voice or SMS, with availability synced live to leasing calendars across the portfolio."
+      },
+      {
+        icon: "Wrench",
+        title: "Maintenance Triage",
+        description: "Tenants describe issues by voice; the AI categorizes urgency, captures photos, and opens a work order with the correct trade pre-assigned."
+      },
+      {
+        icon: "CreditCard",
+        title: "Rent Collection",
+        description: "Outbound voice and SMS reminders confirm balances, accept payments, and negotiate payment plans without involving the property manager."
+      },
+      {
+        icon: "UserCheck",
+        title: "Applicant Screening",
+        description: "AI walks applicants through income verification, ID upload, and reference checks, flagging exceptions for human review only when needed."
+      },
+      {
+        icon: "KeyRound",
+        title: "Lease Renewals",
+        description: "SmartTalk reaches out 90 days before expiration, negotiates renewal terms within preset bands, and e-signs the addendum."
+      },
+      {
+        icon: "Route",
+        title: "Field Dispatch",
+        description: "DriveFlow routes maintenance techs and showing agents across multi-property routes, minimizing windshield time and missed appointments."
+      },
+    ]
+  },
+  "restaurants-hospitality": {
+    heroTagline: "AI SOLUTIONS FOR RESTAURANTS & HOSPITALITY",
+    heroAccentColor: "#F5A623",
+    heroSecondaryColor: "#FF6B6B",
+    stats: [
+      {
+        value: "85%",
+        label: "Reservations Handled by AI",
+        sublabel: "→ Booking, modification, and cancellation requests fully automated across phone and web channels"
+      },
+      {
+        value: "3×",
+        label: "Faster Drive-Thru Throughput",
+        sublabel: "→ Voice AI processes orders in under 90 seconds with 98% accuracy across menu items"
+      },
+      {
+        value: "24/7",
+        label: "Front-Desk Coverage",
+        sublabel: "→ Continuous guest support for inquiries, room service, and concierge requests without staffing gaps"
+      },
+      {
+        value: "+42%",
+        label: "Off-Hours Revenue Recovery",
+        sublabel: "→ Bookings and orders captured outside business hours that previously went to voicemail"
+      },
+      {
+        value: "60%",
+        label: "Lower Order Error Rate",
+        sublabel: "→ AI confirmation and POS integration eliminate manual entry mistakes during peak service"
+      },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Guest-facing voice and reservation agent",
+        features: [
+          "Handles reservations, modifications, and waitlist signups across 40+ languages with OpenTable and Resy sync",
+          "Answers menu, allergen, and hours questions with live POS and inventory awareness",
+          "Routes urgent requests (special events, large parties, complaints) to managers with full context",
+          "Confirms bookings via SMS and follows up automatically to reduce no-shows by 35%"
+        ],
+        metric: "+ 85% Reservations Automated",
+        accentColor: "#00D4FF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Back-of-house operations orchestrator",
+        features: [
+          "Auto-schedules shifts based on forecasted covers, weather, and historical demand patterns",
+          "Tracks inventory depletion in real time and triggers supplier reorders before 86'd items hit the menu",
+          "Coordinates housekeeping, maintenance, and F&B tickets across property management systems",
+          "Generates compliance-ready logs for food safety, temperature checks, and labor regulations"
+        ],
+        metric: "+ 28% Labor Cost Reduction",
+        accentColor: "#F5A623"
+      },
+      {
+        productId: "driveflow",
+        productName: "DriveFlow™",
+        roleInIndustry: "Drive-thru and delivery dispatch engine",
+        features: [
+          "Takes drive-thru orders in natural conversation with 98% accuracy across accents and menu variants",
+          "Optimizes delivery routing for in-house drivers and third-party platforms in a single dispatch view",
+          "Suggests upsells and combos in real time based on order context and current promotions",
+          "Syncs with kitchen display systems to sequence orders by prep time and pickup window"
+        ],
+        metric: "+ 3× Drive-Thru Throughput",
+        accentColor: "#3A8DFF"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "Guest Calls or Messages",
+        label: "SmartTalk answers across voice and chat",
+        description: "A guest dials the restaurant or hotel and SmartTalk picks up instantly in their preferred language, identifying intent within the first sentence."
+      },
+      {
+        ordinal: 2,
+        trigger: "Reservation or Order Captured",
+        label: "Live POS and PMS integration syncs data",
+        description: "SmartTalk checks real-time availability against the booking system or POS, confirms the details, and locks in the reservation, room, or order."
+      },
+      {
+        ordinal: 3,
+        trigger: "WorkSync Prepares Operations",
+        label: "Staffing, inventory, and prep auto-adjust",
+        description: "WorkSync forecasts the impact on covers and inventory, adjusts shift schedules if needed, and pushes prep instructions to the kitchen and housekeeping teams."
+      },
+      {
+        ordinal: 4,
+        trigger: "DriveFlow Routes Fulfillment",
+        label: "Drive-thru, delivery, and pickup orchestrated",
+        description: "For takeout and delivery, DriveFlow sequences orders to the kitchen by prep time and dispatches the optimal driver or curbside slot."
+      },
+      {
+        ordinal: 5,
+        trigger: "Post-Visit Follow-Up",
+        label: "Automated review requests and loyalty triggers",
+        description: "After the visit, SmartTalk sends a personalized thank-you with a review link and loyalty offer, then logs guest preferences for the next interaction."
+      },
+    ],
+    useCases: [
+      {
+        icon: "CalendarCheck",
+        title: "Reservations Management",
+        description: "AI handles bookings, waitlists, and modifications across phone, web, and chat with live table-availability sync. Confirms via SMS and reduces no-shows with automated reminders."
+      },
+      {
+        icon: "ShoppingCart",
+        title: "Drive-Thru Ordering",
+        description: "Voice AI takes orders in natural conversation at the speaker box, confirms items on the customer display, and pushes directly to the kitchen display system. Handles upsells and combo suggestions contextually."
+      },
+      {
+        icon: "Truck",
+        title: "Delivery Dispatch",
+        description: "Coordinates in-house drivers and third-party platforms from a single console, optimizing routes by traffic and order readiness. Reduces late deliveries by 45% during peak hours."
+      },
+      {
+        icon: "Headphones",
+        title: "Concierge & Room Service",
+        description: "24/7 guest support for room service, amenity requests, and local recommendations in 40+ languages. Routes urgent items to on-shift staff with full context."
+      },
+      {
+        icon: "ClipboardList",
+        title: "Shift Scheduling",
+        description: "Auto-generates rosters based on forecasted demand, weather, and individual availability constraints. Notifies staff of changes and tracks compliance with labor laws."
+      },
+      {
+        icon: "Star",
+        title: "Review & Loyalty Follow-Up",
+        description: "Sends personalized post-visit messages with review links and tailored loyalty offers within 30 minutes of departure. Flags negative sentiment to managers for immediate recovery."
+      },
+    ]
+  },
+  "utilities-services": {
+    heroTagline: "AI SOLUTIONS FOR UTILITIES & SERVICE PROVIDERS",
+    heroAccentColor: "#F5A623",
+    heroSecondaryColor: "#00D4FF",
+    stats: [
+      {
+        value: "75%",
+        label: "Outage Calls Deflected",
+        sublabel: "→ Automated triage during peak storm and grid events"
+      },
+      {
+        value: "24/7",
+        label: "Always-On Service Line",
+        sublabel: "→ No hold queues for billing, outages, or meter issues"
+      },
+      {
+        value: "3×",
+        label: "Faster Field Dispatch",
+        sublabel: "→ Crews routed and briefed before they leave the depot"
+      },
+      {
+        value: "+55%",
+        label: "First-Call Resolution",
+        sublabel: "→ Issues resolved without escalation to live agents"
+      },
+      {
+        value: "99.9%",
+        label: "Platform Uptime SLA",
+        sublabel: "→ Resilient infrastructure for mission-critical operations"
+      },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Customer-facing voice and service line",
+        features: [
+          "Real-time outage status lookups by address, account, or meter ID",
+          "Automated billing inquiries, payment plans, and balance disclosures",
+          "Multilingual support across 40+ languages for diverse service territories",
+          "Storm-mode surge handling with zero hold times during mass events"
+        ],
+        metric: "+ 75% Fewer Calls Reaching Live Agents",
+        accentColor: "#00D4FF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Field operations and crew dispatch engine",
+        features: [
+          "Auto-routes service tickets to the nearest qualified crew with GPS context",
+          "Syncs with SCADA, GIS, and CIS systems for live grid awareness",
+          "Generates compliance-ready work orders and safety briefs on demand",
+          "Tracks SLA windows and escalates jobs at risk of breaching deadlines"
+        ],
+        metric: "+ 3× Faster Crew Dispatch Cycles",
+        accentColor: "#F5A623"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "Customer Reports Outage",
+        label: "Inbound call hits SmartTalk first",
+        description: "SmartTalk™ answers instantly, verifies the account, and cross-references the address against live outage maps."
+      },
+      {
+        ordinal: 2,
+        trigger: "SmartTalk™ Triages the Issue",
+        label: "AI classifies severity and service type",
+        description: "The system determines whether it's a known outage, a single-premise fault, a billing dispute, or a meter anomaly."
+      },
+      {
+        ordinal: 3,
+        trigger: "WorkSync™ Generates Work Order",
+        label: "Ticket created with full grid context",
+        description: "WorkSync™ builds a structured work order enriched with GIS data, customer history, and safety prerequisites."
+      },
+      {
+        ordinal: 4,
+        trigger: "Crew Dispatched & Briefed",
+        label: "Nearest qualified team routed automatically",
+        description: "The closest field crew receives the job, route, and pre-job brief on their mobile device within seconds."
+      },
+      {
+        ordinal: 5,
+        trigger: "Resolution & Proactive Follow-Up",
+        label: "Customer notified, ticket closed, SLA logged",
+        description: "SmartTalk™ calls the customer to confirm restoration while WorkSync™ logs compliance data and SLA metrics."
+      },
+    ],
+    useCases: [
+      {
+        icon: "AlertCircle",
+        title: "Outage Reporting",
+        description: "Customers report and check outage status through natural voice conversation, with automatic cross-referencing against live grid telemetry."
+      },
+      {
+        icon: "Receipt",
+        title: "Billing & Payments",
+        description: "Handles balance inquiries, payment processing, and custom payment plan setup without routing to a live agent."
+      },
+      {
+        icon: "Truck",
+        title: "Field Crew Dispatch",
+        description: "Automatically assigns and routes the nearest qualified technician based on skill, location, and SLA priority."
+      },
+      {
+        icon: "Activity",
+        title: "Meter Diagnostics",
+        description: "Walks customers through self-service meter checks and flags anomalies for remote diagnostics before sending a truck."
+      },
+      {
+        icon: "Bell",
+        title: "Service Notifications",
+        description: "Proactively notifies affected customers about planned maintenance, restoration windows, and storm response updates."
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Compliance Logging",
+        description: "Captures every customer interaction and field action with audit-ready records for regulatory and safety compliance."
+      },
+    ]
+  },
+  "schools-education": {
+    heroTagline: "AI SOLUTIONS FOR SCHOOLS & EDUCATIONAL INSTITUTIONS",
+    heroAccentColor: "#7B6FF0",
+    heroSecondaryColor: "#3A8DFF",
+    stats: [
+      {
+        value: "85%",
+        label: "Admissions Inquiries Auto-Resolved",
+        sublabel: "→ AI handles enrollment, fees, and program questions across phone, WhatsApp, and web chat"
+      },
+      {
+        value: "3×",
+        label: "Faster Application Processing",
+        sublabel: "→ Automated document verification and lead qualification cut admissions cycles from weeks to days"
+      },
+      {
+        value: "24/7",
+        label: "Multilingual Student Support",
+        sublabel: "→ Parents and students get instant answers in 40+ languages, including after-hours and weekends"
+      },
+      {
+        value: "+62%",
+        label: "Exam Readiness Scores",
+        sublabel: "→ LearnMate adaptive simulators lift mock-test performance for board, SAT, and competitive exams"
+      },
+      {
+        value: "40hrs",
+        label: "Saved Per Week Per Coordinator",
+        sublabel: "→ WorkSync automates fee reminders, attendance follow-ups, and parent-teacher scheduling"
+      },
+    ],
+    products: [
+      {
+        productId: "learnmate",
+        productName: "LearnMate™",
+        roleInIndustry: "Adaptive tutor and exam simulator",
+        features: [
+          "Personalized study paths that adapt to each student's pace, weak topics, and learning style across K-12 and competitive exam syllabi",
+          "Voice-based mock exam simulator for SAT, IELTS, GRE, NEET, and board exams with real-time pronunciation and reasoning feedback",
+          "Auto-generated practice sets aligned to CBSE, IB, Cambridge, and state curricula with step-by-step explanations",
+          "Teacher dashboard tracking concept mastery, time-on-task, and predicted exam performance per student"
+        ],
+        metric: "+ 62% Higher Mock Exam Scores",
+        accentColor: "#7B6FF0"
+      },
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Admissions and parent support agent",
+        features: [
+          "Handles inbound admissions calls with curriculum, fee structure, and campus tour scheduling in 40+ languages",
+          "Qualifies prospective parent leads and books counsellor appointments directly into the institution's CRM",
+          "Sends automated voice and WhatsApp reminders for fee deadlines, exam schedules, and PTA meetings",
+          "Resolves transcript, certificate, and document requests with identity verification and registrar handoff"
+        ],
+        metric: "+ 85% Inquiries Resolved Without Staff",
+        accentColor: "#00D4FF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Operations and faculty coordination engine",
+        features: [
+          "Automates attendance escalation, parent notifications, and re-engagement workflows for absent students",
+          "Coordinates timetable changes, substitute teacher assignments, and exam hall scheduling in real time",
+          "Streamlines fee collection, scholarship workflows, and finance reconciliation with auto-generated receipts",
+          "Routes faculty hiring, onboarding, and credential verification across departments with audit-ready logs"
+        ],
+        metric: "+ 40 Hours Saved Per Coordinator Weekly",
+        accentColor: "#F5A623"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "Parent Inquiry Arrives",
+        label: "Multichannel admissions outreach captured",
+        description: "A parent calls, WhatsApps, or fills the website form asking about Grade 9 admissions and fee structure."
+      },
+      {
+        ordinal: 2,
+        trigger: "SmartTalk™ Qualifies Lead",
+        label: "AI agent answers and screens prospect",
+        description: "SmartTalk responds instantly in the parent's language, shares curriculum details, qualifies the student, and books a campus tour."
+      },
+      {
+        ordinal: 3,
+        trigger: "WorkSync™ Orchestrates Enrollment",
+        label: "Documents, fees, and onboarding automated",
+        description: "WorkSync collects transcripts, verifies records, generates the fee invoice, and assigns the student to a class and homeroom teacher."
+      },
+      {
+        ordinal: 4,
+        trigger: "LearnMate™ Onboards Student",
+        label: "Personalized diagnostic and study plan",
+        description: "LearnMate runs a diagnostic assessment, identifies skill gaps, and builds a personalized study and exam-prep roadmap for the student."
+      },
+      {
+        ordinal: 5,
+        trigger: "Ongoing Engagement Loop",
+        label: "Progress reports and parent updates flow",
+        description: "WorkSync sends weekly progress digests to parents and SmartTalk handles follow-up questions, while LearnMate adapts coursework continuously."
+      },
+    ],
+    useCases: [
+      {
+        icon: "GraduationCap",
+        title: "Admissions Automation",
+        description: "AI handles inbound admissions inquiries end-to-end — answering curriculum and fee questions, qualifying prospects, and scheduling counsellor calls or campus tours without human intervention."
+      },
+      {
+        icon: "BookOpen",
+        title: "Exam Simulator",
+        description: "Voice-driven mock exams for SAT, IELTS, board, and competitive tests deliver instant scoring, reasoning feedback, and targeted revision plans tailored to each student's weak areas."
+      },
+      {
+        icon: "UserCheck",
+        title: "Attendance Follow-Up",
+        description: "Automatically detects absent students, calls or messages parents within minutes, and logs the reason while escalating chronic cases to class teachers and counsellors."
+      },
+      {
+        icon: "CreditCard",
+        title: "Fee Collection",
+        description: "Sends multilingual voice and WhatsApp fee reminders, processes payments, generates receipts, and reconciles ledgers automatically with the institution's finance system."
+      },
+      {
+        icon: "CalendarCheck",
+        title: "Parent-Teacher Scheduling",
+        description: "Coordinates PTA meetings, one-on-one teacher slots, and rescheduling requests across hundreds of parents in parallel, syncing to faculty calendars in real time."
+      },
+      {
+        icon: "FileText",
+        title: "Transcript Requests",
+        description: "Authenticates alumni and current students, processes transcript, certificate, and verification requests, and hands off to the registrar with full audit trails."
+      },
+    ]
+  },
+  "logistics-operations": {
+    heroTagline: "AI SOLUTIONS FOR LOGISTICS & OPERATIONS",
+    heroAccentColor: "#3A8DFF",
+    heroSecondaryColor: "#00D4FF",
+    stats: [
+      {
+        value: "65%",
+        label: "Faster Dispatch Cycles",
+        sublabel: "→ AI-routed loads from booking to driver assignment in under 90 seconds"
+      },
+      {
+        value: "3.2×",
+        label: "Higher Load Throughput",
+        sublabel: "→ Autonomous voice intake handles 3.2× more shipment calls per shift"
+      },
+      {
+        value: "24/7",
+        label: "Live Tracking Coverage",
+        sublabel: "→ Always-on shipment status, ETA, and exception alerts across every lane"
+      },
+      {
+        value: "+42%",
+        label: "On-Time Delivery Rate",
+        sublabel: "→ Predictive routing and proactive driver coordination lift OTD performance"
+      },
+      {
+        value: "99.8%",
+        label: "POD Capture Accuracy",
+        sublabel: "→ Automated proof-of-delivery verification across photo, signature, and geo-stamp"
+      },
+    ],
+    products: [
+      {
+        productId: "driveflow",
+        productName: "DriveFlow™",
+        roleInIndustry: "Autonomous dispatch and fleet orchestration",
+        features: [
+          "Auto-assigns loads based on driver HOS, lane familiarity, and equipment match",
+          "Real-time ETA recalculation using live traffic, weather, and dock-door wait data",
+          "Voice-first driver check-ins with hands-free pickup, delivery, and exception logging",
+          "Detention and demurrage tracking with automated accessorial billing triggers"
+        ],
+        metric: "+ 65% Faster Load Assignment",
+        accentColor: "#3A8DFF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Warehouse and back-office workflow automation",
+        features: [
+          "Auto-syncs BOL, POD, and rate confirmations across TMS, WMS, and ERP systems",
+          "Triggers cross-dock and slot-assignment workflows from inbound ASN data",
+          "Reconciles carrier invoices against tariff rules with 4-decimal accuracy",
+          "Routes claims, damages, and OS&D exceptions to the right ops owner in under 5 minutes"
+        ],
+        metric: "+ 78% Reduction in Manual Data Entry",
+        accentColor: "#F5A623"
+      },
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Voice intake for shippers and carriers",
+        features: [
+          "Handles inbound load tenders, rate quotes, and tracking calls in 40+ languages",
+          "Authenticates carriers via MC number, DOT, and SCAC before quoting",
+          "Books appointments at warehouses and DCs with live dock-schedule sync",
+          "Escalates high-value freight and HAZMAT calls to specialist agents with full context"
+        ],
+        metric: "+ 3.2× More Calls Handled per Shift",
+        accentColor: "#00D4FF"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "SmartTalk™ Receives Load Tender",
+        label: "Carrier or shipper calls in a load",
+        description: "SmartTalk™ authenticates the caller, captures pickup and delivery details, and validates rates against current lane pricing."
+      },
+      {
+        ordinal: 2,
+        trigger: "WorkSync™ Builds the Shipment",
+        label: "Auto-creates BOL and tender record",
+        description: "WorkSync™ generates the BOL, syncs the shipment into the TMS, and pre-loads compliance checks for HAZMAT, customs, and accessorials."
+      },
+      {
+        ordinal: 3,
+        trigger: "DriveFlow™ Dispatches the Driver",
+        label: "Optimal driver matched and routed",
+        description: "DriveFlow™ assigns the load based on HOS, equipment, and lane preference, then pushes the route and dock appointment to the driver's device."
+      },
+      {
+        ordinal: 4,
+        trigger: "Live Exception Handling",
+        label: "Detention, reroutes, and delays managed",
+        description: "DriveFlow™ and SmartTalk™ jointly handle weather reroutes, dock delays, and detention claims with automated shipper notifications."
+      },
+      {
+        ordinal: 5,
+        trigger: "WorkSync™ Closes the Load",
+        label: "POD captured and invoice settled",
+        description: "WorkSync™ verifies proof-of-delivery, reconciles accessorials, and releases the carrier invoice for same-day settlement."
+      },
+    ],
+    useCases: [
+      {
+        icon: "Truck",
+        title: "Load Dispatch",
+        description: "Automatically match loads to drivers using HOS rules, equipment type, and historical lane performance — no dispatcher intervention required."
+      },
+      {
+        icon: "Route",
+        title: "Dynamic Routing",
+        description: "Recalculate routes in real time using traffic, weather, and dock-door availability to protect on-time delivery commitments."
+      },
+      {
+        icon: "PhoneCall",
+        title: "Carrier Intake",
+        description: "Handle inbound carrier calls for load tenders, rate quotes, and check calls 24/7 with full TMS integration and authentication."
+      },
+      {
+        icon: "Package",
+        title: "Warehouse Slotting",
+        description: "Trigger cross-dock assignments, slot allocation, and pick-path optimization the moment an ASN hits the warehouse."
+      },
+      {
+        icon: "Receipt",
+        title: "Freight Audit",
+        description: "Reconcile carrier invoices against contracted tariffs and accessorials, flagging variances before payment release."
+      },
+      {
+        icon: "AlertCircle",
+        title: "Exception Management",
+        description: "Detect OS&D, damages, and detention events in real time and route them to the right ops owner with full shipment context attached."
+      },
+    ]
+  },
+  "financial-services": {
+    heroTagline: "AI SOLUTIONS FOR FINANCIAL SERVICES",
+    heroAccentColor: "#7B6FF0",
+    heroSecondaryColor: "#00D4FF",
+    stats: [
+      {
+        value: "85%",
+        label: "Containment Rate",
+        sublabel: "→ Routine balance, transfer, and card requests resolved without an agent."
+      },
+      {
+        value: "3×",
+        label: "Faster KYC Onboarding",
+        sublabel: "→ Identity capture and verification completed in under four minutes."
+      },
+      {
+        value: "24/7",
+        label: "Multilingual Coverage",
+        sublabel: "→ Voice support in 40+ languages across retail and commercial banking."
+      },
+      {
+        value: "99.9%",
+        label: "Platform Uptime",
+        sublabel: "→ SOC 2 Type II infrastructure with active-active failover."
+      },
+      {
+        value: "+62%",
+        label: "Fraud Catch Rate",
+        sublabel: "→ Behavioral and voice biometrics flag suspicious activity in real time."
+      },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Front line for member servicing",
+        features: [
+          "Voice biometric authentication in under 6 seconds before account access",
+          "Real-time fraud disposition with card freeze, dispute, and reissue flows",
+          "PCI-DSS compliant payment capture with tokenized card-on-file handling",
+          "Live agent handoff with full transcript, intent, and risk score context"
+        ],
+        metric: "+ 85% Self-Service Resolution",
+        accentColor: "#00D4FF"
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Back-office automation for operations teams",
+        features: [
+          "Automated KYC and AML document review with audit-ready exception queues",
+          "Loan origination workflows that pull from core banking, bureaus, and CRM",
+          "SLA-driven case routing with regulator-mapped escalation paths",
+          "Reconciliation engine that matches ledger, payments, and treasury entries nightly"
+        ],
+        metric: "+ 70% Reduction in Manual Casework",
+        accentColor: "#F5A623"
+      },
+    ],
+    workflow: [
+      {
+        ordinal: 1,
+        trigger: "Customer Calls the Bank",
+        label: "Inbound voice authenticated by biometrics",
+        description: "SmartTalk™ greets the caller, captures intent, and verifies identity with voiceprint plus knowledge-based factors in seconds."
+      },
+      {
+        ordinal: 2,
+        trigger: "SmartTalk™ Resolves or Routes",
+        label: "Intent classified, risk scored, action chosen",
+        description: "Routine servicing requests are completed in-call while flagged intents like fraud or large transfers are escalated with full context."
+      },
+      {
+        ordinal: 3,
+        trigger: "WorkSync™ Opens the Case",
+        label: "Structured case created in core systems",
+        description: "WorkSync™ writes a record to the CRM and core banking platform, attaches the transcript, and assigns SLA timers."
+      },
+      {
+        ordinal: 4,
+        trigger: "Compliance & KYC Review",
+        label: "Automated document and identity verification",
+        description: "Submitted documents are extracted, validated against sanctions and PEP lists, and queued for human review only on exceptions."
+      },
+      {
+        ordinal: 5,
+        trigger: "Resolution & Audit Trail",
+        label: "Outcome confirmed and regulator-ready log saved",
+        description: "The customer receives confirmation via SMS or email and every step is captured in an immutable, exportable audit record."
+      },
+    ],
+    useCases: [
+      {
+        icon: "ShieldCheck",
+        title: "Fraud Triage",
+        description: "SmartTalk™ outbound calls verify suspicious transactions with the cardholder and can freeze, reissue, or whitelist activity inside a single conversation."
+      },
+      {
+        icon: "UserCheck",
+        title: "KYC Onboarding",
+        description: "Guided voice and document capture verify new customer identity against bureau, sanctions, and PEP lists in under four minutes."
+      },
+      {
+        icon: "CreditCard",
+        title: "Payment Servicing",
+        description: "Customers schedule, modify, or dispute payments with PCI-DSS compliant capture and instant posting to the core banking ledger."
+      },
+      {
+        icon: "FileText",
+        title: "Loan Origination",
+        description: "WorkSync™ orchestrates application intake, bureau pulls, underwriting rules, and conditional approval notifications end to end."
+      },
+      {
+        icon: "BarChart3",
+        title: "Collections Outreach",
+        description: "Compliant, persona-tuned voice campaigns negotiate payment plans, log promises-to-pay, and route hardship cases to licensed agents."
+      },
+      {
+        icon: "Headphones",
+        title: "Wealth Concierge",
+        description: "Priority clients reach a 24/7 multilingual voice concierge that handles statements, transfers, and advisor scheduling without hold times."
+      },
+    ]
+  },
+};
+
+export const getIndustryDetail = (
+  slug: IndustrySlug,
+): IndustryDetailExtension | undefined => industryDetailExtensions[slug];

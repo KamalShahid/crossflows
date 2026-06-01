@@ -35,7 +35,7 @@ const pillarAccents = [
   "#6ECFB0",
 ];
 
-const heroWords = ["conversation", "appointment", "lesson", "workflow"];
+const heroWords = ["Action", "conversation", "appointment", "lesson", "workflow"];
 
 export default function Home() {
   const [wordIndex, setWordIndex] = useState(0);
@@ -65,7 +65,7 @@ export default function Home() {
             }}
             className="font-display text-balance text-5xl font-bold leading-[1.02] tracking-tight text-[var(--color-text-primary)] sm:text-6xl md:text-7xl lg:text-[88px]"
           >
-            {"Where intelligence meets ".split(" ").map((word, i) => (
+            {"Where intelligence meets".split(" ").map((word, i) => (
               <motion.span
                 key={i}
                 variants={{
@@ -281,10 +281,6 @@ export default function Home() {
             {useCases.slice(0, 5).map((u, idx) => {
               const Icon = u.icon;
               const span = idx === 0 ? "lg:col-span-2" : "";
-              const excerpt =
-                u.description.length > 100
-                  ? u.description.slice(0, 100).trimEnd() + "…"
-                  : u.description;
               return (
                 <motion.div
                   key={u.slug}
@@ -303,8 +299,8 @@ export default function Home() {
                       {u.title}
                     </h3>
                   </div>
-                  <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    {excerpt}
+                  <p className="line-clamp-5 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    {u.description}
                   </p>
                   <Link
                     to={`/use-cases#${u.slug}`}

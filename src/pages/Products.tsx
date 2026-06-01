@@ -5,7 +5,6 @@ import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import SectionHeader from "../components/SectionHeader";
 import CTAButton from "../components/CTAButton";
-import ExpandableDescription from "../components/ExpandableDescription";
 import { products } from "../data/products";
 
 export default function Products() {
@@ -57,7 +56,7 @@ export default function Products() {
             >
               <div
                 className={
-                  "grid grid-cols-1 items-center gap-12 lg:grid-cols-2 " +
+                  "grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:items-stretch " +
                   (flip ? "lg:[&>div:first-child]:order-2" : "")
                 }
               >
@@ -66,7 +65,7 @@ export default function Products() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="relative aspect-[5/4] overflow-hidden rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-8"
+                  className="relative aspect-[5/4] overflow-hidden rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-8 lg:aspect-auto lg:h-full"
                 >
                   <div
                     className={`absolute -top-20 right-0 h-72 w-72 bg-gradient-to-br ${p.accent} opacity-25 blur-3xl`}
@@ -95,10 +94,10 @@ export default function Products() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="flex flex-col gap-6"
                 >
-                  <h2 className="font-display text-balance text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+                  <h2 className="font-display text-justify text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">
                     {p.tagline}
                   </h2>
-                  <p className="text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
+                  <p className="text-justify text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
                     {p.longDescription}
                   </p>
                   <ul className="flex flex-col gap-4">
@@ -110,14 +109,13 @@ export default function Products() {
                         <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
                           <Check className="h-3 w-3" strokeWidth={3} />
                         </span>
-                        <div className="flex-1">
+                        <div className="flex-1 text-justify">
                           <div className="font-display font-semibold text-[var(--color-text-primary)]">
                             {f.title}
                           </div>
-                          <ExpandableDescription
-                            text={f.description}
-                            className="text-sm leading-relaxed text-[var(--color-text-muted)]"
-                          />
+                          <p className="text-justify text-sm leading-relaxed text-[var(--color-text-muted)]">
+                            {f.description}
+                          </p>
                         </div>
                       </li>
                     ))}

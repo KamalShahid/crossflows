@@ -83,10 +83,7 @@ export default function ProductPage({ product }: ProductPageProps) {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="flex flex-wrap gap-3"
             >
-              <CTAButton to="#capabilities" variant="primary" withArrow>
-                Explore {product.name}
-              </CTAButton>
-              <CTAButton to="/contact" variant="secondary">
+              <CTAButton to="/contact" variant="primary" withArrow>
                 Talk to Sales
               </CTAButton>
             </motion.div>

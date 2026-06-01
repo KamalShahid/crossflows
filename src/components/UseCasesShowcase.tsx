@@ -238,7 +238,7 @@ export default function UseCasesShowcase({
           animate={isInView ? "visible" : "hidden"}
           className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
-          {relevant.map((u) => (
+          {relevant.slice(0, 6).map((u) => (
             <Card key={u.slug} useCase={u} />
           ))}
         </motion.div>
