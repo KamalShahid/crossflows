@@ -1,5 +1,5 @@
-import { useState } from "react";
 import SectionHeader from "./SectionHeader";
+import LogoTile from "./shared/LogoTile";
 import {
   integrationsSection,
   integrationLogos,
@@ -50,7 +50,6 @@ export default function IntegrationsMarquee() {
 }
 
 function LogoPill({ logo }: { logo: IntegrationLogo }) {
-  const [failed, setFailed] = useState(false);
   return (
     <div
       className="group flex items-center justify-center"
@@ -63,34 +62,13 @@ function LogoPill({ logo }: { logo: IntegrationLogo }) {
         height: 64,
       }}
     >
-      {failed ? (
-        <span
-          className="font-display font-semibold tracking-tight"
-          style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}
-        >
-          {logo.name}
-        </span>
-      ) : (
-        <img
-          src={logo.url}
-          alt={logo.name}
-          loading="lazy"
-          onError={() => setFailed(true)}
-          style={{
-            maxHeight: 28,
-            filter: "brightness(0) invert(0.7)",
-            transition: "filter 0.2s ease, transform 0.2s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.filter = "none";
-            e.currentTarget.style.transform = "scale(1.05)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.filter = "brightness(0) invert(0.7)";
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        />
-      )}
+      <LogoTile
+        name={logo.name}
+        logoUrl={logo.url}
+        size={28}
+        fallbackBg="transparent"
+        fallbackColor="var(--color-text-muted)"
+      />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { ArrowRight, Check } from "lucide-react";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import CTAButton from "../components/CTAButton";
+import LogoTile from "../components/shared/LogoTile";
 import { features, type Feature, type FeatureSlug } from "../data/features";
 
 const STICKY_OFFSET_PX = 130; // 72px navbar + 58px tab bar
@@ -97,17 +98,26 @@ function LanguagesPanelArt() {
   );
 }
 
-const INTEGRATION_LOGOS: { name: string; slug: string; hex: string }[] = [
-  { name: "Salesforce", slug: "salesforce",    hex: "00A1E0" },
-  { name: "HubSpot",    slug: "hubspot",       hex: "FF7A59" },
-  { name: "Twilio",     slug: "twilio",        hex: "F22F46" },
-  { name: "Zoho",       slug: "zoho",          hex: "E42527" },
-  { name: "Slack",      slug: "slack",         hex: "ECB22E" },
-  { name: "Teams",      slug: "microsoftteams", hex: "6264A7" },
-  { name: "Google",     slug: "google",        hex: "4285F4" },
-  { name: "Stripe",     slug: "stripe",        hex: "A78BFA" },
-  { name: "Intercom",   slug: "intercom",      hex: "1F8DED" },
+interface IntegrationLogoSpec {
+  name: string;
+  /** Simple Icons slug (jsDelivr-served), or `null` for brands with no Simple Icons entry. */
+  slug: string | null;
+}
+
+const INTEGRATION_LOGOS: IntegrationLogoSpec[] = [
+  { name: "Salesforce", slug: "salesforce" },
+  { name: "HubSpot", slug: "hubspot" },
+  { name: "Twilio", slug: "twilio" },
+  { name: "Zoho", slug: "zoho" },
+  { name: "Slack", slug: "slack" },
+  { name: "Teams", slug: "microsoftteams" },
+  { name: "Google", slug: "google" },
+  { name: "Stripe", slug: "stripe" },
+  { name: "Intercom", slug: "intercom" },
 ];
+
+const jsDelivrIcon = (slug: string): string =>
+  `https://cdn.jsdelivr.net/npm/simple-icons@12/icons/${slug}.svg`;
 
 function IntegrationPanelArt() {
   return (
@@ -125,7 +135,7 @@ function IntegrationPanelArt() {
     >
       {INTEGRATION_LOGOS.map((logo) => (
         <div
-          key={logo.slug}
+          key={logo.name}
           title={logo.name}
           style={{
             aspectRatio: "1 / 1",
@@ -137,15 +147,10 @@ function IntegrationPanelArt() {
             borderRadius: 12,
           }}
         >
-          <img
-            src={`https://cdn.simpleicons.org/${logo.slug}/${logo.hex}`}
-            alt={logo.name}
-            style={{
-              width: 22,
-              height: 22,
-              opacity: 0.85,
-            }}
-            loading="lazy"
+          <LogoTile
+            name={logo.name}
+            logoUrl={logo.slug ? jsDelivrIcon(logo.slug) : null}
+            size={22}
           />
         </div>
       ))}

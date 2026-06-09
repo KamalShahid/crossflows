@@ -9,14 +9,13 @@ import {
   type CloudPlatform,
   type ComplianceBadge,
 } from "../data/ecosystem";
+import LogoTile from "./shared/LogoTile";
 
 interface TileProps {
   tile: EcosystemTile;
   isHovered: boolean;
   isDimmed: boolean;
   onHover: (id: string | null) => void;
-  hasError: boolean;
-  onImgError: () => void;
   isInView: boolean;
   staggerIdx: number;
   isMobile: boolean;
@@ -27,8 +26,6 @@ function Tile({
   isHovered,
   isDimmed,
   onHover,
-  hasError,
-  onImgError,
   isInView,
   staggerIdx,
   isMobile,
@@ -52,7 +49,7 @@ function Tile({
         alignItems: "flex-start",
       }}
     >
-      {/* Icon container */}
+      {/* Icon container — outer hover/dim state, LogoTile renders the inner glyph */}
       <div
         style={{
           width: iconBoxSize,
@@ -66,45 +63,20 @@ function Tile({
           alignItems: "center",
           justifyContent: "center",
           marginBottom: 12,
-          transition: "background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
+          transition:
+            "background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, opacity 0.25s ease",
           boxShadow: isHovered ? "0 4px 20px rgba(0,0,0,0.25)" : "none",
+          opacity: isDimmed ? 0.2 : 1,
+          filter: isDimmed ? "grayscale(1)" : "none",
         }}
       >
-        {hasError ? (
-          <div
-            style={{
-              width: iconImgSize,
-              height: iconImgSize,
-              borderRadius: 8,
-              background: tile.logoBg,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontFamily: "Syne, sans-serif",
-              fontSize: "0.9rem",
-              fontWeight: 700,
-              color: tile.accentColor,
-              opacity: isDimmed ? 0.2 : 1,
-              filter: isDimmed ? "grayscale(1)" : "none",
-              transition: "opacity 0.25s ease, filter 0.25s ease",
-            }}
-          >
-            {tile.name.substring(0, 2).toUpperCase()}
-          </div>
-        ) : (
-          <img
-            src={tile.logoSrc}
-            alt={tile.name}
-            onError={onImgError}
-            style={{
-              width: iconImgSize,
-              height: iconImgSize,
-              objectFit: "contain",
-              transition: "filter 0.25s ease",
-              filter: isDimmed ? "grayscale(1) opacity(0.2)" : "none",
-            }}
-          />
-        )}
+        <LogoTile
+          name={tile.name}
+          logoUrl={tile.logoSrc}
+          size={iconImgSize}
+          fallbackBg={tile.logoBg}
+          fallbackColor={tile.accentColor}
+        />
       </div>
 
       {/* Name */}
@@ -152,16 +124,12 @@ function Tile({
 interface SidePanelProps {
   hoveredCloud: string | null;
   setHoveredCloud: (id: string | null) => void;
-  cloudErrors: Record<string, boolean>;
-  onCloudError: (id: string) => void;
   isMobile: boolean;
 }
 
 function SidePanel({
   hoveredCloud,
   setHoveredCloud,
-  cloudErrors,
-  onCloudError,
   isMobile,
 }: SidePanelProps) {
   return (
@@ -205,7 +173,6 @@ function SidePanel({
           {cloudPlatforms.map((c: CloudPlatform) => {
             const isHovered = hoveredCloud === c.id;
             const isDimmed = hoveredCloud !== null && hoveredCloud !== c.id;
-            const hasError = cloudErrors[c.id];
             return (
               <div
                 key={c.id}
@@ -221,35 +188,13 @@ function SidePanel({
                   transition: "opacity 0.25s ease",
                 }}
               >
-                {hasError ? (
-                  <div
-                    style={{
-                      height: 28,
-                      paddingLeft: 12,
-                      paddingRight: 12,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontFamily: "Syne, sans-serif",
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
-                      color: "var(--color-text-primary)",
-                    }}
-                  >
-                    {c.name}
-                  </div>
-                ) : (
-                  <img
-                    src={c.logoSrc}
-                    alt={c.name}
-                    onError={() => onCloudError(c.id)}
-                    style={{
-                      height: 28,
-                      maxWidth: 80,
-                      objectFit: "contain",
-                    }}
-                  />
-                )}
+                <LogoTile
+                  name={c.name}
+                  logoUrl={c.logoSrc}
+                  size={28}
+                  fallbackBg="transparent"
+                  fallbackColor="var(--color-text-primary)"
+                />
 
                 <AnimatePresence>
                   {isHovered && (
@@ -363,7 +308,6 @@ function SidePanel({
 export default function EcosystemGrid() {
   const [hoveredTile, setHoveredTile] = useState<string | null>(null);
   const [hoveredCloud, setHoveredCloud] = useState<string | null>(null);
-  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
   const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
@@ -388,9 +332,6 @@ export default function EcosystemGrid() {
       setHoveredTile(null);
     };
   }, [isMobile]);
-
-  const markImgError = (id: string) =>
-    setImgErrors((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
 
   return (
     <section
@@ -506,8 +447,6 @@ export default function EcosystemGrid() {
                     hoveredTile !== null && hoveredTile !== tile.id
                   }
                   onHover={(id) => setHoveredTile(id)}
-                  hasError={Boolean(imgErrors[tile.id])}
-                  onImgError={() => markImgError(tile.id)}
                   isInView={isInView}
                   staggerIdx={idx}
                   isMobile={isMobile}
@@ -520,8 +459,6 @@ export default function EcosystemGrid() {
           <SidePanel
             hoveredCloud={hoveredCloud}
             setHoveredCloud={setHoveredCloud}
-            cloudErrors={imgErrors}
-            onCloudError={markImgError}
             isMobile={isMobile}
           />
         </div>

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Logo from "./Logo";
 import NavLink from "./NavLink";
@@ -39,6 +39,7 @@ export default function NavDesktop() {
   const openTimerRef = useRef<number | null>(null);
   const closeTimerRef = useRef<number | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const clearTimers = useCallback(() => {
     if (openTimerRef.current !== null) {
@@ -70,6 +71,34 @@ export default function NavDesktop() {
       setActivePanel((prev) => (prev === id ? null : id));
     },
     [clearTimers],
+  );
+
+  // "Use Cases" and "Features" have a dedicated landing page that users
+  // expect to navigate to when they click the label (hover still opens the
+  // dropdown via `scheduleOpen`). When the user is already on the
+  // destination path, scroll back to the top instead — this is the
+  // "same-page click should scroll to top" behavior `ScrollToTop` can't
+  // cover, since `pathname` doesn't change.
+  const PANEL_PATHS: Partial<Record<PanelId, string>> = {
+    useCases: "/use-cases",
+    features: "/features",
+  };
+  const handleTriggerClick = useCallback(
+    (id: PanelId) => {
+      const path = PANEL_PATHS[id];
+      if (path) {
+        clearTimers();
+        setActivePanel(null);
+        if (location.pathname === path) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          navigate(path);
+        }
+        return;
+      }
+      togglePanel(id);
+    },
+    [clearTimers, location.pathname, navigate, togglePanel],
   );
 
   const scheduleOpen = useCallback(
@@ -192,7 +221,7 @@ export default function NavDesktop() {
                   isActive={isActive}
                   onMouseEnter={() => scheduleOpen(item.panelId)}
                   onFocus={() => openPanel(item.panelId)}
-                  onClick={() => togglePanel(item.panelId)}
+                  onClick={() => handleTriggerClick(item.panelId)}
                   ariaControls={`mega-panel-${item.panelId}`}
                 />
               );

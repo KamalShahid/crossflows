@@ -149,7 +149,7 @@ export default function ProductPage({ product }: ProductPageProps) {
           <SectionHeader
             label="Capabilities"
             heading={`What makes ${product.name} different.`}
-            align="center"
+            align="left"
             maxWidth="max-w-2xl"
           />
           <div className="mt-14 grid gap-5 sm:grid-cols-2 sm:gap-x-6">
@@ -203,7 +203,7 @@ export default function ProductPage({ product }: ProductPageProps) {
           <SectionHeader
             label="Industries Served"
             heading="Built for the industries that need it most."
-            align="center"
+            align="left"
             maxWidth="max-w-2xl"
           />
           <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
@@ -258,14 +258,14 @@ export default function ProductPage({ product }: ProductPageProps) {
             }}
           />
         </div>
-        <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
           <SectionHeader
             label="Next step"
             heading={`See ${product.name} run on your workflow.`}
             subheading="A 30-minute call. Tailored demo. Honest assessment of fit."
-            align="center"
+            align="left"
           />
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <CTAButton to="/contact" variant="primary" withArrow>
               Request a Demo
             </CTAButton>

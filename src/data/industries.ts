@@ -856,7 +856,7 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
   "consumer-services": {
     heroTagline: "AI SOLUTIONS FOR CONSUMER SERVICES",
     heroAccentColor: "#00D4FF",
-    heroSecondaryColor: "#F5A623",
+    heroSecondaryColor: "#7B6FF0",
     stats: [
       {
         value: "70%",
@@ -992,8 +992,8 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
   },
   "recruitment-staffing": {
     heroTagline: "AI SOLUTIONS FOR RECRUITMENT & STAFFING",
-    heroAccentColor: "#7B6FF0",
-    heroSecondaryColor: "#00D4FF",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
     stats: [
       {
         value: "80%",
@@ -1130,7 +1130,7 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
   "real-estate-property": {
     heroTagline: "AI SOLUTIONS FOR REAL ESTATE & PROPERTY MANAGEMENT",
     heroAccentColor: "#00D4FF",
-    heroSecondaryColor: "#3A8DFF",
+    heroSecondaryColor: "#7B6FF0",
     stats: [
       {
         value: "85%",
@@ -1266,8 +1266,8 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
   },
   "restaurants-hospitality": {
     heroTagline: "AI SOLUTIONS FOR RESTAURANTS & HOSPITALITY",
-    heroAccentColor: "#F5A623",
-    heroSecondaryColor: "#FF6B6B",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
     stats: [
       {
         value: "85%",
@@ -1403,8 +1403,8 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
   },
   "utilities-services": {
     heroTagline: "AI SOLUTIONS FOR UTILITIES & SERVICE PROVIDERS",
-    heroAccentColor: "#F5A623",
-    heroSecondaryColor: "#00D4FF",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
     stats: [
       {
         value: "75%",
@@ -1527,8 +1527,8 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
   },
   "schools-education": {
     heroTagline: "AI SOLUTIONS FOR SCHOOLS & EDUCATIONAL INSTITUTIONS",
-    heroAccentColor: "#7B6FF0",
-    heroSecondaryColor: "#3A8DFF",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
     stats: [
       {
         value: "85%",
@@ -1664,8 +1664,8 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
   },
   "logistics-operations": {
     heroTagline: "AI SOLUTIONS FOR LOGISTICS & OPERATIONS",
-    heroAccentColor: "#3A8DFF",
-    heroSecondaryColor: "#00D4FF",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
     stats: [
       {
         value: "65%",
@@ -1801,8 +1801,8 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
   },
   "financial-services": {
     heroTagline: "AI SOLUTIONS FOR FINANCIAL SERVICES",
-    heroAccentColor: "#7B6FF0",
-    heroSecondaryColor: "#00D4FF",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
     stats: [
       {
         value: "85%",

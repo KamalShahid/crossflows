@@ -17,20 +17,58 @@ export default function UseCases() {
   const [selectedSlug, setSelectedSlug] = useState<UseCaseSlug | null>(null);
   const location = useLocation();
   const detailRef = useRef<HTMLDivElement | null>(null);
+  // When the hash triggers selection we want to scroll to the *card*, not
+  // re-scroll to the detail panel below. This ref suppresses the detail-panel
+  // scroll for the immediately following selectedSlug change.
+  const suppressDetailScrollRef = useRef(false);
 
   // Hash deep-link from the homepage cards or navbar dropdown: open the
-  // detail panel for that slug. The selectedSlug effect below handles
-  // smooth-scrolling the detail panel into view.
+  // detail panel for that slug AND scroll the card into view (above the
+  // detail panel, not at the bottom of the page). Uses rAF + retry so it
+  // works even if the card hasn't finished laying out on first frame.
   useEffect(() => {
     const hash = location.hash.replace(/^#/, "") as UseCaseSlug;
     if (!hash) return;
     if (!getUseCase(hash)) return;
+
+    suppressDetailScrollRef.current = true;
     setSelectedSlug(hash);
+
+    // 72px navbar + ~112px sticky filter bar + 16px breathing room.
+    const SCROLL_OFFSET = 200;
+
+    let cancelled = false;
+    const attemptScroll = (retriesLeft: number) => {
+      if (cancelled) return;
+      const el = document.getElementById(hash);
+      if (!el) {
+        if (retriesLeft > 0) {
+          window.setTimeout(() => attemptScroll(retriesLeft - 1), 100);
+        }
+        return;
+      }
+      requestAnimationFrame(() => {
+        if (cancelled) return;
+        const top =
+          el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+        window.scrollTo({ top, behavior: "smooth" });
+      });
+    };
+    attemptScroll(3);
+    return () => {
+      cancelled = true;
+    };
   }, [location.hash]);
 
-  // Smooth scroll the detail panel into view when it opens / changes
+  // Smooth scroll the detail panel into view when the user *clicks* a card
+  // directly. Skipped when the selection came from a hash deep-link (the
+  // hash effect above scrolls to the card instead).
   useEffect(() => {
     if (!selectedSlug) return;
+    if (suppressDetailScrollRef.current) {
+      suppressDetailScrollRef.current = false;
+      return;
+    }
     const t = window.setTimeout(() => {
       detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 80);

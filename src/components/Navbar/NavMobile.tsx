@@ -217,7 +217,7 @@ export default function NavMobile() {
                               industries.map((ind) => (
                                 <Link
                                   key={ind.slug}
-                                  to="/industries"
+                                  to={`/industries/${ind.slug}`}
                                   onClick={closeAll}
                                   className="mx-1 flex items-center justify-between rounded-md px-3 py-2.5 text-sm text-[var(--color-text-primary)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-2)] hover:text-[var(--color-accent)]"
                                 >

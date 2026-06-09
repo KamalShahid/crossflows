@@ -57,10 +57,18 @@ import {
   type IndustrySlug,
 } from "../data/industries";
 import type { ProductSlug } from "../data/products";
-import { hexToRgb } from "../utils/color";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import WaveformBars from "../components/shared/WaveformBars";
+
+// Industry detail pages render every industry in the site's standard
+// cyan + purple brand palette. The data file still carries
+// `heroAccentColor` / `heroSecondaryColor` for forward compatibility, but
+// this template no longer reads them — every dynamic color reference
+// resolves to the same brand tokens so all 9 pages look consistent.
+const HERO_ACCENT = "#00D4FF"; // var(--color-accent)
+const HERO_SECONDARY = "#7B6FF0";
+const HERO_ACCENT_RGB = "0, 212, 255";
 
 const USE_CASE_ICONS: Record<string, LucideIcon> = {
   Activity,
@@ -169,9 +177,9 @@ function HeroSection({ industry, detail }: SectionProps) {
   const nameParts = industry.name.split("&").map((s) => s.trim());
   const headPart1 = nameParts[0];
   const headPart2 = nameParts[1] ?? "Operations";
-  const accent = detail.heroAccentColor;
-  const secondary = detail.heroSecondaryColor;
-  const accentRgb = hexToRgb(accent);
+  const accent = HERO_ACCENT;
+  const secondary = HERO_SECONDARY;
+  const accentRgb = HERO_ACCENT_RGB;
 
   return (
     <section className="relative isolate overflow-hidden">
@@ -255,8 +263,8 @@ function HeroSection({ industry, detail }: SectionProps) {
                 gap: 8,
                 padding: "12px 22px",
                 borderRadius: 999,
-                background: `linear-gradient(135deg, ${accent}, ${secondary})`,
-                color: "#031018",
+                background: "var(--color-accent)",
+                color: "var(--color-bg)",
                 fontFamily: '"Syne", system-ui, sans-serif',
                 fontWeight: 700,
                 fontSize: "0.9rem",
@@ -544,7 +552,7 @@ function HeroSection({ industry, detail }: SectionProps) {
 }
 
 function StatsBar({ detail }: { detail: IndustryDetailExtension }) {
-  const accentRgb = hexToRgb(detail.heroAccentColor);
+  const accentRgb = HERO_ACCENT_RGB;
   return (
     <section
       style={{
@@ -579,7 +587,7 @@ function StatsBar({ detail }: { detail: IndustryDetailExtension }) {
                   margin: "0 auto 12px",
                 }}
               >
-                <StatIcon size={18} color={detail.heroAccentColor} strokeWidth={2} />
+                <StatIcon size={18} color={HERO_ACCENT} strokeWidth={2} />
               </div>
 
               <StatCounter value={stat.value} />
@@ -822,8 +830,8 @@ function ProductsSection({ detail }: { detail: IndustryDetailExtension }) {
 }
 
 function WorkflowSection({ industry, detail }: SectionProps) {
-  const accent = detail.heroAccentColor;
-  const secondary = detail.heroSecondaryColor;
+  const accent = HERO_ACCENT;
+  const secondary = HERO_SECONDARY;
   const headPart1 = industry.name.split("&")[0].trim();
   return (
     <section
@@ -1028,7 +1036,7 @@ function WorkflowSection({ industry, detail }: SectionProps) {
 }
 
 function UseCasesSection({ industry, detail }: SectionProps) {
-  const accent = detail.heroAccentColor;
+  const accent = HERO_ACCENT;
   return (
     <section
       className="px-5 py-20 sm:px-8"
@@ -1138,10 +1146,9 @@ function UseCasesSection({ industry, detail }: SectionProps) {
   );
 }
 
-function BottomCTA({ industry, detail }: SectionProps) {
-  const accent = detail.heroAccentColor;
-  const secondary = detail.heroSecondaryColor;
-  const accentRgb = hexToRgb(accent);
+function BottomCTA({ industry }: { industry: Industry }) {
+  const accent = HERO_ACCENT;
+  const accentRgb = HERO_ACCENT_RGB;
   const headPart1 = industry.name.split("&")[0].trim();
   return (
     <section
@@ -1195,8 +1202,8 @@ function BottomCTA({ industry, detail }: SectionProps) {
               gap: 8,
               padding: "12px 24px",
               borderRadius: 999,
-              background: `linear-gradient(135deg, ${accent}, ${secondary})`,
-              color: "#031018",
+              background: "var(--color-accent)",
+              color: "var(--color-bg)",
               fontFamily: '"Syne", system-ui, sans-serif',
               fontWeight: 700,
               fontSize: "0.9rem",
@@ -1288,7 +1295,7 @@ export default function IndustryDetail() {
       <ProductsSection detail={detail} />
       <WorkflowSection industry={industry} detail={detail} />
       <UseCasesSection industry={industry} detail={detail} />
-      <BottomCTA industry={industry} detail={detail} />
+      <BottomCTA industry={industry} />
     </PageShell>
   );
 }

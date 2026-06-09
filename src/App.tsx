@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import SmartTalk from "./pages/products/SmartTalk";
@@ -21,6 +22,7 @@ import NotFound from "./pages/NotFound";
 export default function App() {
   return (
     <div className="relative min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

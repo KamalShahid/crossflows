@@ -94,10 +94,10 @@ export default function Products() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="flex flex-col gap-6"
                 >
-                  <h2 className="font-display text-justify text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+                  <h2 className="font-display text-left text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">
                     {p.tagline}
                   </h2>
-                  <p className="text-justify text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
+                  <p className="text-left text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
                     {p.longDescription}
                   </p>
                   <ul className="flex flex-col gap-4">
@@ -109,11 +109,11 @@ export default function Products() {
                         <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
                           <Check className="h-3 w-3" strokeWidth={3} />
                         </span>
-                        <div className="flex-1 text-justify">
+                        <div className="flex-1 text-left">
                           <div className="font-display font-semibold text-[var(--color-text-primary)]">
                             {f.title}
                           </div>
-                          <p className="text-justify text-sm leading-relaxed text-[var(--color-text-muted)]">
+                          <p className="text-left text-sm leading-relaxed text-[var(--color-text-muted)]">
                             {f.description}
                           </p>
                         </div>
