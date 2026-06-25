@@ -155,6 +155,51 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
     callStatus: "CALL ENDED",
     callTime: "0:12",
   },
+  {
+    id: "insurance",
+    slug: "insurance",
+    ordinal: "10",
+    name: "Insurance",
+    metric: "65%",
+    metricLabel: "FASTER RESPONSE",
+    customerName: "Rachel",
+    customerRole: "POLICYHOLDER",
+    agentPersona: "ARIA",
+    customerQuote:
+      "“I need to file a claim for the water damage — the basement flooded last night.”",
+    callStatus: "CONNECTED",
+    callTime: "0:07",
+  },
+  {
+    id: "telecommunications",
+    slug: "telecommunications",
+    ordinal: "11",
+    name: "Telecommunications",
+    metric: "70%",
+    metricLabel: "FASTER RESOLUTION",
+    customerName: "Kevin",
+    customerRole: "SUBSCRIBER",
+    agentPersona: "FLUX",
+    customerQuote:
+      "“My internet has been down since this morning and I need it fixed before my noon call.”",
+    callStatus: "CONNECTED",
+    callTime: "0:05",
+  },
+  {
+    id: "municipalities-government",
+    slug: "municipalities-government",
+    ordinal: "12",
+    name: "Municipalities & Local Gov.",
+    metric: "75%",
+    metricLabel: "FASTER RESPONSE",
+    customerName: "Sandra",
+    customerRole: "RESIDENT",
+    agentPersona: "NOVA",
+    customerQuote:
+      "“There is a large pothole at the corner of Elm and Main — it has been there for weeks.”",
+    callStatus: "CONNECTED",
+    callTime: "0:06",
+  },
 ];
 
 const INTERVAL_MS = 4000;

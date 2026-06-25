@@ -9,6 +9,8 @@ import {
   GraduationCap,
   Truck,
   Landmark,
+  ShieldCheck,
+  Radio,
 } from "lucide-react";
 import type { ProductSlug } from "./products";
 import type { UseCaseSlug } from "./useCases";
@@ -22,7 +24,10 @@ export type IndustrySlug =
   | "utilities-services"
   | "schools-education"
   | "logistics-operations"
-  | "financial-services";
+  | "financial-services"
+  | "insurance"
+  | "telecommunications"
+  | "municipalities-government";
 
 export interface IndustryProductFeature {
   title: string;
@@ -666,6 +671,150 @@ export const industries: Industry[] = [
     productFeatures: [],
     benefits: ["Tailored deployment scoping", "Compliance-aware engagements", "Talk to our team for a fit assessment"],
     cardOnly: true,
+  },
+  {
+    slug: "insurance",
+    name: "Insurance",
+    description:
+      "Streamline claims, policy inquiries, and policyholder communication with 24/7 AI assistance.",
+    headline: "AI-Powered Insurance Operations",
+    intro:
+      "Cross Flows Synergy helps insurance providers enhance customer service, streamline claims and policy inquiries, and improve operational efficiency through intelligent AI-powered communication and workflow automation.",
+    icon: ShieldCheck,
+    accent: "from-[#00d4ff] to-[#7b6fff]",
+    productSlugs: ["smarttalk", "worksync"],
+    useCaseSlugs: [
+      "customer-support-automation",
+      "appointment-scheduling",
+      "faq-automation",
+      "workflow-automation",
+    ],
+    productFeatures: [
+      {
+        productSlug: "smarttalk",
+        features: [
+          { title: "Policy & Claims Inquiries", description: "Handle policy questions, claim status checks, and coverage inquiries instantly across voice and digital channels." },
+          { title: "Customer Support", description: "Provide always-on policyholder assistance with consistent, on-brand responses." },
+          { title: "Appointment Scheduling", description: "Coordinate consultations with agents and adjusters without manual back-and-forth." },
+          { title: "FAQ Assistance", description: "Answer common policyholder questions instantly with up-to-date information." },
+        ],
+      },
+      {
+        productSlug: "worksync",
+        features: [
+          { title: "Claims Administration", description: "Automate claim intake, routing, status updates, and follow-up workflows end to end." },
+          { title: "Agent Coordination", description: "Connect underwriters, adjusters, and customer service teams through one operational layer." },
+          { title: "Internal Workflows", description: "Streamline approvals, document handling, and inter-department handoffs." },
+          { title: "Process Automation", description: "Eliminate manual administrative tasks across the claims and policy lifecycle." },
+        ],
+      },
+    ],
+    benefits: [
+      "65% Faster Customer Response",
+      "Reduced Administrative Workload",
+      "24/7 Policyholder Support",
+      "Improved Claims Efficiency",
+      "Better Agent Productivity",
+    ],
+  },
+  {
+    slug: "telecommunications",
+    name: "Telecommunications",
+    description:
+      "Resolve customer issues faster, reduce ticket backlog, and provide always-on AI support.",
+    headline: "AI-Powered Telecommunications Operations",
+    intro:
+      "Cross Flows Synergy helps telecom providers improve customer engagement, reduce support workloads, and streamline service management through intelligent AI-powered communication and automation.",
+    icon: Radio,
+    accent: "from-[#00d4ff] to-[#7b6fff]",
+    productSlugs: ["smarttalk", "worksync"],
+    useCaseSlugs: [
+      "customer-support-automation",
+      "billing-payment-assistance",
+      "call-routing-prioritization",
+      "workflow-automation",
+    ],
+    productFeatures: [
+      {
+        productSlug: "smarttalk",
+        features: [
+          { title: "Customer Support", description: "Resolve service questions and account inquiries across voice and digital channels." },
+          { title: "Billing Inquiries", description: "Answer billing questions, payment status, and plan details without staff involvement." },
+          { title: "Service Requests", description: "Capture and triage new service, upgrade, and cancellation requests automatically." },
+          { title: "Technical Assistance", description: "Walk customers through common troubleshooting steps before escalating." },
+        ],
+      },
+      {
+        productSlug: "worksync",
+        features: [
+          { title: "Ticket Management", description: "Generate, route, and track support tickets with full context end to end." },
+          { title: "Escalation Workflows", description: "Auto-escalate outages and high-priority cases to the right teams." },
+          { title: "Internal Communications", description: "Keep field, ops, and support teams aligned through automated updates." },
+          { title: "Process Automation", description: "Streamline repetitive operational tasks across the service lifecycle." },
+        ],
+      },
+    ],
+    benefits: [
+      "70% Faster Customer Resolution",
+      "Reduced Support Workload",
+      "24/7 Customer Assistance",
+      "Improved Ticket Efficiency",
+      "Better Team Coordination",
+    ],
+  },
+  {
+    slug: "municipalities-government",
+    name: "Municipalities & Local Government",
+    description:
+      "Improve citizen engagement, automate service requests, and coordinate departments at scale.",
+    headline: "AI-Powered Citizen Services",
+    intro:
+      "Cross Flows Synergy helps municipalities improve citizen engagement, streamline service requests, and enhance operational efficiency through intelligent AI-powered communication and workflow automation.",
+    icon: Building2,
+    accent: "from-[#00d4ff] to-[#7b6fff]",
+    productSlugs: ["smarttalk", "worksync", "learnmate"],
+    useCaseSlugs: [
+      "customer-support-automation",
+      "workflow-automation",
+      "multilingual-communication",
+      "faq-automation",
+    ],
+    productFeatures: [
+      {
+        productSlug: "smarttalk",
+        features: [
+          { title: "Resident Inquiries", description: "Handle citizen questions across phone, SMS, and web in plain language." },
+          { title: "Service Requests", description: "Capture work orders, complaints, and reports with consistent context." },
+          { title: "Permit Information", description: "Provide guidance on permits, licenses, and application requirements." },
+          { title: "Community Information", description: "Surface information on events, programs, and local facilities on demand." },
+        ],
+      },
+      {
+        productSlug: "worksync",
+        features: [
+          { title: "Request Routing", description: "Auto-assign citizen requests to the correct department with full context." },
+          { title: "Department Coordination", description: "Connect public works, permits, and resident services in one workflow layer." },
+          { title: "Case Management", description: "Track resident cases from intake through resolution with full audit trail." },
+          { title: "Workflow Automation", description: "Eliminate repetitive admin tasks across municipal operations." },
+        ],
+      },
+      {
+        productSlug: "learnmate",
+        features: [
+          { title: "Staff Training", description: "Onboard and upskill staff with AI-powered training guidance and resources." },
+          { title: "Policy Management", description: "Centralize policy documents and surface the right guidance in context." },
+          { title: "Knowledge Sharing", description: "Connect employees with current procedures and operational guidelines." },
+          { title: "New Employee Onboarding", description: "Streamline orientation, training paths, and certification tracking." },
+        ],
+      },
+    ],
+    benefits: [
+      "75% Faster Citizen Response",
+      "Reduced Administrative Burden",
+      "24/7 Resident Support",
+      "Improved Departmental Coordination",
+      "Better Staff Knowledge Access",
+    ],
   },
 ];
 
@@ -1922,6 +2071,148 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
         description: "Priority clients reach a 24/7 multilingual voice concierge that handles statements, transfers, and advisor scheduling without hold times."
       },
     ]
+  },
+  "insurance": {
+    heroTagline: "AI SOLUTIONS FOR INSURANCE",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
+    stats: [
+      { value: "65%", label: "Faster Customer Response", sublabel: "→ AI-powered inquiry handling" },
+      { value: "40%", label: "Reduced Administrative Work", sublabel: "→ Automated claims workflows" },
+      { value: "24/7", label: "Policyholder Support", sublabel: "→ Always-on AI assistance" },
+      { value: "99.9%", label: "Service Availability", sublabel: "→ Reliable, always compliant" },
+      { value: "4.8/5", label: "Customer Satisfaction", sublabel: "→ Consistent service delivery" },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "AI Voice & Policyholder Communication",
+        features: ["Policy & Claims Inquiries", "Customer Support", "Appointment Scheduling", "FAQ Assistance"],
+        metric: "+ 65% Faster Customer Response",
+        accentColor: "#00D4FF",
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Insurance Workflow Automation",
+        features: ["Claims Administration", "Agent Coordination", "Internal Workflows", "Process Automation"],
+        metric: "+ 40% Less Admin Work",
+        accentColor: "#F5A623",
+      },
+    ],
+    workflow: [
+      { ordinal: 1, trigger: "Customer contacts insurance provider", label: "Call or message via any channel", description: "Policyholders call, message, or submit inquiries via phone, SMS, or web." },
+      { ordinal: 2, trigger: "SmartTalk™ answers and identifies the inquiry", label: "AI handles inquiry immediately", description: "A human-like AI agent answers, identifies the need, and gathers relevant policy or claim information." },
+      { ordinal: 3, trigger: "Claims, policy, or service request is captured", label: "Request captured and categorized automatically", description: "Information is logged accurately and routed based on inquiry type." },
+      { ordinal: 4, trigger: "WorkSync™ routes and updates the appropriate team", label: "Workflows triggered and teams notified", description: "Staff receive tasks, updates, and customer information in real time." },
+    ],
+    useCases: [
+      { icon: "FileText", title: "Claims Processing", description: "Automate claim intake and status inquiries for faster resolution." },
+      { icon: "Users", title: "Policyholder Support", description: "Handle policy questions, renewals, and coverage inquiries." },
+      { icon: "Bell", title: "Claims Follow-Ups", description: "Provide proactive updates throughout the claims process." },
+      { icon: "MessageCircle", title: "FAQ & Information Requests", description: "Answer common questions instantly without staff involvement." },
+      { icon: "Briefcase", title: "Agent Support", description: "Provide agents with quick access to information and workflows." },
+      { icon: "CalendarCheck", title: "Appointment Scheduling", description: "Allow policyholders to book consultations at any time." },
+    ],
+  },
+  "telecommunications": {
+    heroTagline: "AI SOLUTIONS FOR TELECOMMUNICATIONS",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
+    stats: [
+      { value: "70%", label: "Faster Customer Resolution", sublabel: "→ AI-powered support triage" },
+      { value: "45%", label: "Reduced Support Workload", sublabel: "→ Automated ticket handling" },
+      { value: "24/7", label: "Customer Assistance", sublabel: "→ Always-on AI availability" },
+      { value: "99.9%", label: "Service Availability", sublabel: "→ Mission-critical uptime" },
+      { value: "4.8/5", label: "Customer Satisfaction", sublabel: "→ Consistent interactions" },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "AI Voice & Customer Engagement",
+        features: ["Customer Support", "Billing Inquiries", "Service Requests", "Technical Assistance"],
+        metric: "+ 70% Faster Resolution",
+        accentColor: "#00D4FF",
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Telecom Workflow Automation",
+        features: ["Ticket Management", "Escalation Workflows", "Internal Communications", "Process Automation"],
+        metric: "+ 45% Less Support Workload",
+        accentColor: "#F5A623",
+      },
+    ],
+    workflow: [
+      { ordinal: 1, trigger: "Customer contacts telecom provider", label: "Call, chat, or SMS inquiry received", description: "Customer reaches out via voice, SMS, or digital channel for support or service." },
+      { ordinal: 2, trigger: "SmartTalk™ identifies the issue and gathers information", label: "AI triages and captures details", description: "The AI agent identifies the request type, gathers account information, and categorizes the inquiry." },
+      { ordinal: 3, trigger: "Service request or support ticket is created", label: "Ticket automatically generated", description: "A support ticket is created with all relevant customer and issue details populated." },
+      { ordinal: 4, trigger: "WorkSync™ routes the request to the correct department", label: "Team receives routed request", description: "The ticket is assigned to the appropriate team with full context for faster resolution." },
+      { ordinal: 5, trigger: "Staff resolve inquiry with AI support", label: "Resolution delivered efficiently", description: "Staff have the information needed to resolve inquiries faster and update customers automatically." },
+    ],
+    useCases: [
+      { icon: "Headphones", title: "Customer Support", description: "Handle account and service-related inquiries automatically." },
+      { icon: "CreditCard", title: "Billing Assistance", description: "Provide instant responses to billing questions and payment support." },
+      { icon: "Wrench", title: "Technical Support", description: "Assist with common troubleshooting requests and service diagnostics." },
+      { icon: "Settings", title: "Service Requests", description: "Manage upgrades, changes, and installation coordination." },
+      { icon: "Radio", title: "Outage Communications", description: "Provide automated updates during service interruptions." },
+      { icon: "GraduationCap", title: "Employee Training", description: "Keep teams informed on products, services, and procedures." },
+    ],
+  },
+  "municipalities-government": {
+    heroTagline: "AI SOLUTIONS FOR LOCAL GOVERNMENT",
+    heroAccentColor: "#00D4FF",
+    heroSecondaryColor: "#7B6FF0",
+    stats: [
+      { value: "75%", label: "Faster Citizen Response", sublabel: "→ AI-powered inquiry handling" },
+      { value: "50%", label: "Reduced Administrative Tasks", sublabel: "→ Automated request routing" },
+      { value: "24/7", label: "Resident Support", sublabel: "→ Always-on citizen assistance" },
+      { value: "99.9%", label: "Service Availability", sublabel: "→ Reliable public infrastructure" },
+      { value: "4.8/5", label: "Resident Satisfaction", sublabel: "→ Consistent service delivery" },
+    ],
+    products: [
+      {
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "AI Voice & Citizen Communication",
+        features: ["Resident Inquiries", "Service Requests", "Permit Information", "Community Information"],
+        metric: "+ 75% Faster Citizen Response",
+        accentColor: "#00D4FF",
+      },
+      {
+        productId: "worksync",
+        productName: "WorkSync™",
+        roleInIndustry: "Government Workflow Automation",
+        features: ["Request Routing", "Department Coordination", "Case Management", "Workflow Automation"],
+        metric: "+ 50% Less Admin Work",
+        accentColor: "#F5A623",
+      },
+      {
+        productId: "learnmate",
+        productName: "LearnMate™",
+        roleInIndustry: "Staff Training & Knowledge Management",
+        features: ["Staff Training", "Policy Management", "Knowledge Sharing", "New Employee Onboarding"],
+        metric: "+ 40% Faster Onboarding",
+        accentColor: "#7B6FF0",
+      },
+    ],
+    workflow: [
+      { ordinal: 1, trigger: "Resident contacts the municipality", label: "Call, message, or online request submitted", description: "Citizen reaches out via phone, SMS, web portal, or digital channel." },
+      { ordinal: 2, trigger: "SmartTalk™ identifies the request and gathers information", label: "AI triages and captures details", description: "The AI agent identifies the request type and collects relevant information from the resident." },
+      { ordinal: 3, trigger: "Service request is created automatically", label: "Work order or ticket generated", description: "A service request is automatically created with all citizen and issue details populated." },
+      { ordinal: 4, trigger: "WorkSync™ routes the request to the appropriate department", label: "Department receives assigned request", description: "The request is routed to the correct municipal department with full context." },
+      { ordinal: 5, trigger: "LearnMate™ provides staff with policies and procedures", label: "Staff equipped with knowledge to resolve", description: "Employees access policies, procedures, and operational guidelines to handle requests efficiently." },
+    ],
+    useCases: [
+      { icon: "Users", title: "Citizen Service Requests", description: "Handle inquiries related to public services and community programs." },
+      { icon: "FileText", title: "Permit & Licensing Information", description: "Provide guidance on permits, applications, and requirements." },
+      { icon: "Wrench", title: "Public Works Requests", description: "Manage reports related to roads, parks, waste, and infrastructure." },
+      { icon: "MessageCircle", title: "Community Information", description: "Provide information on events, facilities, and local services." },
+      { icon: "Network", title: "Internal Staff Support", description: "Improve communication and collaboration across departments." },
+      { icon: "GraduationCap", title: "Staff Training & Knowledge", description: "Ensure teams have access to current policies and procedures." },
+    ],
   },
 };
 

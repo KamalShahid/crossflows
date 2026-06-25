@@ -101,7 +101,7 @@ export default function Products() {
                     {p.longDescription}
                   </p>
                   <ul className="flex flex-col gap-4">
-                    {p.features.slice(0, 3).map((f) => (
+                    {(p.listingHighlights ?? p.features.slice(0, 3)).map((f) => (
                       <li
                         key={f.title}
                         className="flex items-start gap-3 text-sm leading-relaxed text-[var(--color-text-primary)]/85"

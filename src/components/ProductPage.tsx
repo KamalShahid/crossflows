@@ -19,7 +19,26 @@ interface ProductPageProps {
 export default function ProductPage({ product }: ProductPageProps) {
   const Icon = product.icon;
   const relatedUseCases = useCases.filter((u) => product.useCaseSlugs.includes(u.slug));
-  const relatedIndustries = industries.filter((i) => product.industrySlugs.includes(i.slug));
+  // Products may opt into a curated `industriesServed` list (e.g. DriveFlow's
+  // restaurants/banks split where one industry slug needs to render as multiple
+  // distinct cards). Otherwise we fall back to the industries data lookup.
+  const industryCards = product.industriesServed
+    ? product.industriesServed.map((e) => ({
+        key: `${e.slug ?? "custom"}-${e.name}`,
+        icon: e.icon,
+        name: e.name,
+        description: e.description,
+        slug: e.slug,
+      }))
+    : industries
+        .filter((i) => product.industrySlugs.includes(i.slug))
+        .map((i) => ({
+          key: i.slug,
+          icon: i.icon,
+          name: i.name,
+          description: i.description,
+          slug: i.slug,
+        }));
 
   return (
     <PageShell
@@ -113,7 +132,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                     Live across
                   </div>
                   <div className="font-display text-2xl font-bold tracking-tight">
-                    {relatedIndustries.length} industries
+                    {industryCards.length} industries
                   </div>
                   <div className="font-display text-2xl font-bold tracking-tight">
                     {relatedUseCases.length} use cases
@@ -155,6 +174,7 @@ export default function ProductPage({ product }: ProductPageProps) {
           <div className="mt-14 grid gap-5 sm:grid-cols-2 sm:gap-x-6">
             {product.features.map((f, idx) => {
               const restingY = idx % 2 === 0 ? -12 : 12;
+              const FIcon = f.icon ?? Sparkles;
               return (
                 <motion.div
                   key={f.title}
@@ -178,7 +198,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                   }}
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
-                    <Sparkles size={28} strokeWidth={1.9} />
+                    <FIcon size={28} strokeWidth={1.9} />
                   </span>
                   <h3 className="font-display text-lg font-semibold tracking-tight">
                     {f.title}
@@ -207,11 +227,11 @@ export default function ProductPage({ product }: ProductPageProps) {
             maxWidth="max-w-2xl"
           />
           <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
-            {relatedIndustries.slice(0, 4).map((ind, idx) => {
-              const IIcon = ind.icon;
+            {industryCards.slice(0, 4).map((card, idx) => {
+              const IIcon = card.icon;
               return (
                 <motion.div
-                  key={ind.slug}
+                  key={card.key}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -222,14 +242,20 @@ export default function ProductPage({ product }: ProductPageProps) {
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-surface-2)] text-[var(--color-accent)]">
                     <IIcon size={20} strokeWidth={2.1} />
                   </span>
-                  <Link
-                    to={`/industries/${ind.slug}`}
-                    className="font-display text-base font-semibold tracking-tight text-[var(--color-text-primary)] transition-colors duration-150 hover:text-[var(--color-accent)]"
-                  >
-                    {ind.name}
-                  </Link>
+                  {card.slug ? (
+                    <Link
+                      to={`/industries/${card.slug}`}
+                      className="font-display text-base font-semibold tracking-tight text-[var(--color-text-primary)] transition-colors duration-150 hover:text-[var(--color-accent)]"
+                    >
+                      {card.name}
+                    </Link>
+                  ) : (
+                    <span className="font-display text-base font-semibold tracking-tight text-[var(--color-text-primary)]">
+                      {card.name}
+                    </span>
+                  )}
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">
-                    {ind.description}
+                    {card.description}
                   </p>
                 </motion.div>
               );

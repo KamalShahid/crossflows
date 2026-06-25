@@ -25,7 +25,6 @@ import { useScrollLock } from "../../hooks/useScrollLock";
 import { products, type ProductSlug } from "../../data/products";
 import { industries } from "../../data/industries";
 import { solutions, toDisplayTitle, type SolutionSlug } from "../../data/solutions";
-import { useCases } from "../../data/useCases";
 import { features } from "../../data/features";
 import type { PanelId } from "./types";
 
@@ -56,7 +55,6 @@ const drawerSections: DrawerSection[] = [
   { panelId: "products", label: "Products" },
   { panelId: "industries", label: "Industries" },
   { panelId: "solutions", label: "Solutions" },
-  { panelId: "useCases", label: "Use Cases" },
   { panelId: "features", label: "Features" },
 ];
 
@@ -248,22 +246,6 @@ export default function NavMobile() {
                                   </Link>
                                 );
                               })}
-
-                            {section.panelId === "useCases" &&
-                              useCases.map((u) => (
-                                <Link
-                                  key={u.slug}
-                                  to="/use-cases"
-                                  onClick={closeAll}
-                                  className="mx-1 flex items-center justify-between rounded-md px-3 py-2.5 text-sm text-[var(--color-text-primary)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-2)] hover:text-[var(--color-accent)]"
-                                >
-                                  <span>{u.title}</span>
-                                  <ArrowRight
-                                    size={12}
-                                    className="text-[var(--color-text-muted)]"
-                                  />
-                                </Link>
-                              ))}
 
                             {section.panelId === "features" &&
                               features.map((f) => {

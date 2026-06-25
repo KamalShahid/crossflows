@@ -7,7 +7,6 @@ import MegaMenuPanel from "./MegaMenuPanel";
 import ProductsPanel from "./panels/ProductsPanel";
 import IndustriesPanel from "./panels/IndustriesPanel";
 import SolutionsPanel from "./panels/SolutionsPanel";
-import UseCasesPanel from "./panels/UseCasesPanel";
 import FeaturesPanel from "./panels/FeaturesPanel";
 import { isDropdownItem, type NavItem, type PanelId } from "./types";
 
@@ -17,7 +16,6 @@ const navItems: NavItem[] = [
   { label: "Products", panelId: "products" },
   { label: "Industries", panelId: "industries" },
   { label: "Solutions", panelId: "solutions" },
-  { label: "Use Cases", panelId: "useCases" },
   { label: "Features", panelId: "features" },
   { label: "Blog", href: "/blog" },
 ];
@@ -26,7 +24,6 @@ const panelAriaLabels: Record<PanelId, string> = {
   products: "Products",
   industries: "Industries",
   solutions: "Solutions",
-  useCases: "Use Cases",
   features: "Features",
 };
 
@@ -80,7 +77,6 @@ export default function NavDesktop() {
   // "same-page click should scroll to top" behavior `ScrollToTop` can't
   // cover, since `pathname` doesn't change.
   const PANEL_PATHS: Partial<Record<PanelId, string>> = {
-    useCases: "/use-cases",
     features: "/features",
   };
   const handleTriggerClick = useCallback(
@@ -178,8 +174,6 @@ export default function NavDesktop() {
         return <IndustriesPanel onNavigate={closePanel} />;
       case "solutions":
         return <SolutionsPanel onNavigate={closePanel} />;
-      case "useCases":
-        return <UseCasesPanel onNavigate={closePanel} />;
       case "features":
         return <FeaturesPanel onNavigate={closePanel} />;
       default:

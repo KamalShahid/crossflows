@@ -4,7 +4,6 @@ export type PanelId =
   | "products"
   | "industries"
   | "solutions"
-  | "useCases"
   | "features";
 
 export interface PlainNavItem {
@@ -33,11 +32,6 @@ export interface SolutionNavEntry {
 }
 
 export interface IndustryNavEntry {
-  label: string;
-  href: string;
-}
-
-export interface UseCaseNavEntry {
   label: string;
   href: string;
 }

@@ -1,5 +1,24 @@
 import type { LucideIcon } from "lucide-react";
-import { Headphones, Car, GraduationCap, Workflow } from "lucide-react";
+import {
+  Headphones,
+  Car,
+  GraduationCap,
+  Workflow,
+  // DriveFlow capability icons
+  Timer,
+  MessageCircle,
+  TrendingUp,
+  Plug,
+  Star,
+  BarChart3,
+  Globe,
+  Users,
+  // DriveFlow industries-served icons
+  UtensilsCrossed,
+  Coffee,
+  Store,
+  Landmark,
+} from "lucide-react";
 import type { UseCaseSlug } from "./useCases";
 import type { IndustrySlug } from "./industries";
 
@@ -8,6 +27,21 @@ export type ProductSlug = "smarttalk" | "driveflow" | "learnmate" | "worksync";
 export interface ProductFeature {
   title: string;
   description: string;
+  /** Optional per-feature icon shown in the Capabilities card. Falls back to `Sparkles` in ProductPage when omitted. */
+  icon?: LucideIcon;
+}
+
+/**
+ * Optional override entry for a product's "Industries Served" section.
+ * When `industriesServed` is set on a product, ProductPage renders these
+ * cards instead of looking up `industrySlugs` in the industries data.
+ */
+export interface ProductIndustryEntry {
+  name: string;
+  description: string;
+  icon: LucideIcon;
+  /** When set, the card name links to `/industries/${slug}`. */
+  slug?: IndustrySlug;
 }
 
 export interface Product {
@@ -25,8 +59,12 @@ export interface Product {
   accent: string;
   heroEyebrow: string;
   features: ProductFeature[];
+  /** Optional override for the 3 feature bullets shown on /products. Falls back to features.slice(0, 3). */
+  listingHighlights?: ProductFeature[];
   useCaseSlugs: UseCaseSlug[];
   industrySlugs: IndustrySlug[];
+  /** Optional override for the Industries Served grid on the product subpage. */
+  industriesServed?: ProductIndustryEntry[];
   idealFor: string[];
   videoCaption: string;
 }
@@ -285,60 +323,85 @@ export const products: Product[] = [
   {
     slug: "driveflow",
     name: "DriveFlow™",
-    subtitle: "AI-Powered Logistics, Coordination & Operational Flow Platform",
+    subtitle: "AI-Powered Drive-Thru & Quick-Service Ordering Platform",
     tagline:
-      "Streamline dispatch, coordination, and field operations with intelligent AI automation.",
+      "Transform your drive-thru experience with intelligent AI that helps restaurants serve customers faster, reduce wait times, and improve order accuracy.",
     heroHeading:
-      "Streamline dispatch, coordination, and field operations through intelligent AI automation.",
+      "Transform your drive-thru experience with intelligent AI that helps restaurants serve customers faster, reduce wait times, and improve order accuracy.",
     heroDescription:
-      "DriveFlow™ helps businesses optimize logistics, service coordination, and operational workflows with real-time communication, automated dispatching, and connected operational intelligence.",
+      "By handling orders with natural, human-like conversations, DriveFlow™ helps restaurants reduce wait times, increase order accuracy, boost revenue through intelligent upselling, and ensure a consistent customer experience across every location.",
     shortDescription:
-      "AI-Powered Logistics, Coordination & Operational Flow Platform",
+      "AI-powered drive-thru solution designed to automate order taking and improve operational efficiency.",
     longDescription:
-      "DriveFlow™ is an intelligent AI-powered coordination and operational management platform designed to support logistics, transportation, dispatch, field operations, and service coordination workflows. Built for businesses managing high-volume operational activities, DriveFlow™ helps improve communication, streamline coordination, automate service workflows, and optimize operational efficiency across teams and locations.",
+      "DriveFlow™ integrates with your existing drive-thru operations to handle customer interactions, take orders, answer menu questions, suggest upsells and streamline communication between customers and staff. Whether you're managing a single location or a multi-unit franchise, DriveFlow™ helps create a faster, more consistent customer experience.",
     icon: Car,
     accent: "from-[#f5a623] to-[#ffce6e]",
-    heroEyebrow: "AI-Powered Logistics, Coordination & Operational Flow Platform",
+    heroEyebrow: "AI-Powered Drive-Thru & Quick-Service Ordering Platform",
     features: [
       {
-        title: "Dispatch Coordination",
+        title: "Faster Drive-Thru Throughput",
         description:
-          "Automate scheduling, routing, communication, and coordination between teams, drivers, technicians, or field staff.",
+          "Serve more customers during peak hours by reducing ordering bottlenecks and accelerating the ordering process without increasing staff requirements.",
+        icon: Timer,
       },
       {
-        title: "Service Request Automation",
+        title: "AI-Powered Customer Conversations",
         description:
-          "Manage incoming service requests, operational inquiries, and workflow assignments intelligently.",
+          "Engage customers with natural, human-like conversations that can understand menu items, modifications, promotions, and common questions in real time.",
+        icon: MessageCircle,
       },
       {
-        title: "Operational Communication Systems",
+        title: "Intelligent Upselling",
         description:
-          "Improve communication between operations teams, clients, field staff, and management.",
+          "Increase average order value through automated recommendations for combos, add-ons, beverages, desserts, and limited-time offers tailored to customer selections.",
+        icon: TrendingUp,
       },
       {
-        title: "Scheduling & Route Optimization",
+        title: "Seamless POS Integration",
         description:
-          "Coordinate schedules, assignments, and operational timelines more efficiently.",
+          "Connect with existing POS and restaurant management systems to ensure orders are captured accurately and routed directly to kitchen operations.",
+        icon: Plug,
       },
       {
-        title: "AI Workflow Monitoring",
+        title: "Consistent Customer Experience",
         description:
-          "Track workflow progress, operational activities, and service execution in real-time.",
+          "Deliver the same level of service across every shift and location, ensuring customers receive fast, friendly, and reliable interactions every time.",
+        icon: Star,
       },
       {
-        title: "Intelligent Escalation Management",
+        title: "Real-Time Analytics & Reporting",
         description:
-          "Automatically identify delays, operational issues, or priority requests and escalate accordingly.",
+          "Gain insights into order trends, customer interactions, peak traffic periods, upsell performance, and operational efficiency through centralized dashboards.",
+        icon: BarChart3,
       },
       {
-        title: "Operational Analytics & Insights",
+        title: "Multilingual Ordering",
         description:
-          "Generate insights into operational performance, workflow trends, response times, and service efficiency.",
+          "Support customers in multiple languages, helping restaurants serve diverse communities while improving accessibility and customer satisfaction.",
+        icon: Globe,
       },
       {
-        title: "Integration Infrastructure",
+        title: "Reduced Labor Dependency",
         description:
-          "Connect with scheduling systems, CRMs, dispatch tools, communication platforms, and operational software.",
+          "Help address staffing shortages by automating repetitive order-taking tasks, allowing employees to focus on food preparation and customer service.",
+        icon: Users,
+      },
+    ],
+    listingHighlights: [
+      {
+        title: "AI Order Taking",
+        description:
+          "Automatically takes customer orders with natural, human-like conversations.",
+      },
+      {
+        title: "Smart Upselling & Promotions",
+        description:
+          "Recommends add-ons, combos, and promotional items based on customer selections.",
+      },
+      {
+        title: "Order Accuracy",
+        description:
+          "Minimizes misunderstandings and incorrect orders, improving customer satisfaction and reduces waste.",
       },
     ],
     useCaseSlugs: [
@@ -347,21 +410,45 @@ export const products: Product[] = [
       "integrations-connected-systems",
     ],
     industrySlugs: [
-      "logistics-operations",
-      "real-estate-property",
-      "consumer-services",
       "restaurants-hospitality",
-      "utilities-services",
+      "financial-services",
+    ],
+    industriesServed: [
+      {
+        name: "Quick Service Restaurants (QSRs)",
+        description:
+          "Automates order taking and speeds up service during peak hours.",
+        icon: UtensilsCrossed,
+        slug: "restaurants-hospitality",
+      },
+      {
+        name: "Coffee Shops & Cafés",
+        description:
+          "Handles complex drink customizations while reducing wait times.",
+        icon: Coffee,
+        slug: "restaurants-hospitality",
+      },
+      {
+        name: "Food & Beverage Franchises",
+        description:
+          "Standardizes the drive-thru experience across multiple locations.",
+        icon: Store,
+        slug: "restaurants-hospitality",
+      },
+      {
+        name: "Banks & Financial Institutions",
+        description:
+          "Supports customer interactions and directs transactions efficiently.",
+        icon: Landmark,
+        slug: "financial-services",
+      },
     ],
     idealFor: [
-      "Logistics & Transportation",
-      "Field Service Operations",
-      "Warehouse & Distribution",
-      "Delivery Coordination",
-      "Utility Service Providers",
-      "Mobile Workforce Operations",
+      "Quick Service Restaurants (QSR)",
+      "Fast Food Chains",
+      "Coffee Shops",
     ],
-    videoCaption: "See DriveFlow™ coordinate field operations end-to-end",
+    videoCaption: "See DriveFlow™ run a live drive-thru order, end to end",
   },
 ];
 
