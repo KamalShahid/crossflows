@@ -14,9 +14,9 @@ interface LogoTileProps {
   /** Extra style overrides applied to the img element. */
   imgStyle?: CSSProperties;
   /**
-   * If true (default), the img is rendered as a white silhouette via the
-   * `brightness(0) invert(1)` filter so it stays visible on dark backgrounds.
-   * On hover the filter is removed so the brand color in the SVG shows through.
+   * @deprecated Logos always render in their full brand colors now.
+   * Kept on the props signature so existing callers don't break, but
+   * ignored. Safe to remove on a future cleanup pass.
    */
   applyWhiteFilter?: boolean;
 }
@@ -24,9 +24,9 @@ interface LogoTileProps {
 /**
  * Shared logo rendering primitive used by the homepage `EcosystemGrid`,
  * the Features integration panel, and any other surface that displays
- * Simple Icons brand glyphs. Handles the `<img>` ↔ fallback swap and the
- * dark-theme white-filter + hover restore pattern in one place so callers
- * don't have to re-implement either.
+ * Simple Icons brand glyphs. Renders the SVG in its native brand colors
+ * (no monochrome filter, no hover toggle) and swaps to a 2-letter
+ * fallback badge when the URL is `null` or the request errors.
  */
 export default function LogoTile({
   name,
@@ -35,7 +35,6 @@ export default function LogoTile({
   fallbackBg = "var(--color-surface-2)",
   fallbackColor = "var(--color-accent)",
   imgStyle,
-  applyWhiteFilter = true,
 }: LogoTileProps) {
   const [imgError, setImgError] = useState(false);
   const showFallback = logoUrl === null || imgError;
@@ -64,9 +63,6 @@ export default function LogoTile({
     );
   }
 
-  const defaultFilter = applyWhiteFilter ? "brightness(0) invert(1)" : "none";
-  const defaultOpacity = applyWhiteFilter ? 0.7 : 1;
-
   return (
     <img
       src={logoUrl}
@@ -77,18 +73,9 @@ export default function LogoTile({
         width: size,
         height: size,
         objectFit: "contain",
-        filter: defaultFilter,
-        opacity: defaultOpacity,
-        transition: "filter 0.2s ease, opacity 0.2s ease",
+        filter: "none",
+        opacity: 1,
         ...imgStyle,
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.filter = "none";
-        e.currentTarget.style.opacity = "1";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.filter = defaultFilter;
-        e.currentTarget.style.opacity = String(defaultOpacity);
       }}
     />
   );

@@ -9,10 +9,16 @@ interface PanelProps {
   onNavigate: () => void;
 }
 
+interface MenuItem {
+  label: string;
+  /** Anchor on the parent category page (corresponds to `useCase.id`). */
+  anchor: string;
+}
+
 interface MenuCategory {
   slug: SolutionCategorySlug;
   label: string;
-  items: string[];
+  items: MenuItem[];
 }
 
 /**
@@ -29,9 +35,10 @@ const NAV_LABEL_OVERRIDES: Record<string, string> = {
 const categories: MenuCategory[] = solutionCategories.map((category) => ({
   slug: category.slug,
   label: category.name,
-  items: category.useCases.map(
-    (uc) => NAV_LABEL_OVERRIDES[uc.title] ?? uc.title,
-  ),
+  items: category.useCases.map((uc) => ({
+    label: NAV_LABEL_OVERRIDES[uc.title] ?? uc.title,
+    anchor: uc.id,
+  })),
 }));
 
 // Spec layout: column 1 holds categories 1–2, column 2 holds categories 3–5,
@@ -64,10 +71,10 @@ function CategoryBlock({ category, onNavigate }: CategoryBlockProps) {
         {category.label}
       </Link>
       <div className="flex flex-col">
-        {category.items.map((item: string) => (
+        {category.items.map((item) => (
           <Link
-            key={item}
-            to={`/solutions/${category.slug}`}
+            key={item.anchor}
+            to={`/solutions/${category.slug}#${item.anchor}`}
             onClick={onNavigate}
             className="group inline-flex items-center gap-1.5 py-1 text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text-primary)]"
             style={{
@@ -75,7 +82,7 @@ function CategoryBlock({ category, onNavigate }: CategoryBlockProps) {
               fontSize: "0.82rem",
             }}
           >
-            <span>{item}</span>
+            <span>{item.label}</span>
             <ArrowRight
               size={12}
               className="-translate-x-1 opacity-0 text-[var(--color-accent)] transition-[transform,opacity] duration-150 ease-out group-hover:translate-x-0 group-hover:opacity-100"

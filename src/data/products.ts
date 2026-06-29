@@ -18,6 +18,16 @@ import {
   Coffee,
   Store,
   Landmark,
+  // LearnMate capability icons
+  BrainCircuit,
+  ShieldCheck,
+  CheckSquare,
+  Bell,
+  Lock,
+  // LearnMate industries-served icons
+  School,
+  HeartPulse,
+  Monitor,
 } from "lucide-react";
 import type { UseCaseSlug } from "./useCases";
 import type { IndustrySlug } from "./industries";
@@ -44,6 +54,18 @@ export interface ProductIndustryEntry {
   slug?: IndustrySlug;
 }
 
+/**
+ * Optional override entry for a product's "Use Cases" section. When
+ * `productUseCases` is set, ProductPage renders a simple title +
+ * description grid using these entries instead of the shared
+ * `<UseCasesShowcase>` that filters the global use cases by productSlug.
+ */
+export interface ProductUseCaseEntry {
+  id: string;
+  title: string;
+  description: string;
+}
+
 export interface Product {
   slug: ProductSlug;
   name: string;
@@ -65,6 +87,8 @@ export interface Product {
   industrySlugs: IndustrySlug[];
   /** Optional override for the Industries Served grid on the product subpage. */
   industriesServed?: ProductIndustryEntry[];
+  /** Optional curated use-case grid. When set, replaces the shared `<UseCasesShowcase>` on the product subpage. */
+  productUseCases?: ProductUseCaseEntry[];
   idealFor: string[];
   videoCaption: string;
 }
@@ -177,44 +201,72 @@ export const products: Product[] = [
     heroEyebrow: "Intelligent Education & Learning Support Platform",
     features: [
       {
-        title: "Student Support Automation",
+        title: "AI Question Generation",
         description:
-          "Provide instant responses to student inquiries regarding schedules, admissions, courses, policies, and academic services.",
+          "Automatically generate MCQs, descriptive, coding, and image-based questions from PDFs, Word documents, presentations, and textbooks.",
+        icon: BrainCircuit,
       },
       {
-        title: "Enrollment & Admissions Assistance",
+        title: "Secure Digital Assessments",
         description:
-          "Automate inquiry handling, lead engagement, and applicant communication workflows.",
+          "Conduct online exams with browser lockdown, tab-switch detection, activity monitoring, and auto-save for a secure testing experience.",
+        icon: ShieldCheck,
       },
       {
-        title: "AI Learning Assistance",
+        title: "Automated Grading",
         description:
-          "Support learners through intelligent educational guidance, study assistance, and academic resource delivery.",
+          "Instantly evaluate assessments, publish results, and eliminate manual grading to save faculty time.",
+        icon: CheckSquare,
       },
       {
-        title: "Scheduling & Coordination",
+        title: "Learning Analytics",
         description:
-          "Manage appointments, orientations, training sessions, and academic scheduling workflows.",
+          "Visualize student performance through dashboards, topic heatmaps, weak-area analysis, and progress reports.",
+        icon: BarChart3,
       },
       {
-        title: "Educational Workflow Automation",
+        title: "Faculty Workflow Automation",
         description:
-          "Automate administrative processes such as reminders, notifications, follow-ups, and communication tasks.",
+          "Automate exam scheduling, result publishing, report generation, and administrative tasks to improve operational efficiency.",
+        icon: Workflow,
       },
       {
-        title: "AI Engagement Systems",
+        title: "Student Communication",
         description:
-          "Improve communication between students, educators, and institutions through intelligent engagement workflows.",
+          "Send automated reminders for exams, assignments, deadlines, and campus announcements through email, SMS, or voice.",
+        icon: Bell,
       },
       {
-        title: "Academic Insights & Reporting",
+        title: "Performance Tracking",
         description:
-          "Analyze engagement trends, operational workflows, and educational interaction data.",
+          "Monitor individual and class performance over time with comprehensive analytics to support academic improvement.",
+        icon: TrendingUp,
       },
       {
-        title: "Multilingual Support",
+        title: "Data Security & Compliance",
         description:
-          "Enable broader accessibility through multilingual AI-powered communication systems.",
+          "Protect institutional data with secure storage, role-based access, audit trails, and flexible cloud or on-premise deployment.",
+        icon: Lock,
+      },
+    ],
+    productUseCases: [
+      {
+        id: "ai-assessment-creation",
+        title: "AI-Powered Assessment Creation",
+        description:
+          "LearnMate™ enables educators to generate high-quality assessments in minutes by uploading existing course materials such as PDFs, Word documents, presentations, or textbooks. The platform automatically creates MCQs, coding challenges, descriptive questions, and image-based assessments, allowing faculty to review, customize, and publish exams with minimal effort.",
+      },
+      {
+        id: "secure-online-assessments",
+        title: "Secure Online Assessments",
+        description:
+          "LearnMate™ provides a secure digital examination environment with AI-powered proctoring and built-in academic integrity tools. Features such as browser lockdown, tab-switch detection, automatic answer saving, and activity tracking help institutions conduct reliable online assessments while minimizing opportunities for misconduct.",
+      },
+      {
+        id: "automated-grading-analytics",
+        title: "Automated Grading & Performance Analytics",
+        description:
+          "LearnMate™ automatically grades assessments and delivers results instantly, eliminating lengthy manual grading processes. Interactive dashboards provide topic-wise performance analysis, learning gaps, class trends, and progress reports, enabling educators to make data-driven decisions and improve student outcomes.",
       },
     ],
     useCaseSlugs: [
@@ -225,6 +277,41 @@ export const products: Product[] = [
       "integrations-connected-systems",
     ],
     industrySlugs: ["schools-education", "healthcare-clinics", "recruitment-staffing"],
+    industriesServed: [
+      {
+        name: "Universities & Colleges",
+        description:
+          "Modernize examinations, automate grading, and provide data-driven insights to improve teaching and student outcomes.",
+        icon: GraduationCap,
+        slug: "schools-education",
+      },
+      {
+        name: "Schools & Educational Institutions",
+        description:
+          "Streamline assessments, simplify faculty workflows, and enhance communication between educators, students, and administrators.",
+        icon: School,
+        slug: "schools-education",
+      },
+      {
+        name: "Healthcare Education & Medical Training",
+        description:
+          "Conduct secure examinations, compliance assessments, and professional certifications while tracking learner performance.",
+        icon: HeartPulse,
+        slug: "healthcare-clinics",
+      },
+      {
+        name: "Government & Public Sector Training",
+        description:
+          "Support workforce training, certification, and policy compliance through AI-powered assessments and centralized reporting.",
+        icon: Landmark,
+      },
+      {
+        name: "EdTech & Online Learning Platforms",
+        description:
+          "Enhance digital learning with AI-generated assessments, automated grading, and real-time learning analytics.",
+        icon: Monitor,
+      },
+    ],
     idealFor: [
       "Schools & Educational Institutions",
       "Training Providers",
@@ -402,6 +489,32 @@ export const products: Product[] = [
         title: "Order Accuracy",
         description:
           "Minimizes misunderstandings and incorrect orders, improving customer satisfaction and reduces waste.",
+      },
+    ],
+    productUseCases: [
+      {
+        id: "ai-drivethrough-ordering",
+        title: "AI Drive-Thru Ordering",
+        description:
+          "DriveFlow™ automates the drive-thru ordering experience by taking customer orders through natural voice conversations, answering menu questions, recommending add-ons, and sending accurate orders directly to the POS, reducing wait times and improving order accuracy.",
+      },
+      {
+        id: "order-management-kitchen",
+        title: "Order Management & Kitchen Coordination",
+        description:
+          "DriveFlow™ instantly routes orders to the kitchen, prioritizes preparation based on queue volume, updates order status in real time, and helps staff maintain a smooth, efficient workflow during peak hours.",
+      },
+      {
+        id: "reservations-pickup-scheduling",
+        title: "Restaurant Reservations & Pickup Scheduling",
+        description:
+          "Allow customers to schedule pickup times, reserve tables, or place future orders through a conversational AI assistant, reducing manual coordination.",
+      },
+      {
+        id: "smart-upselling",
+        title: "Smart Upselling During Ordering",
+        description:
+          "Increase average order value by recommending meal upgrades, combo offers, drinks, desserts, and limited-time promotions based on the customer’s order.",
       },
     ],
     useCaseSlugs: [

@@ -5,7 +5,6 @@ import { ArrowRight, Check } from "lucide-react";
 import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import CTAButton from "../components/CTAButton";
-import LogoTile from "../components/shared/LogoTile";
 import { features, type Feature, type FeatureSlug } from "../data/features";
 
 const STICKY_OFFSET_PX = 130; // 72px navbar + 58px tab bar
@@ -18,282 +17,6 @@ function scrollToSection(id: string) {
 }
 
 /* ──────────────────────────────────────────────────────────
- * Panel-specific decorative content
- * Each pillar gets a distinct visual treatment inside its
- * dark image panel.
- * ──────────────────────────────────────────────────────── */
-
-function TechnologyPanelArt() {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: 20,
-        left: 20,
-        display: "flex",
-        gap: 8,
-        flexWrap: "wrap",
-      }}
-    >
-      {["<200ms", "ASR", "LLM"].map((badge) => (
-        <div
-          key={badge}
-          style={{
-            fontFamily: '"JetBrains Mono", ui-monospace, monospace',
-            fontSize: "0.62rem",
-            color: "var(--color-accent)",
-            background: "rgba(0,212,255,0.1)",
-            border: "1px solid rgba(0,212,255,0.2)",
-            borderRadius: 6,
-            padding: "3px 8px",
-            letterSpacing: "0.08em",
-          }}
-        >
-          {badge}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const LANGUAGE_PILLS: { name: string; pos: React.CSSProperties }[] = [
-  { name: "ENGLISH", pos: { top: "15%", left: "12%" } },
-  { name: "ARABIC", pos: { top: "15%", right: "10%" } },
-  { name: "MANDARIN", pos: { top: "45%", left: "5%" } },
-  { name: "SPANISH", pos: { top: "45%", right: "5%" } },
-  { name: "URDU", pos: { bottom: "20%", left: "15%" } },
-  { name: "FRENCH", pos: { bottom: "20%", right: "12%" } },
-];
-
-function LanguagesPanelArt() {
-  return (
-    <>
-      {LANGUAGE_PILLS.map((p, i) => (
-        <motion.div
-          key={p.name}
-          style={{
-            position: "absolute",
-            ...p.pos,
-            fontFamily: '"JetBrains Mono", ui-monospace, monospace',
-            fontSize: "0.6rem",
-            letterSpacing: "0.1em",
-            color: "var(--color-text-muted)",
-            background: "var(--color-surface-2)",
-            border: "1px solid var(--color-border)",
-            borderRadius: 999,
-            padding: "4px 10px",
-          }}
-          animate={{ opacity: [0.4, 0.9, 0.4] }}
-          transition={{
-            duration: 3 + i * 0.4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.5,
-          }}
-        >
-          {p.name}
-        </motion.div>
-      ))}
-    </>
-  );
-}
-
-interface IntegrationLogoSpec {
-  name: string;
-  /** Simple Icons slug (jsDelivr-served), or `null` for brands with no Simple Icons entry. */
-  slug: string | null;
-}
-
-const INTEGRATION_LOGOS: IntegrationLogoSpec[] = [
-  { name: "Salesforce", slug: "salesforce" },
-  { name: "HubSpot", slug: "hubspot" },
-  { name: "Twilio", slug: "twilio" },
-  { name: "Zoho", slug: "zoho" },
-  { name: "Slack", slug: "slack" },
-  { name: "Teams", slug: "microsoftteams" },
-  { name: "Google", slug: "google" },
-  { name: "Stripe", slug: "stripe" },
-  { name: "Intercom", slug: "intercom" },
-];
-
-const jsDelivrIcon = (slug: string): string =>
-  `https://cdn.jsdelivr.net/npm/simple-icons@12/icons/${slug}.svg`;
-
-function IntegrationPanelArt() {
-  return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: 14,
-        padding: 32,
-        width: "100%",
-        maxWidth: 320,
-        position: "relative",
-        zIndex: 1,
-      }}
-    >
-      {INTEGRATION_LOGOS.map((logo) => (
-        <div
-          key={logo.name}
-          title={logo.name}
-          style={{
-            aspectRatio: "1 / 1",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "var(--color-surface-2)",
-            border: "1px solid var(--color-border)",
-            borderRadius: 12,
-          }}
-        >
-          <LogoTile
-            name={logo.name}
-            logoUrl={logo.slug ? jsDelivrIcon(logo.slug) : null}
-            size={22}
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const SPARK_HEIGHTS = [35, 55, 42, 70, 58, 85, 65, 92];
-
-function InsightsPanelArt() {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "flex-end",
-        gap: 8,
-        height: 120,
-        padding: "0 40px",
-        width: "100%",
-        maxWidth: 360,
-        position: "relative",
-        zIndex: 1,
-      }}
-    >
-      {SPARK_HEIGHTS.map((h, i) => (
-        <motion.div
-          key={i}
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true, margin: "-10% 0px" }}
-          transition={{ delay: i * 0.08, duration: 0.5, ease: "easeOut" }}
-          style={{
-            flex: 1,
-            height: `${h}%`,
-            background: `rgba(0,212,255,${0.3 + (i / SPARK_HEIGHTS.length) * 0.5})`,
-            borderRadius: "4px 4px 0 0",
-            transformOrigin: "bottom",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-const SECURITY_LOG: string[] = [
-  "> AUTH HANDSHAKE  ✓",
-  "> TLS 1.3 ENCRYPTED  ✓",
-  "> KEY ROTATED  ✓",
-  "> AUDIT WRITTEN  ✓",
-];
-
-function SecurityPanelArt() {
-  return (
-    <div
-      style={{
-        position: "relative",
-        zIndex: 1,
-        background: "var(--color-bg)",
-        border: "1px solid var(--color-border)",
-        borderRadius: 14,
-        padding: "18px 22px",
-        width: "85%",
-        maxWidth: 340,
-        boxShadow: "0 0 40px rgba(0,212,255,0.08)",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
-          marginBottom: 14,
-        }}
-      >
-        {["#FF5F56", "#FFBD2E", "#27C93F"].map((c) => (
-          <span
-            key={c}
-            style={{
-              width: 8,
-              height: 8,
-              borderRadius: "50%",
-              background: c,
-              display: "inline-block",
-            }}
-          />
-        ))}
-        <span
-          style={{
-            marginLeft: 8,
-            fontFamily: '"JetBrains Mono", ui-monospace, monospace',
-            fontSize: "0.6rem",
-            color: "var(--color-text-muted)",
-            letterSpacing: "0.1em",
-          }}
-        >
-          handshake.log
-        </span>
-      </div>
-      {SECURITY_LOG.map((line, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, x: -6 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-10% 0px" }}
-          transition={{
-            delay: 0.2 + i * 0.35,
-            duration: 0.35,
-            ease: "easeOut",
-          }}
-          style={{
-            fontFamily: '"JetBrains Mono", ui-monospace, monospace',
-            fontSize: "0.72rem",
-            color:
-              i === SECURITY_LOG.length - 1
-                ? "var(--color-accent)"
-                : "var(--color-text-primary)",
-            letterSpacing: "0.04em",
-            marginBottom: i === SECURITY_LOG.length - 1 ? 0 : 6,
-          }}
-        >
-          {line}
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-function PanelArt({ slug }: { slug: FeatureSlug }) {
-  switch (slug) {
-    case "technology":
-      return <TechnologyPanelArt />;
-    case "languages":
-      return <LanguagesPanelArt />;
-    case "integration":
-      return <IntegrationPanelArt />;
-    case "data-insights":
-      return <InsightsPanelArt />;
-    case "security":
-      return <SecurityPanelArt />;
-  }
-}
-
-/* ──────────────────────────────────────────────────────────
  * Feature section
  * ──────────────────────────────────────────────────────── */
 
@@ -302,8 +25,9 @@ function FeatureSection({ feature }: { feature: Feature }) {
   const flexDir =
     feature.imagePosition === "left" ? "lg:flex-row" : "lg:flex-row-reverse";
 
-  // Panel content. The panel is centered; the panel-specific art is layered
-  // on top of the centered label so each pillar feels distinct.
+  // Image-based panel: hotlinked Unsplash photo + dark gradient overlay +
+  // bottom-left panel label in accent cyan. Falls back to a plain dark
+  // panel + label if the image fails to load.
   const panel = (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -315,55 +39,54 @@ function FeatureSection({ feature }: { feature: Feature }) {
         background: "var(--color-surface)",
         border: "1px solid var(--color-border)",
         borderRadius: 20,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
         position: "relative",
         overflow: "hidden",
         flexShrink: 0,
       }}
     >
-      {/* Decorative radial glow */}
+      <img
+        src={feature.imageUrl}
+        alt={`${feature.label} illustration`}
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
+
+      {/* Dark gradient overlay keeps the accent label legible */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          width: 280,
-          height: 280,
-          borderRadius: "50%",
+          inset: 0,
           background:
-            "radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%)",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          pointerEvents: "none",
+            "linear-gradient(135deg, rgba(8,11,24,0.7) 0%, rgba(8,11,24,0.3) 100%)",
         }}
       />
 
-      {/* Centered panel label */}
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+      {/* Bottom-left panel label */}
+      <div
         className="font-display"
         style={{
-          fontSize: "1.4rem",
+          position: "absolute",
+          bottom: 24,
+          left: 24,
+          fontSize: "1.1rem",
           fontWeight: 700,
           color: "var(--color-accent)",
-          textAlign: "center",
-          padding: 32,
-          letterSpacing: "-0.02em",
-          position: "absolute",
-          zIndex: 0,
-          opacity: feature.slug === "languages" ? 0.4 : 0.25,
+          letterSpacing: "-0.01em",
+          zIndex: 1,
         }}
       >
         {feature.panelLabel}
-      </motion.div>
-
-      {/* Panel-specific decorative content */}
-      <PanelArt slug={feature.slug} />
+      </div>
     </motion.div>
   );
 

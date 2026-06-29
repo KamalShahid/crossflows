@@ -1,4 +1,5 @@
-import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import PageShell from "../../components/PageShell";
@@ -15,6 +16,7 @@ import {
 // Brand tokens — kept consistent with the industry detail pages.
 const ACCENT = "#00D4FF"; // var(--color-accent)
 const ACCENT_RGB = "0, 212, 255";
+const SCROLL_OFFSET = 96; // navbar (72) + breathing room
 
 interface UseCaseCardProps {
   useCase: SolutionCategoryUseCase;
@@ -25,6 +27,7 @@ function UseCaseCard({ useCase, index }: UseCaseCardProps) {
   const Icon = useCase.icon;
   return (
     <motion.article
+      id={useCase.id}
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
@@ -37,6 +40,7 @@ function UseCaseCard({ useCase, index }: UseCaseCardProps) {
         display: "flex",
         flexDirection: "column",
         gap: 18,
+        scrollMarginTop: SCROLL_OFFSET,
       }}
     >
       {/* Header */}
@@ -233,6 +237,39 @@ interface CategoryPageProps {
 }
 
 function CategoryPage({ category }: CategoryPageProps) {
+  const location = useLocation();
+
+  // Hash deep-link (e.g. from the homepage Use Cases cards):
+  // `/solutions/communication-customer-engagement#ai-receptionists`.
+  // Retries up to 3× because the use case cards render below the hero +
+  // challenges section, so they may not be in the DOM on first frame.
+  useEffect(() => {
+    const hash = location.hash.replace(/^#/, "");
+    if (!hash) return;
+
+    let cancelled = false;
+    const attemptScroll = (retriesLeft: number) => {
+      if (cancelled) return;
+      const el = document.getElementById(hash);
+      if (!el) {
+        if (retriesLeft > 0) {
+          window.setTimeout(() => attemptScroll(retriesLeft - 1), 100);
+        }
+        return;
+      }
+      requestAnimationFrame(() => {
+        if (cancelled) return;
+        const top =
+          el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+        window.scrollTo({ top, behavior: "smooth" });
+      });
+    };
+    attemptScroll(3);
+    return () => {
+      cancelled = true;
+    };
+  }, [location.hash]);
+
   return (
     <PageShell
       title={`${category.name} · Cross Flows Synergy`}
@@ -417,7 +454,11 @@ function CategoryPage({ category }: CategoryPageProps) {
           </div>
           <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
             {category.useCases.map((useCase, idx) => (
-              <UseCaseCard key={useCase.title} useCase={useCase} index={idx} />
+              <UseCaseCard
+                key={useCase.id}
+                useCase={useCase}
+                index={idx}
+              />
             ))}
           </div>
         </div>

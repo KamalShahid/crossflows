@@ -23,6 +23,8 @@ export interface Feature {
   panelLabel: string;
   /** Which side the dark panel sits on at desktop widths. */
   imagePosition: ImagePosition;
+  /** Hotlinked Unsplash photo used as the pillar's image panel background. */
+  imageUrl: string;
 }
 
 export const features: Feature[] = [
@@ -44,6 +46,8 @@ export const features: Feature[] = [
     icon: Cpu,
     panelLabel: "Engine ✦ Architecture",
     imagePosition: "left",
+    imageUrl:
+      "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80&auto=format",
   },
   {
     slug: "languages",
@@ -63,6 +67,8 @@ export const features: Feature[] = [
     icon: Globe,
     panelLabel: "Multilingual Mesh",
     imagePosition: "right",
+    imageUrl:
+      "https://images.unsplash.com/photo-1493836512294-502baa1986e2?w=800&q=80&auto=format",
   },
   {
     slug: "integration",
@@ -82,6 +88,8 @@ export const features: Feature[] = [
     icon: Plug,
     panelLabel: "Universal Connectors",
     imagePosition: "left",
+    imageUrl:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80&auto=format",
   },
   {
     slug: "data-insights",
@@ -101,6 +109,8 @@ export const features: Feature[] = [
     icon: BarChart3,
     panelLabel: "Live Insights Dashboard",
     imagePosition: "right",
+    imageUrl:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format",
   },
   {
     slug: "security",
@@ -120,5 +130,7 @@ export const features: Feature[] = [
     icon: ShieldCheck,
     panelLabel: "Zero-Trust Compliance Layer",
     imagePosition: "left",
+    imageUrl:
+      "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&q=80&auto=format",
   },
 ];

@@ -36,6 +36,8 @@ export interface SolutionChallenge {
 }
 
 export interface SolutionCategoryUseCase {
+  /** URL-anchor slug used as the `id` on the rendered card and the hash deep-link target. Stable across UI label changes. */
+  id: string;
   /** Title used as the use-case card header and as the item label shown in the navbar mega-menu. */
   title: string;
   /** Lead paragraph rendered below the title. */
@@ -107,6 +109,7 @@ export const solutionCategories: SolutionCategory[] = [
     ],
     useCases: [
       {
+        id: "ai-receptionists",
         title: "AI Receptionists",
         description:
           "Handle incoming calls automatically while providing a professional and personalized experience.",
@@ -124,6 +127,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: PhoneCall,
       },
       {
+        id: "customer-support-automation",
         title: "Customer Support Automation",
         description:
           "Provide immediate responses to common customer inquiries without requiring staff intervention.",
@@ -140,6 +144,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: Headphones,
       },
       {
+        id: "multilingual-communication",
         title: "Multilingual Communication",
         description:
           "Engage customers in their preferred language to improve accessibility and customer satisfaction.",
@@ -155,6 +160,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: Globe,
       },
       {
+        id: "intelligent-call-routing",
         title: "Intelligent Call Routing",
         description:
           "Ensure every inquiry reaches the correct department, location, or team member.",
@@ -215,6 +221,7 @@ export const solutionCategories: SolutionCategory[] = [
     ],
     useCases: [
       {
+        id: "appointment-scheduling",
         title: "Appointment Scheduling",
         description:
           "Automate appointment bookings, confirmations, reminders, cancellations, and rescheduling to reduce administrative workload and improve customer convenience.",
@@ -231,6 +238,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: CalendarCheck,
       },
       {
+        id: "lead-qualification",
         title: "Lead Qualification",
         description:
           "Capture, assess, and qualify inquiries automatically before routing them to the appropriate sales or service team.",
@@ -247,6 +255,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: UserCheck,
       },
       {
+        id: "customer-intake",
         title: "Customer Intake",
         description:
           "Collect and organize customer information before appointments, consultations, or service delivery to streamline operations and improve service quality.",
@@ -263,6 +272,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: ClipboardList,
       },
       {
+        id: "registration-management",
         title: "Registration Management",
         description:
           "Automate registrations, enrollments, and sign-ups for programs, services, events, and activities while ensuring accurate information collection.",
@@ -324,6 +334,7 @@ export const solutionCategories: SolutionCategory[] = [
     ],
     useCases: [
       {
+        id: "workflow-automation",
         title: "Workflow Automation",
         description:
           "Automate repetitive business processes by connecting systems, teams, and tasks to improve efficiency, consistency, and operational visibility.",
@@ -340,6 +351,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: WorkflowIcon,
       },
       {
+        id: "process-automation",
         title: "Process Automation",
         description:
           "Eliminate manual and repetitive activities by automating routine business processes and data flows.",
@@ -356,6 +368,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: Zap,
       },
       {
+        id: "task-management",
         title: "Task Management",
         description:
           "Automatically create, assign, prioritize, and track tasks to ensure work is completed efficiently and on time.",
@@ -372,6 +385,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: ClipboardCheck,
       },
       {
+        id: "system-integrations",
         title: "System Integrations",
         description:
           "Connect business applications, communication platforms, CRMs, and operational systems to create seamless workflows.",
@@ -433,6 +447,7 @@ export const solutionCategories: SolutionCategory[] = [
     ],
     useCases: [
       {
+        id: "dispatch-management",
         title: "Dispatch Management",
         description:
           "Coordinate service requests, field teams, drivers, technicians, and operational resources efficiently to improve response times and service delivery.",
@@ -449,6 +464,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: Truck,
       },
       {
+        id: "incident-emergency-response",
         title: "Incident & Emergency Response Coordination",
         description:
           "Support rapid response and communication during urgent situations, emergencies, and service disruptions.",
@@ -465,6 +481,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: AlertTriangle,
       },
       {
+        id: "information-management",
         title: "Information Management",
         description:
           "Provide employees and customers with fast access to accurate information while ensuring data is organized and easily accessible.",
@@ -481,6 +498,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: Database,
       },
       {
+        id: "service-request-management",
         title: "Service Request Management",
         description:
           "Capture, prioritize, assign, and track service requests from initiation through completion.",
@@ -542,6 +560,7 @@ export const solutionCategories: SolutionCategory[] = [
     ],
     useCases: [
       {
+        id: "ai-learning-assistant",
         title: "AI Learning Assistant",
         description:
           "Provide personalized, on-demand learning support that helps users access information, answer questions, and improve knowledge retention anytime.",
@@ -558,6 +577,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: GraduationCap,
       },
       {
+        id: "exam-simulator",
         title: "Exam Simulator",
         description:
           "Create realistic assessment environments that help learners prepare for exams, certifications, compliance testing, and professional evaluations.",
@@ -574,6 +594,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: Trophy,
       },
       {
+        id: "knowledge-management",
         title: "Knowledge Management",
         description:
           "Centralize organizational knowledge and make information easily accessible to employees, customers, and stakeholders.",
@@ -590,6 +611,7 @@ export const solutionCategories: SolutionCategory[] = [
         icon: BookOpen,
       },
       {
+        id: "employee-training-onboarding",
         title: "Employee Training & Onboarding",
         description:
           "Streamline onboarding and workforce development through structured learning programs and automated training support.",

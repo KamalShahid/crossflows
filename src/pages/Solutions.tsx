@@ -62,14 +62,12 @@ export default function Solutions() {
                   }}
                   className={isLast ? "lg:col-span-2" : undefined}
                 >
-                  <Link
-                    to={`/solutions/${category.slug}`}
+                  <div
                     style={{
                       background: "var(--color-surface)",
                       border: "1px solid var(--color-border)",
                       borderRadius: 16,
                       padding: 24,
-                      textDecoration: "none",
                       display: "block",
                       height: "100%",
                       transition:
@@ -137,27 +135,46 @@ export default function Solutions() {
                         gap: 6,
                       }}
                     >
-                      {category.listingItems.map((item) => (
-                        <span
-                          key={item}
-                          style={{
-                            fontFamily:
-                              '"JetBrains Mono", ui-monospace, monospace',
-                            fontSize: "0.62rem",
-                            letterSpacing: "0.04em",
-                            color: "var(--color-text-muted)",
-                            background: "var(--color-surface-2)",
-                            border: "1px solid var(--color-border)",
-                            borderRadius: 999,
-                            padding: "3px 10px",
-                          }}
-                        >
-                          {item}
-                        </span>
-                      ))}
+                      {category.listingItems.map((item, itemIdx) => {
+                        const anchor = category.useCases[itemIdx]?.id;
+                        const to = anchor
+                          ? `/solutions/${category.slug}#${anchor}`
+                          : `/solutions/${category.slug}`;
+                        return (
+                          <Link
+                            key={item}
+                            to={to}
+                            style={{
+                              fontFamily:
+                                '"JetBrains Mono", ui-monospace, monospace',
+                              fontSize: "0.62rem",
+                              letterSpacing: "0.04em",
+                              color: "var(--color-text-muted)",
+                              background: "var(--color-surface-2)",
+                              border: "1px solid var(--color-border)",
+                              borderRadius: 999,
+                              padding: "3px 10px",
+                              textDecoration: "none",
+                              transition:
+                                "color 0.15s ease, border-color 0.15s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.color = "var(--color-accent)";
+                              e.currentTarget.style.borderColor = "var(--color-accent)";
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.color = "var(--color-text-muted)";
+                              e.currentTarget.style.borderColor = "var(--color-border)";
+                            }}
+                          >
+                            {item}
+                          </Link>
+                        );
+                      })}
                     </div>
 
-                    <div
+                    <Link
+                      to={`/solutions/${category.slug}`}
                       style={{
                         marginTop: 16,
                         fontFamily:
@@ -166,11 +183,13 @@ export default function Solutions() {
                         letterSpacing: "0.08em",
                         color: "var(--color-accent)",
                         textTransform: "uppercase",
+                        textDecoration: "none",
+                        display: "inline-block",
                       }}
                     >
                       Explore →
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                 </motion.div>
               );
             })}

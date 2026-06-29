@@ -7,7 +7,6 @@ import ProgressDots from "./shared/ProgressDots";
 interface IndustryShowcaseItem {
   id: string;
   slug: string;
-  ordinal: string;
   name: string;
   metric: string;
   metricLabel: string;
@@ -19,11 +18,28 @@ interface IndustryShowcaseItem {
   callTime: string;
 }
 
+/** 1-based 2-digit ordinal derived from array position so reordering the array doesn't require renumbering. */
+const ordinalFor = (index: number): string =>
+  String(index + 1).padStart(2, "0");
+
 const showcaseIndustries: IndustryShowcaseItem[] = [
+  {
+    id: "municipalities-government",
+    slug: "municipalities-government",
+    name: "Municipalities & Local Gov.",
+    metric: "75%",
+    metricLabel: "FASTER RESPONSE",
+    customerName: "Sandra",
+    customerRole: "RESIDENT",
+    agentPersona: "NOVA",
+    customerQuote:
+      "“There is a large pothole at the corner of Elm and Main — it has been there for weeks.”",
+    callStatus: "CONNECTED",
+    callTime: "0:06",
+  },
   {
     id: "healthcare-clinics",
     slug: "healthcare-clinics",
-    ordinal: "01",
     name: "Healthcare & Clinics",
     metric: "42%",
     metricLabel: "ADMIN SAVINGS",
@@ -38,7 +54,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "consumer-services",
     slug: "consumer-services",
-    ordinal: "02",
     name: "Consumer Services",
     metric: "3×",
     metricLabel: "FASTER RESPONSE",
@@ -53,7 +68,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "recruitment-staffing",
     slug: "recruitment-staffing",
-    ordinal: "03",
     name: "Recruitment & Staffing",
     metric: "68%",
     metricLabel: "SCREENING LIFT",
@@ -68,7 +82,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "real-estate-property",
     slug: "real-estate-property",
-    ordinal: "04",
     name: "Real Estate & Property Management",
     metric: "+60%",
     metricLabel: "LEAD QUALITY",
@@ -83,7 +96,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "restaurants-hospitality",
     slug: "restaurants-hospitality",
-    ordinal: "05",
     name: "Restaurants & Hospitality",
     metric: "32%",
     metricLabel: "BOOKING LIFT",
@@ -98,7 +110,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "utilities-services",
     slug: "utilities-services",
-    ordinal: "06",
     name: "Utilities & Service Providers",
     metric: "91%",
     metricLabel: "FIRST CALL RES.",
@@ -113,7 +124,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "schools-education",
     slug: "schools-education",
-    ordinal: "07",
     name: "Schools & Educational Institutions",
     metric: "55%",
     metricLabel: "ADMIN REDUCTION",
@@ -128,7 +138,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "logistics-operations",
     slug: "logistics-operations",
-    ordinal: "08",
     name: "Logistics & Operations",
     metric: "18%",
     metricLabel: "P99 TRANSIT GAIN",
@@ -143,7 +152,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "financial-services",
     slug: "financial-services",
-    ordinal: "09",
     name: "Financial Services",
     metric: "98%",
     metricLabel: "FRAUD CATCH",
@@ -158,7 +166,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "insurance",
     slug: "insurance",
-    ordinal: "10",
     name: "Insurance",
     metric: "65%",
     metricLabel: "FASTER RESPONSE",
@@ -173,7 +180,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
   {
     id: "telecommunications",
     slug: "telecommunications",
-    ordinal: "11",
     name: "Telecommunications",
     metric: "70%",
     metricLabel: "FASTER RESOLUTION",
@@ -185,21 +191,6 @@ const showcaseIndustries: IndustryShowcaseItem[] = [
     callStatus: "CONNECTED",
     callTime: "0:05",
   },
-  {
-    id: "municipalities-government",
-    slug: "municipalities-government",
-    ordinal: "12",
-    name: "Municipalities & Local Gov.",
-    metric: "75%",
-    metricLabel: "FASTER RESPONSE",
-    customerName: "Sandra",
-    customerRole: "RESIDENT",
-    agentPersona: "NOVA",
-    customerQuote:
-      "“There is a large pothole at the corner of Elm and Main — it has been there for weeks.”",
-    callStatus: "CONNECTED",
-    callTime: "0:06",
-  },
 ];
 
 const INTERVAL_MS = 4000;
@@ -208,10 +199,11 @@ const AGENT_GRADIENT = "linear-gradient(135deg, var(--color-accent), #4466FF)";
 
 interface CardProps {
   industry: IndustryShowcaseItem;
+  ordinal: string;
   onClick: () => void;
 }
 
-function ActiveCard({ industry, onClick }: CardProps) {
+function ActiveCard({ industry, ordinal, onClick }: CardProps) {
   return (
     <motion.div
       key={`active-${industry.id}`}
@@ -263,7 +255,7 @@ function ActiveCard({ industry, onClick }: CardProps) {
             color: "var(--color-bg)",
           }}
         >
-          {industry.ordinal}
+          {ordinal}
         </div>
 
         <div
@@ -365,7 +357,7 @@ function ActiveCard({ industry, onClick }: CardProps) {
   );
 }
 
-function InactiveItem({ industry, onClick }: CardProps) {
+function InactiveItem({ industry, ordinal, onClick }: CardProps) {
   return (
     <div
       onClick={onClick}
@@ -401,7 +393,7 @@ function InactiveItem({ industry, onClick }: CardProps) {
           opacity: 0.5,
         }}
       >
-        {industry.ordinal}
+        {ordinal}
       </div>
       <div
         className="font-display"
@@ -490,12 +482,14 @@ export default function IndustriesShowcase() {
               <ActiveCard
                 key={industry.id}
                 industry={industry}
+                ordinal={ordinalFor(index)}
                 onClick={() => handleSelect(index)}
               />
             ) : (
               <InactiveItem
                 key={industry.id}
                 industry={industry}
+                ordinal={ordinalFor(index)}
                 onClick={() => handleSelect(index)}
               />
             ),

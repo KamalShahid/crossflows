@@ -35,7 +35,7 @@ const pillarAccents = [
   "#6ECFB0",
 ];
 
-const heroWords = ["Action", "conversation", "appointment", "lesson", "workflow"];
+const heroWords = ["action", "conversation", "appointment", "lesson", "workflow"];
 
 export default function Home() {
   const [wordIndex, setWordIndex] = useState(0);
@@ -299,11 +299,11 @@ export default function Home() {
                       {u.title}
                     </h3>
                   </div>
-                  <p className="line-clamp-5 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    {u.description}
+                  <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    {u.homeCard?.excerpt ?? u.description}
                   </p>
                   <Link
-                    to={`/use-cases#${u.slug}`}
+                    to={u.homeCard?.detailHref ?? `/use-cases#${u.slug}`}
                     className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)] transition hover:text-white"
                   >
                     Read more

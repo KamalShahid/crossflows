@@ -54,7 +54,7 @@ export default function LiveTalkWidget({ className }: LiveTalkWidgetProps) {
 
   const headingLabel =
     talkState === "standby"
-      ? "Talk to Our AI"
+      ? "Talk to Nova"
       : talkState === "connecting"
         ? "Connecting…"
         : "Listening…";

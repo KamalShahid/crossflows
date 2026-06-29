@@ -1,16 +1,24 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import PageShell from "./PageShell";
 import HeroBackground from "./HeroBackground";
 import SectionHeader from "./SectionHeader";
 import VideoPlayer from "./VideoPlayer";
 import CTAButton from "./CTAButton";
-import ExpandableDescription from "./ExpandableDescription";
-import UseCasesShowcase from "./UseCasesShowcase";
-import type { Product } from "../data/products";
+import CapabilitiesList from "./shared/CapabilitiesList";
+import UseCasesInteractive from "./UseCasesInteractive";
+import type { Product, ProductSlug } from "../data/products";
 import { useCases } from "../data/useCases";
 import { industries } from "../data/industries";
+
+/** Per-product subheading shown above the Use Cases interactive panel. */
+const USE_CASE_SUBHEADINGS: Record<ProductSlug, string> = {
+  smarttalk: "Every conversation handled. Every channel covered.",
+  worksync: "Every workflow streamlined. Every process connected.",
+  learnmate: "Every learner supported. Every institution empowered.",
+  driveflow: "Every order captured. Every lane optimised.",
+};
 
 interface ProductPageProps {
   product: Product;
@@ -18,7 +26,11 @@ interface ProductPageProps {
 
 export default function ProductPage({ product }: ProductPageProps) {
   const Icon = product.icon;
-  const relatedUseCases = useCases.filter((u) => product.useCaseSlugs.includes(u.slug));
+  // Use the curated `productUseCases` count when the product opts in;
+  // otherwise count the cross-product slugs resolved from the global use cases data.
+  const relatedUseCases = product.productUseCases
+    ? product.productUseCases
+    : useCases.filter((u) => product.useCaseSlugs.includes(u.slug));
   // Products may opt into a curated `industriesServed` list (e.g. DriveFlow's
   // restaurants/banks split where one industry slug needs to render as multiple
   // distinct cards). Otherwise we fall back to the industries data lookup.
@@ -171,51 +183,17 @@ export default function ProductPage({ product }: ProductPageProps) {
             align="left"
             maxWidth="max-w-2xl"
           />
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 sm:gap-x-6">
-            {product.features.map((f, idx) => {
-              const restingY = idx % 2 === 0 ? -12 : 12;
-              const FIcon = f.icon ?? Sparkles;
-              return (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: restingY }}
-                  viewport={{ once: true, margin: "-10% 0px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.06, ease: "easeOut" }}
-                  whileHover={{ y: restingY - 4 }}
-                  className="capability-card flex flex-col gap-3 rounded-2xl bg-[var(--color-surface)] p-6 pl-7 transition-shadow duration-200"
-                  style={{
-                    border: "1px solid var(--color-border)",
-                    boxShadow: "inset 2px 0 0 0 var(--color-accent)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow =
-                      "inset 4px 0 0 0 var(--color-accent), 0 18px 50px rgba(0,212,255,0.18)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow =
-                      "inset 2px 0 0 0 var(--color-accent)";
-                  }}
-                >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
-                    <FIcon size={28} strokeWidth={1.9} />
-                  </span>
-                  <h3 className="font-display text-lg font-semibold tracking-tight">
-                    {f.title}
-                  </h3>
-                  <ExpandableDescription
-                    text={f.description}
-                    className="text-sm leading-relaxed text-[var(--color-text-muted)]"
-                  />
-                </motion.div>
-              );
-            })}
+          <div className="mt-12">
+            <CapabilitiesList capabilities={product.features} />
           </div>
         </div>
       </section>
 
-      {/* Use cases — animated showcase grid */}
-      <UseCasesShowcase productSlug={product.slug} />
+      {/* Use cases — interactive split-panel selector + animated detail card */}
+      <UseCasesInteractive
+        productId={product.slug}
+        subheading={USE_CASE_SUBHEADINGS[product.slug]}
+      />
 
       {/* Industries Served — max 4 in 2x2 */}
       <section className="py-20">
@@ -226,37 +204,57 @@ export default function ProductPage({ product }: ProductPageProps) {
             align="left"
             maxWidth="max-w-2xl"
           />
-          <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
+          <div
+            className="mx-auto mt-10 grid max-w-3xl grid-cols-1 sm:grid-cols-2"
+            style={{ gap: 12 }}
+          >
             {industryCards.slice(0, 4).map((card, idx) => {
               const IIcon = card.icon;
+              const tagStyle = {
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                padding: "12px 16px",
+                background: "var(--color-surface)",
+                border: "1px solid var(--color-border)",
+                borderRadius: 10,
+                textDecoration: "none",
+              } as const;
+              const tagInner = (
+                <>
+                  <IIcon
+                    size={16}
+                    color="var(--color-accent)"
+                    strokeWidth={2}
+                    style={{ flexShrink: 0 }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: '"DM Sans", sans-serif',
+                      fontSize: "0.82rem",
+                      color: "var(--color-text-primary)",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {card.name}
+                  </span>
+                </>
+              );
               return (
                 <motion.div
                   key={card.key}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: idx * 0.05 }}
-                  whileHover={{ y: -4 }}
-                  className="flex flex-col gap-3 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-accent)]/50"
+                  transition={{ duration: 0.4, delay: idx * 0.04 }}
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-surface-2)] text-[var(--color-accent)]">
-                    <IIcon size={20} strokeWidth={2.1} />
-                  </span>
                   {card.slug ? (
-                    <Link
-                      to={`/industries/${card.slug}`}
-                      className="font-display text-base font-semibold tracking-tight text-[var(--color-text-primary)] transition-colors duration-150 hover:text-[var(--color-accent)]"
-                    >
-                      {card.name}
+                    <Link to={`/industries/${card.slug}`} style={tagStyle}>
+                      {tagInner}
                     </Link>
                   ) : (
-                    <span className="font-display text-base font-semibold tracking-tight text-[var(--color-text-primary)]">
-                      {card.name}
-                    </span>
+                    <div style={tagStyle}>{tagInner}</div>
                   )}
-                  <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">
-                    {card.description}
-                  </p>
                 </motion.div>
               );
             })}

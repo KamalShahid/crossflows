@@ -59,6 +59,60 @@ export interface Industry {
 
 export const industries: Industry[] = [
   {
+    slug: "municipalities-government",
+    name: "Municipalities & Local Government",
+    description:
+      "Improve citizen engagement, automate service requests, and coordinate departments at scale.",
+    headline: "AI-Powered Citizen Services",
+    intro:
+      "Cross Flows Synergy helps municipalities improve citizen engagement, streamline service requests, and enhance operational efficiency through intelligent AI-powered communication and workflow automation.",
+    icon: Building2,
+    accent: "from-[#00d4ff] to-[#7b6fff]",
+    productSlugs: ["smarttalk", "worksync", "learnmate"],
+    useCaseSlugs: [
+      "customer-support-automation",
+      "workflow-automation",
+      "multilingual-communication",
+      "faq-automation",
+    ],
+    productFeatures: [
+      {
+        productSlug: "smarttalk",
+        features: [
+          { title: "Resident Inquiries", description: "Handle citizen questions across phone, SMS, and web in plain language." },
+          { title: "Service Requests", description: "Capture work orders, complaints, and reports with consistent context." },
+          { title: "Permit Information", description: "Provide guidance on permits, licenses, and application requirements." },
+          { title: "Community Information", description: "Surface information on events, programs, and local facilities on demand." },
+        ],
+      },
+      {
+        productSlug: "worksync",
+        features: [
+          { title: "Request Routing", description: "Auto-assign citizen requests to the correct department with full context." },
+          { title: "Department Coordination", description: "Connect public works, permits, and resident services in one workflow layer." },
+          { title: "Case Management", description: "Track resident cases from intake through resolution with full audit trail." },
+          { title: "Workflow Automation", description: "Eliminate repetitive admin tasks across municipal operations." },
+        ],
+      },
+      {
+        productSlug: "learnmate",
+        features: [
+          { title: "Staff Training", description: "Onboard and upskill staff with AI-powered training guidance and resources." },
+          { title: "Policy Management", description: "Centralize policy documents and surface the right guidance in context." },
+          { title: "Knowledge Sharing", description: "Connect employees with current procedures and operational guidelines." },
+          { title: "New Employee Onboarding", description: "Streamline orientation, training paths, and certification tracking." },
+        ],
+      },
+    ],
+    benefits: [
+      "75% Faster Citizen Response",
+      "Reduced Administrative Burden",
+      "24/7 Resident Support",
+      "Improved Departmental Coordination",
+      "Better Staff Knowledge Access",
+    ],
+  },
+  {
     slug: "healthcare-clinics",
     name: "Healthcare & Clinics",
     description:
@@ -202,7 +256,7 @@ export const industries: Industry[] = [
       "Cross Flows Synergy helps consumer service businesses automate customer communication, streamline appointment handling, improve response times, and support customers 24/7 through intelligent AI-powered systems.",
     icon: Users,
     accent: "from-[#00d4ff] to-[#7af9ff]",
-    productSlugs: ["smarttalk", "worksync", "driveflow"],
+    productSlugs: ["smarttalk", "worksync"],
     useCaseSlugs: [
       "ai-receptionist",
       "customer-support-automation",
@@ -245,15 +299,6 @@ export const industries: Industry[] = [
           { title: "Operational Task Routing", description: "Assign requests to the right person, department, or workflow automatically." },
           { title: "Customer Feedback Collection", description: "Capture customer feedback systematically and surface trends operationally." },
           { title: "Workflow Escalation Systems", description: "Escalate urgent or high-priority operational issues to the right teams." },
-        ],
-      },
-      {
-        productSlug: "driveflow",
-        features: [
-          { title: "Service Scheduling Support", description: "Coordinate appointments, dispatch, and service timelines across teams and locations." },
-          { title: "Real-Time Operational Coordination", description: "Keep field staff, dispatch, and customers aligned in real time." },
-          { title: "Intelligent Dispatch Communication", description: "Automate dispatch updates and route changes across the operation." },
-          { title: "Workflow Monitoring Systems", description: "Track operational progress and surface delays before they become escalations." },
         ],
       },
     ],
@@ -341,7 +386,7 @@ export const industries: Industry[] = [
       "Cross Flows Synergy helps real estate professionals and property management teams automate communication, streamline tenant interactions, improve leasing workflows, and optimize operational efficiency using AI-powered systems.",
     icon: Building2,
     accent: "from-[#00d4ff] to-[#3a8dff]",
-    productSlugs: ["smarttalk", "worksync", "driveflow"],
+    productSlugs: ["smarttalk", "worksync"],
     useCaseSlugs: [
       "ai-receptionist",
       "appointment-scheduling",
@@ -372,15 +417,6 @@ export const industries: Industry[] = [
           { title: "Tenant Request Management", description: "Track, route, and resolve tenant requests with full visibility." },
           { title: "Workflow Monitoring", description: "Surface operational delays and SLAs at the portfolio level." },
           { title: "Escalation Management", description: "Escalate urgent maintenance or tenant issues automatically." },
-        ],
-      },
-      {
-        productSlug: "driveflow",
-        features: [
-          { title: "Property Visit Coordination", description: "Coordinate showings, inspections, and on-site visits across teams." },
-          { title: "Maintenance Dispatch Systems", description: "Dispatch the right vendor or technician based on issue type and priority." },
-          { title: "Mobile Workforce Communication", description: "Keep field teams in sync with real-time operational updates." },
-          { title: "Service Request Tracking", description: "Track service requests end-to-end with full operational visibility." },
         ],
       },
     ],
@@ -586,12 +622,12 @@ export const industries: Industry[] = [
     name: "Logistics & Operations",
     description:
       "Streamline dispatch, automate workflows, and coordinate teams across modern operational environments.",
-    headline: "AI Solutions for Logistics, Transportation & Operational Coordination",
+    headline: "Smarter Logistics. Better Coordination. Faster Delivery.",
     intro:
-      "Cross Flows Synergy helps logistics providers, transportation companies, warehouses, and operational teams streamline communication, automate workflows, improve coordination, and optimize service efficiency through intelligent AI-powered systems designed for modern operational environments.",
+      "Cross Flows Synergy helps logistics and operations teams communicate faster, coordinate more effectively, and manage service delivery with less manual effort. Our AI solutions keep your teams connected, your customers informed, and your operations running smoothly.",
     icon: Truck,
     accent: "from-[#3a8dff] to-[#00d4ff]",
-    productSlugs: ["driveflow", "worksync", "smarttalk"],
+    productSlugs: ["smarttalk", "worksync"],
     useCaseSlugs: [
       "operational-coordination",
       "workflow-automation",
@@ -601,42 +637,21 @@ export const industries: Industry[] = [
     ],
     productFeatures: [
       {
-        productSlug: "driveflow",
-        features: [
-          { title: "Dispatch Coordination", description: "Automate scheduling, routing, and dispatch communication across teams." },
-          { title: "Route Scheduling Support", description: "Coordinate routes and operational timelines more efficiently." },
-          { title: "Operational Communication Systems", description: "Connect dispatch, drivers, and customers through one communication layer." },
-          { title: "Workflow Monitoring", description: "Monitor operational progress and surface delays in real time." },
-          { title: "Service Request Management", description: "Track service requests from intake through resolution." },
-          { title: "Intelligent Escalation Workflows", description: "Automatically escalate operational issues to the right teams." },
-          { title: "Real-Time Coordination Systems", description: "Keep field and back-office teams aligned in real time." },
-          { title: "Delivery & Dispatch Visibility", description: "Give ops leaders end-to-end visibility into delivery and dispatch flow." },
-        ],
-      },
-      {
         productSlug: "worksync",
         features: [
-          { title: "Workflow Automation", description: "Automate repetitive operational and back-office workflows." },
-          { title: "Task Coordination Systems", description: "Coordinate operational tasks across teams and locations." },
-          { title: "Internal Operational Workflows", description: "Streamline internal handoffs across operations, ops support, and management." },
-          { title: "Reporting & Operational Visibility", description: "Surface operational KPIs and bottlenecks in real time." },
-          { title: "Scheduling & Workforce Coordination", description: "Coordinate workforce scheduling and assignments intelligently." },
-          { title: "Operational Process Optimization", description: "Identify inefficiencies and optimize operational flow." },
-          { title: "Internal Communication Systems", description: "Connect ops, dispatch, and field teams through automated updates." },
-          { title: "Workflow Escalation Systems", description: "Escalate urgent operational issues automatically." },
+          { title: "Team coordination and task assignments", description: "" },
+          { title: "Automated workflow and approval routing", description: "" },
+          { title: "Real-time status updates across departments", description: "" },
+          { title: "Operational reporting and performance tracking", description: "" },
         ],
       },
       {
         productSlug: "smarttalk",
         features: [
-          { title: "Service Inquiry Handling", description: "Resolve customer inquiries about deliveries, schedules, and services." },
-          { title: "AI Customer Support", description: "Provide always-on AI customer support for logistics customers." },
-          { title: "Delivery Communication Workflows", description: "Communicate proactively about delivery status, ETAs, and exceptions." },
-          { title: "Appointment & Scheduling Assistance", description: "Help customers schedule, modify, and confirm service windows." },
-          { title: "FAQ Automation", description: "Answer common delivery and service questions instantly." },
-          { title: "Call Routing & Prioritization", description: "Triage inbound calls by service type and urgency." },
-          { title: "After-Hours Communication Support", description: "Stay accessible to customers and partners outside business hours." },
-          { title: "Customer Engagement Systems", description: "Maintain consistent communication across the delivery lifecycle." },
+          { title: "Customer delivery updates and notifications", description: "" },
+          { title: "Inbound inquiry handling for shipment status", description: "" },
+          { title: "Automated scheduling and coordination calls", description: "" },
+          { title: "After-hours customer support", description: "" },
         ],
       },
     ],
@@ -760,60 +775,6 @@ export const industries: Industry[] = [
       "24/7 Customer Assistance",
       "Improved Ticket Efficiency",
       "Better Team Coordination",
-    ],
-  },
-  {
-    slug: "municipalities-government",
-    name: "Municipalities & Local Government",
-    description:
-      "Improve citizen engagement, automate service requests, and coordinate departments at scale.",
-    headline: "AI-Powered Citizen Services",
-    intro:
-      "Cross Flows Synergy helps municipalities improve citizen engagement, streamline service requests, and enhance operational efficiency through intelligent AI-powered communication and workflow automation.",
-    icon: Building2,
-    accent: "from-[#00d4ff] to-[#7b6fff]",
-    productSlugs: ["smarttalk", "worksync", "learnmate"],
-    useCaseSlugs: [
-      "customer-support-automation",
-      "workflow-automation",
-      "multilingual-communication",
-      "faq-automation",
-    ],
-    productFeatures: [
-      {
-        productSlug: "smarttalk",
-        features: [
-          { title: "Resident Inquiries", description: "Handle citizen questions across phone, SMS, and web in plain language." },
-          { title: "Service Requests", description: "Capture work orders, complaints, and reports with consistent context." },
-          { title: "Permit Information", description: "Provide guidance on permits, licenses, and application requirements." },
-          { title: "Community Information", description: "Surface information on events, programs, and local facilities on demand." },
-        ],
-      },
-      {
-        productSlug: "worksync",
-        features: [
-          { title: "Request Routing", description: "Auto-assign citizen requests to the correct department with full context." },
-          { title: "Department Coordination", description: "Connect public works, permits, and resident services in one workflow layer." },
-          { title: "Case Management", description: "Track resident cases from intake through resolution with full audit trail." },
-          { title: "Workflow Automation", description: "Eliminate repetitive admin tasks across municipal operations." },
-        ],
-      },
-      {
-        productSlug: "learnmate",
-        features: [
-          { title: "Staff Training", description: "Onboard and upskill staff with AI-powered training guidance and resources." },
-          { title: "Policy Management", description: "Centralize policy documents and surface the right guidance in context." },
-          { title: "Knowledge Sharing", description: "Connect employees with current procedures and operational guidelines." },
-          { title: "New Employee Onboarding", description: "Streamline orientation, training paths, and certification tracking." },
-        ],
-      },
-    ],
-    benefits: [
-      "75% Faster Citizen Response",
-      "Reduced Administrative Burden",
-      "24/7 Resident Support",
-      "Improved Departmental Coordination",
-      "Better Staff Knowledge Access",
     ],
   },
 ];
@@ -1060,19 +1021,6 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
         metric: "+ 4 Hours Saved Per Agent Daily",
         accentColor: "#F5A623"
       },
-      {
-        productId: "driveflow",
-        productName: "DriveFlow™",
-        roleInIndustry: "Field service dispatch engine",
-        features: [
-          "Assigns service technicians by proximity, skill match, and SLA priority",
-          "Sends customers live ETA updates and technician profiles via SMS",
-          "Reroutes jobs dynamically when delays, traffic, or cancellations occur",
-          "Captures proof-of-service photos, signatures, and parts used on mobile"
-        ],
-        metric: "+ 35% More Jobs Completed Per Day",
-        accentColor: "#3A8DFF"
-      },
     ],
     workflow: [
       {
@@ -1095,12 +1043,6 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
       },
       {
         ordinal: 4,
-        trigger: "DriveFlow™ Dispatches",
-        label: "Technician routed with live ETA",
-        description: "The best-fit technician is assigned by location and skill, and the customer receives an SMS with arrival time and technician profile."
-      },
-      {
-        ordinal: 5,
         trigger: "Service Completed & Logged",
         label: "Closeout, survey, and analytics sync",
         description: "Proof-of-service is captured on mobile, the customer receives a CSAT survey, and outcome data flows back into the CRM for reporting."
@@ -1116,16 +1058,6 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
         icon: "CalendarCheck",
         title: "Appointment Booking",
         description: "Schedule installations, repairs, and consultations directly through voice — with automatic calendar sync and confirmation SMS sent to the customer."
-      },
-      {
-        icon: "Truck",
-        title: "Field Service Dispatch",
-        description: "Match incoming jobs to the right technician by proximity, certification, and SLA. Customers receive live tracking links from booking to arrival."
-      },
-      {
-        icon: "Receipt",
-        title: "Billing & Payments",
-        description: "Take secure PCI-compliant payments over the phone, explain charges line-by-line, and handle disputes with full audit trails for every transaction."
       },
       {
         icon: "AlertCircle",
@@ -1334,19 +1266,6 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
         metric: "+ 70% Reduction in Manual Work Order Handling",
         accentColor: "#F5A623"
       },
-      {
-        productId: "driveflow",
-        productName: "DriveFlow™",
-        roleInIndustry: "Field tech and showing agent dispatch",
-        features: [
-          "Routes maintenance techs across multi-property portfolios with live ETA updates",
-          "Coordinates self-guided tour access codes synced to prospect arrival windows",
-          "Optimizes turnover crew routing between vacant units on move-out day",
-          "Tracks vendor SLA compliance with geofenced check-in and time-on-site logs"
-        ],
-        metric: "+ 40% More Service Stops Completed Per Day",
-        accentColor: "#3A8DFF"
-      },
     ],
     workflow: [
       {
@@ -1372,12 +1291,6 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
         trigger: "WorkSync Activates Pipeline",
         label: "Application, screening, and lease packet sent",
         description: "After the tour, WorkSync triggers the application link, runs background and credit checks, and prepares the lease."
-      },
-      {
-        ordinal: 5,
-        trigger: "DriveFlow Coordinates Move-In",
-        label: "Turnover crew and keys dispatched",
-        description: "DriveFlow routes cleaning, inspection, and key handoff so the unit is ready the moment the lease is signed."
       },
     ],
     useCases: [
@@ -1405,11 +1318,6 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
         icon: "KeyRound",
         title: "Lease Renewals",
         description: "SmartTalk reaches out 90 days before expiration, negotiates renewal terms within preset bands, and e-signs the addendum."
-      },
-      {
-        icon: "Route",
-        title: "Field Dispatch",
-        description: "DriveFlow routes maintenance techs and showing agents across multi-property routes, minimizing windshield time and missed appointments."
       },
     ]
   },
@@ -1529,19 +1437,9 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
         description: "Voice AI takes orders in natural conversation at the speaker box, confirms items on the customer display, and pushes directly to the kitchen display system. Handles upsells and combo suggestions contextually."
       },
       {
-        icon: "Truck",
-        title: "Delivery Dispatch",
-        description: "Coordinates in-house drivers and third-party platforms from a single console, optimizing routes by traffic and order readiness. Reduces late deliveries by 45% during peak hours."
-      },
-      {
         icon: "Headphones",
         title: "Concierge & Room Service",
         description: "24/7 guest support for room service, amenity requests, and local recommendations in 40+ languages. Routes urgent items to on-shift staff with full context."
-      },
-      {
-        icon: "ClipboardList",
-        title: "Shift Scheduling",
-        description: "Auto-generates rosters based on forecasted demand, weather, and individual availability constraints. Notifies staff of changes and tracks compliance with labor laws."
       },
       {
         icon: "Star",
@@ -1646,21 +1544,6 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
         icon: "AlertCircle",
         title: "Outage Reporting",
         description: "Customers report and check outage status through natural voice conversation, with automatic cross-referencing against live grid telemetry."
-      },
-      {
-        icon: "Receipt",
-        title: "Billing & Payments",
-        description: "Handles balance inquiries, payment processing, and custom payment plan setup without routing to a live agent."
-      },
-      {
-        icon: "Truck",
-        title: "Field Crew Dispatch",
-        description: "Automatically assigns and routes the nearest qualified technician based on skill, location, and SLA priority."
-      },
-      {
-        icon: "Activity",
-        title: "Meter Diagnostics",
-        description: "Walks customers through self-service meter checks and flags anomalies for remote diagnostics before sending a truck."
       },
       {
         icon: "Bell",
@@ -1844,43 +1727,30 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
     ],
     products: [
       {
-        productId: "driveflow",
-        productName: "DriveFlow™",
-        roleInIndustry: "Autonomous dispatch and fleet orchestration",
+        productId: "smarttalk",
+        productName: "SmartTalk™",
+        roleInIndustry: "Customer voice and proactive notifications",
         features: [
-          "Auto-assigns loads based on driver HOS, lane familiarity, and equipment match",
-          "Real-time ETA recalculation using live traffic, weather, and dock-door wait data",
-          "Voice-first driver check-ins with hands-free pickup, delivery, and exception logging",
-          "Detention and demurrage tracking with automated accessorial billing triggers"
+          "Customer delivery updates and notifications",
+          "Inbound inquiry handling for shipment status",
+          "Automated scheduling and coordination calls",
+          "After-hours customer support"
         ],
-        metric: "+ 65% Faster Load Assignment",
-        accentColor: "#3A8DFF"
+        metric: "+ 3.2× More Calls Handled per Shift",
+        accentColor: "#00D4FF"
       },
       {
         productId: "worksync",
         productName: "WorkSync™",
-        roleInIndustry: "Warehouse and back-office workflow automation",
+        roleInIndustry: "Team coordination and back-office workflow",
         features: [
-          "Auto-syncs BOL, POD, and rate confirmations across TMS, WMS, and ERP systems",
-          "Triggers cross-dock and slot-assignment workflows from inbound ASN data",
-          "Reconciles carrier invoices against tariff rules with 4-decimal accuracy",
-          "Routes claims, damages, and OS&D exceptions to the right ops owner in under 5 minutes"
+          "Team coordination and task assignments",
+          "Automated workflow and approval routing",
+          "Real-time status updates across departments",
+          "Operational reporting and performance tracking"
         ],
         metric: "+ 78% Reduction in Manual Data Entry",
         accentColor: "#F5A623"
-      },
-      {
-        productId: "smarttalk",
-        productName: "SmartTalk™",
-        roleInIndustry: "Voice intake for shippers and carriers",
-        features: [
-          "Handles inbound load tenders, rate quotes, and tracking calls in 40+ languages",
-          "Authenticates carriers via MC number, DOT, and SCAC before quoting",
-          "Books appointments at warehouses and DCs with live dock-schedule sync",
-          "Escalates high-value freight and HAZMAT calls to specialist agents with full context"
-        ],
-        metric: "+ 3.2× More Calls Handled per Shift",
-        accentColor: "#00D4FF"
       },
     ],
     workflow: [
@@ -1898,18 +1768,12 @@ export const industryDetailExtensions: Record<IndustrySlug, IndustryDetailExtens
       },
       {
         ordinal: 3,
-        trigger: "DriveFlow™ Dispatches the Driver",
-        label: "Optimal driver matched and routed",
-        description: "DriveFlow™ assigns the load based on HOS, equipment, and lane preference, then pushes the route and dock appointment to the driver's device."
+        trigger: "Live Exception Handling",
+        label: "Detention, reroutes, and delays managed",
+        description: "SmartTalk™ proactively notifies shippers of weather reroutes, dock delays, and detention claims while WorkSync™ updates internal teams in real time."
       },
       {
         ordinal: 4,
-        trigger: "Live Exception Handling",
-        label: "Detention, reroutes, and delays managed",
-        description: "DriveFlow™ and SmartTalk™ jointly handle weather reroutes, dock delays, and detention claims with automated shipper notifications."
-      },
-      {
-        ordinal: 5,
         trigger: "WorkSync™ Closes the Load",
         label: "POD captured and invoice settled",
         description: "WorkSync™ verifies proof-of-delivery, reconciles accessorials, and releases the carrier invoice for same-day settlement."

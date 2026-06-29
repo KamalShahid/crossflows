@@ -32,6 +32,17 @@ export type UseCaseSlug =
   | "multilingual-communication"
   | "integrations-connected-systems";
 
+/**
+ * Compact card content shown in the homepage Use Cases bento grid.
+ * `excerpt` replaces the long `description` on that surface; `detailHref`
+ * lets the "Read more →" link route directly (1 click) to the matching
+ * category-page anchor.
+ */
+export interface UseCaseHomeCard {
+  excerpt: string;
+  detailHref: string;
+}
+
 export interface UseCase {
   slug: UseCaseSlug;
   title: string;
@@ -39,6 +50,8 @@ export interface UseCase {
   icon: LucideIcon;
   productSlugs: ProductSlug[];
   industrySlugs: IndustrySlug[];
+  /** Optional overrides used only by the homepage Use Cases section. */
+  homeCard?: UseCaseHomeCard;
 }
 
 export const useCases: UseCase[] = [
@@ -57,6 +70,12 @@ export const useCases: UseCase[] = [
       "schools-education",
       "recruitment-staffing",
     ],
+    homeCard: {
+      excerpt:
+        "Handle incoming calls automatically with a professional, always-available AI agent.",
+      detailHref:
+        "/solutions/communication-customer-engagement#ai-receptionists",
+    },
   },
   {
     slug: "customer-support-automation",
@@ -73,6 +92,12 @@ export const useCases: UseCase[] = [
       "logistics-operations",
       "financial-services",
     ],
+    homeCard: {
+      excerpt:
+        "Resolve common customer inquiries instantly without staff intervention.",
+      detailHref:
+        "/solutions/communication-customer-engagement#customer-support-automation",
+    },
   },
   {
     slug: "call-routing-prioritization",
@@ -88,6 +113,12 @@ export const useCases: UseCase[] = [
       "logistics-operations",
       "schools-education",
     ],
+    homeCard: {
+      excerpt:
+        "Ensure every call reaches the right department or team member immediately.",
+      detailHref:
+        "/solutions/communication-customer-engagement#intelligent-call-routing",
+    },
   },
   {
     slug: "faq-automation",
@@ -104,6 +135,12 @@ export const useCases: UseCase[] = [
       "utilities-services",
       "schools-education",
     ],
+    homeCard: {
+      excerpt:
+        "Answer repetitive questions instantly so your team can focus on complex work.",
+      detailHref:
+        "/solutions/communication-customer-engagement#customer-support-automation",
+    },
   },
   {
     slug: "after-hours-support",
@@ -120,6 +157,12 @@ export const useCases: UseCase[] = [
       "schools-education",
       "real-estate-property",
     ],
+    homeCard: {
+      excerpt:
+        "Stay accessible to customers around the clock without additional staffing.",
+      detailHref:
+        "/solutions/communication-customer-engagement#ai-receptionists",
+    },
   },
   {
     slug: "appointment-scheduling",
