@@ -22,6 +22,8 @@ function scrollToSection(id: string) {
 
 function FeatureSection({ feature }: { feature: Feature }) {
   const Icon = feature.icon;
+  // Desktop direction alternates per pillar; mobile always stacks with the
+  // image on top (image-first), so use plain `flex-col`, not `flex-col-reverse`.
   const flexDir =
     feature.imagePosition === "left" ? "lg:flex-row" : "lg:flex-row-reverse";
 
@@ -34,12 +36,11 @@ function FeatureSection({ feature }: { feature: Feature }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="relative flex-1 min-h-[220px] md:min-h-[280px] lg:min-h-[360px]"
+      className="relative w-full aspect-[16/9] lg:aspect-[4/3] lg:basis-[52%] lg:max-w-[52%]"
       style={{
         background: "var(--color-surface)",
         border: "1px solid var(--color-border)",
         borderRadius: 20,
-        position: "relative",
         overflow: "hidden",
         flexShrink: 0,
       }}
@@ -60,14 +61,15 @@ function FeatureSection({ feature }: { feature: Feature }) {
         }}
       />
 
-      {/* Dark gradient overlay keeps the accent label legible */}
+      {/* Dark gradient overlay keeps the accent label legible — slightly
+          deeper at the corners so the bottom-left label always reads cleanly. */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(135deg, rgba(8,11,24,0.7) 0%, rgba(8,11,24,0.3) 100%)",
+            "linear-gradient(135deg, rgba(8,11,24,0.72) 0%, rgba(8,11,24,0.28) 50%, rgba(8,11,24,0.82) 100%)",
         }}
       />
 
@@ -76,12 +78,13 @@ function FeatureSection({ feature }: { feature: Feature }) {
         className="font-display"
         style={{
           position: "absolute",
-          bottom: 24,
+          bottom: 20,
           left: 24,
-          fontSize: "1.1rem",
+          fontSize: "1rem",
           fontWeight: 700,
           color: "var(--color-accent)",
           letterSpacing: "-0.01em",
+          textShadow: "0 1px 8px rgba(0,0,0,0.6)",
           zIndex: 1,
         }}
       >
@@ -96,138 +99,147 @@ function FeatureSection({ feature }: { feature: Feature }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
-      className="min-w-0 flex-1"
+      className="w-full min-w-0 lg:flex-1"
     >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          marginBottom: 16,
-        }}
-      >
+      {/* Inner wrapper caps the text column at 520px on desktop so lines stay
+          readable. Mobile gets full width via `w-full` on the parent. */}
+      <div className="w-full lg:max-w-[520px]">
         <div
           style={{
-            width: 32,
-            height: 32,
-            borderRadius: 8,
-            background: "rgba(0,212,255,0.1)",
-            border: "1px solid rgba(0,212,255,0.2)",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
+            gap: 12,
+            marginBottom: 20,
           }}
         >
-          <Icon size={16} color="var(--color-accent)" strokeWidth={2} />
-        </div>
-        <div>
           <div
             style={{
-              fontFamily: '"JetBrains Mono", ui-monospace, monospace',
-              fontSize: "0.6rem",
-              letterSpacing: "0.1em",
-              color: "var(--color-text-muted)",
-              textTransform: "uppercase",
-            }}
-          >
-            PILLAR · {feature.number}
-          </div>
-          <div
-            className="font-display"
-            style={{
-              fontSize: "0.82rem",
-              fontWeight: 600,
-              color: "var(--color-text-primary)",
-            }}
-          >
-            {feature.label}
-          </div>
-        </div>
-      </div>
-
-      <h2
-        className="font-display"
-        style={{
-          fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-          fontWeight: 800,
-          color: "var(--color-text-primary)",
-          lineHeight: 1.2,
-          letterSpacing: "-0.02em",
-          marginBottom: 20,
-          maxWidth: 460,
-        }}
-      >
-        {feature.heading}
-      </h2>
-
-      <p
-        style={{
-          fontFamily: '"DM Sans", sans-serif',
-          fontSize: "0.92rem",
-          color: "var(--color-text-muted)",
-          lineHeight: 1.75,
-          marginBottom: 16,
-          maxWidth: 460,
-        }}
-      >
-        {feature.copy[0]}
-      </p>
-      <p
-        style={{
-          fontFamily: '"DM Sans", sans-serif',
-          fontSize: "0.92rem",
-          color: "var(--color-text-muted)",
-          lineHeight: 1.75,
-          marginBottom: 28,
-          maxWidth: 460,
-        }}
-      >
-        {feature.copy[1]}
-      </p>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        {feature.bullets.map((bullet, i) => (
-          <motion.div
-            key={bullet}
-            initial={{ opacity: 0, x: -8 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08, duration: 0.35, ease: "easeOut" }}
-            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 8,
+              background: "rgba(0,212,255,0.10)",
+              border: "1px solid rgba(0,212,255,0.2)",
               display: "flex",
-              alignItems: "flex-start",
-              gap: 10,
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
             }}
           >
+            <Icon size={16} color="var(--color-accent)" strokeWidth={2} />
+          </div>
+          <div>
             <div
               style={{
-                width: 18,
-                height: 18,
-                borderRadius: "50%",
-                background: "rgba(0,212,255,0.12)",
-                border: "1px solid rgba(0,212,255,0.3)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-                marginTop: 2,
+                fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+                fontSize: "0.58rem",
+                letterSpacing: "0.1em",
+                color: "var(--color-text-muted)",
+                textTransform: "uppercase",
+                marginBottom: 1,
               }}
             >
-              <Check size={10} color="var(--color-accent)" strokeWidth={3} />
+              PILLAR · {feature.number}
             </div>
-            <span
+            <div
               style={{
                 fontFamily: '"DM Sans", sans-serif',
-                fontSize: "0.88rem",
+                fontSize: "0.85rem",
+                fontWeight: 600,
                 color: "var(--color-text-primary)",
-                lineHeight: 1.5,
               }}
             >
-              {bullet}
-            </span>
-          </motion.div>
-        ))}
+              {feature.label}
+            </div>
+          </div>
+        </div>
+
+        <h2
+          className="font-display"
+          style={{
+            fontSize: "clamp(1.7rem, 2.8vw, 2.1rem)",
+            fontWeight: 800,
+            color: "var(--color-text-primary)",
+            lineHeight: 1.2,
+            letterSpacing: "-0.02em",
+            marginBottom: 20,
+          }}
+        >
+          {feature.heading}
+        </h2>
+
+        <p
+          style={{
+            fontFamily: '"DM Sans", sans-serif',
+            fontSize: "0.9rem",
+            color: "var(--color-text-muted)",
+            lineHeight: 1.75,
+            marginBottom: 14,
+          }}
+        >
+          {feature.copy[0]}
+        </p>
+        <p
+          style={{
+            fontFamily: '"DM Sans", sans-serif',
+            fontSize: "0.9rem",
+            color: "var(--color-text-muted)",
+            lineHeight: 1.75,
+            marginBottom: 28,
+          }}
+        >
+          {feature.copy[1]}
+        </p>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+            marginTop: 24,
+          }}
+        >
+          {feature.bullets.map((bullet, i) => (
+            <motion.div
+              key={bullet}
+              initial={{ opacity: 0, x: -8 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.35, ease: "easeOut" }}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 10,
+              }}
+            >
+              <div
+                style={{
+                  width: 18,
+                  height: 18,
+                  borderRadius: "50%",
+                  background: "rgba(0,212,255,0.12)",
+                  border: "1px solid rgba(0,212,255,0.3)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  marginTop: 2,
+                }}
+              >
+                <Check size={10} color="var(--color-accent)" strokeWidth={3} />
+              </div>
+              <span
+                style={{
+                  fontFamily: '"DM Sans", sans-serif',
+                  fontSize: "0.88rem",
+                  color: "var(--color-text-primary)",
+                  lineHeight: 1.5,
+                }}
+              >
+                {bullet}
+              </span>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
@@ -240,10 +252,10 @@ function FeatureSection({ feature }: { feature: Feature }) {
         borderBottom:
           feature.slug === "security" ? "none" : "1px solid var(--color-border)",
       }}
-      className="px-5 py-20 sm:px-8 sm:py-24"
+      className="px-6 py-16 sm:px-12 lg:py-[100px]"
     >
       <div
-        className={`mx-auto flex max-w-7xl flex-col-reverse items-stretch gap-10 lg:items-center lg:gap-20 ${flexDir}`}
+        className={`mx-auto flex max-w-[1280px] flex-col items-stretch gap-10 lg:items-center lg:gap-[72px] ${flexDir}`}
       >
         {panel}
         {text}

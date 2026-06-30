@@ -4,9 +4,8 @@ import { ArrowRight } from "lucide-react";
 import PageShell from "./PageShell";
 import HeroBackground from "./HeroBackground";
 import SectionHeader from "./SectionHeader";
-import VideoPlayer from "./VideoPlayer";
 import CTAButton from "./CTAButton";
-import CapabilitiesList from "./shared/CapabilitiesList";
+import CapabilitiesShowcase from "./CapabilitiesShowcase";
 import UseCasesInteractive from "./UseCasesInteractive";
 import type { Product, ProductSlug } from "../data/products";
 import { useCases } from "../data/useCases";
@@ -126,12 +125,40 @@ export default function ProductPage({ product }: ProductPageProps) {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             className="relative"
           >
-            <div className="relative aspect-square w-full max-w-md rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-10 shadow-[0_30px_90px_rgba(0,0,0,0.55)]">
+            <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] shadow-[0_30px_90px_rgba(0,0,0,0.55)]">
+              {/* Background image — fades gracefully if URL fails */}
+              <img
+                src={product.heroImageUrl}
+                alt={`${product.name} context`}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: 0.35,
+                }}
+              />
+              {/* Dark gradient overlay for legibility — uses the site's
+                  near-black so the panel stays cohesive with the dark theme */}
               <div
-                className={`absolute -inset-1 rounded-3xl bg-gradient-to-br ${product.accent} opacity-25 blur-2xl`}
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(135deg, rgba(8,11,24,0.85) 0%, rgba(8,11,24,0.6) 40%, rgba(8,11,24,0.9) 100%)",
+                }}
+              />
+              {/* Accent glow corner — kept from prior design for brand depth */}
+              <div
+                className={`pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br ${product.accent} opacity-25 blur-2xl`}
                 aria-hidden
               />
-              <div className="relative flex h-full flex-col items-center justify-center gap-6 text-center">
+              <div className="relative flex h-full flex-col items-center justify-center gap-6 p-10 text-center">
                 <motion.span
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -144,10 +171,10 @@ export default function ProductPage({ product }: ProductPageProps) {
                     Live across
                   </div>
                   <div className="font-display text-2xl font-bold tracking-tight">
-                    {industryCards.length} industries
+                    {industryCards.length}+ industries
                   </div>
                   <div className="font-display text-2xl font-bold tracking-tight">
-                    {relatedUseCases.length} use cases
+                    {relatedUseCases.length}+ use cases
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 text-xs text-[var(--color-accent)]">
@@ -160,34 +187,13 @@ export default function ProductPage({ product }: ProductPageProps) {
         </div>
       </section>
 
-      {/* Video */}
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          {/* TODO: Replace src with actual product video URL before launch */}
-          <VideoPlayer
-            src=""
-            poster={`https://placehold.co/1920x1080/080b12/00d4ff?text=${encodeURIComponent(
-              product.name + " — Live Demo",
-            )}`}
-            caption={product.videoCaption}
-          />
-        </div>
-      </section>
-
-      {/* Capabilities */}
-      <section id="capabilities" className="py-20" style={{ scrollMarginTop: 120 }}>
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            label="Capabilities"
-            heading={`What makes ${product.name} different.`}
-            align="left"
-            maxWidth="max-w-2xl"
-          />
-          <div className="mt-12">
-            <CapabilitiesList capabilities={product.features} />
-          </div>
-        </div>
-      </section>
+      {/* Capabilities — animated showcase grid with per-card accent colors */}
+      <div id="capabilities" style={{ scrollMarginTop: 120 }}>
+        <CapabilitiesShowcase
+          productId={product.slug}
+          productName={product.name}
+        />
+      </div>
 
       {/* Use cases — interactive split-panel selector + animated detail card */}
       <UseCasesInteractive

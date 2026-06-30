@@ -75,6 +75,8 @@ export interface Product {
   heroHeading: string;
   /** Lead paragraph rendered below the H1 on the product subpage hero. */
   heroDescription: string;
+  /** Hotlinked Unsplash photo used as the background of the right-side hero stats panel. Falls back to the existing dark gradient if it fails to load. */
+  heroImageUrl: string;
   shortDescription: string;
   longDescription: string;
   icon: LucideIcon;
@@ -181,6 +183,8 @@ export const products: Product[] = [
       "Retail & Customer Support",
       "Service-Based Businesses",
     ],
+    heroImageUrl:
+      "https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?w=900&q=80&auto=format",
     videoCaption: "See SmartTalk™ in action — live customer conversations, automated end to end",
   },
   {
@@ -320,6 +324,8 @@ export const products: Product[] = [
       "Corporate Training Programs",
       "Academic Support Services",
     ],
+    heroImageUrl:
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&q=80&auto=format",
     videoCaption: "See LearnMate™ support real student and learner workflows",
   },
   {
@@ -405,6 +411,8 @@ export const products: Product[] = [
       "Property Management Operations",
       "Enterprise Workflow Management",
     ],
+    heroImageUrl:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80&auto=format",
     videoCaption: "Watch WorkSync™ orchestrate a multi-system workflow, live",
   },
   {
@@ -413,10 +421,9 @@ export const products: Product[] = [
     subtitle: "AI-Powered Drive-Thru & Quick-Service Ordering Platform",
     tagline:
       "Transform your drive-thru experience with intelligent AI that helps restaurants serve customers faster, reduce wait times, and improve order accuracy.",
-    heroHeading:
-      "Transform your drive-thru experience with intelligent AI that helps restaurants serve customers faster, reduce wait times, and improve order accuracy.",
+    heroHeading: "Transform your drive-thru experience with intelligent AI.",
     heroDescription:
-      "By handling orders with natural, human-like conversations, DriveFlow™ helps restaurants reduce wait times, increase order accuracy, boost revenue through intelligent upselling, and ensure a consistent customer experience across every location.",
+      "Help restaurants serve customers faster, reduce wait times, and improve order accuracy. By handling orders with natural, human-like conversations, DriveFlow™ helps restaurants reduce wait times, increase order accuracy, boost revenue through intelligent upselling, and ensure a consistent customer experience across every location.",
     shortDescription:
       "AI-powered drive-thru solution designed to automate order taking and improve operational efficiency.",
     longDescription:
@@ -561,6 +568,8 @@ export const products: Product[] = [
       "Fast Food Chains",
       "Coffee Shops",
     ],
+    heroImageUrl:
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=900&q=80&auto=format",
     videoCaption: "See DriveFlow™ run a live drive-thru order, end to end",
   },
 ];

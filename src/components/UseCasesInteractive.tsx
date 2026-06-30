@@ -152,7 +152,11 @@ export default function UseCasesInteractive({
                   display: "grid",
                   gridTemplateColumns: "minmax(0, 40fr) minmax(0, 58fr)",
                   gap: 32,
-                  alignItems: "stretch",
+                  // `flex-start` instead of `stretch`: the right panel sizes
+                  // to its own content rather than being stretched to match
+                  // the left list (which can be much taller — 11 items on
+                  // SmartTalk vs 3 on LearnMate). Top edges still line up.
+                  alignItems: "start",
                 }
           }
         >
@@ -350,9 +354,23 @@ function DetailPanel({
   isInView,
   order,
 }: DetailPanelProps) {
+  // Static panel chrome lives on the outer wrapper so the per-active
+  // `motion.div` carries only animation + content. This stops the panel
+  // from re-mounting with a stale height when use cases switch and lets
+  // the panel size to its actual content (no more SmartTalk dead space).
   const containerStyle: CSSProperties = {
     order,
     position: "relative",
+    background: "var(--color-surface)",
+    border: "1px solid var(--color-border)",
+    borderRadius: 20,
+    padding: 36,
+    // Sensible floor that comfortably fits icon header (~70px) + ~5 lines
+    // of description (~140px) + spacing + CTA row. Crucially NOT a
+    // tall-list-matching value — the panel must NOT stretch with the
+    // left selector list.
+    minHeight: 280,
+    overflow: "hidden",
   };
 
   return (
@@ -369,16 +387,6 @@ function DetailPanel({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -16 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          style={{
-            background: "var(--color-surface)",
-            border: "1px solid var(--color-border)",
-            borderRadius: 20,
-            padding: 36,
-            minHeight: 320,
-            height: "100%",
-            position: "relative",
-            overflow: "hidden",
-          }}
         >
           {/* Decorative watermark ordinal */}
           <div

@@ -41,10 +41,12 @@ const categories: MenuCategory[] = solutionCategories.map((category) => ({
   })),
 }));
 
-// Spec layout: column 1 holds categories 1–2, column 2 holds categories 3–5,
-// column 3 is the feature card.
-const LEFT_COLUMN = categories.slice(0, 2);
-const RIGHT_COLUMN = categories.slice(2, 5);
+// Column balance: left column carries Communication (0), Scheduling (1), and
+// Learning & Knowledge (4); right column carries Workflow (2) and Operations
+// (3). This evens out the visual height — 3 categories left, 2 right — since
+// the right-side feature card already sits in the third panel column.
+const LEFT_COLUMN = [categories[0], categories[1], categories[4]];
+const RIGHT_COLUMN = [categories[2], categories[3]];
 
 interface CategoryBlockProps {
   category: MenuCategory;

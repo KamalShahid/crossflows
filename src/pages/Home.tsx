@@ -109,8 +109,8 @@ export default function Home() {
             listens, decides, and acts in real time streamlining operations from customer
             engagement to workflow execution.
             <br />
-            Four AI-driven products. Thirteen operational use cases. 40+ supported
-            languages. One scalable platform built for modern enterprises.
+            Four AI-driven products. 40+ supported languages. 
+            One scalable platform built for modern enterprises.
           </motion.p>
 
           <motion.div
