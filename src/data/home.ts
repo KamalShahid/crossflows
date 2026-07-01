@@ -84,7 +84,7 @@ export const featuresOverview = {
 
 export const videoSection = {
   label: "See it live",
-  headline: "Three minutes inside the Cross Flows Synergy platform.",
+  headline: "Two minutes inside the Cross Flows Synergy platform.",
   subheading:
     "A walkthrough of how the four products and the WorkSync™ orchestration layer fit together.",
 };

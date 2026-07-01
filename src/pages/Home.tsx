@@ -13,6 +13,7 @@ import IndustriesOrbit from "../components/IndustriesOrbit";
 import StatBar from "../components/StatBar";
 import SectionHeader from "../components/SectionHeader";
 import VideoPlayer from "../components/VideoPlayer";
+import crossFlowsPlatformTour from "../../brand_assets/CrossFlowsVideo.mp4";
 import { products } from "../data/products";
 import { useCases } from "../data/useCases";
 import { features } from "../data/features";
@@ -440,9 +441,8 @@ export default function Home() {
             maxWidth="max-w-3xl"
           />
           <div className="mt-12">
-            {/* TODO: Replace src with actual platform explainer video URL before launch */}
             <VideoPlayer
-              src=""
+              src={crossFlowsPlatformTour}
               poster="https://placehold.co/1920x1080/080b12/00d4ff?text=Cross+Flows+Synergy+%E2%80%94+Platform+Tour"
               caption="See Cross Flows Synergy in action"
             />
