@@ -67,10 +67,43 @@ export default function Products() {
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   className="relative aspect-[5/4] overflow-hidden rounded-3xl border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-8 lg:aspect-auto lg:h-full"
                 >
-                  <div
-                    className={`absolute -top-20 right-0 h-72 w-72 bg-gradient-to-br ${p.accent} opacity-25 blur-3xl`}
+                  {/* Background image — hides itself on error so the gradient panel remains */}
+                  <img
+                    src={p.overviewImageUrl}
+                    alt={`${p.name} overview`}
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      opacity: 0.3,
+                    }}
                   />
-                  <div className="relative flex h-full flex-col justify-between">
+                  {/* Dark gradient overlay keeps the icon + labels legible */}
+                  <div
+                    aria-hidden
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background:
+                        "linear-gradient(to bottom, rgba(8,11,24,0.5) 0%, rgba(8,11,24,0.85) 100%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  {/* Accent-tinted blur corner — kept from the prior design */}
+                  <div
+                    className={`pointer-events-none absolute -top-20 right-0 h-72 w-72 bg-gradient-to-br ${p.accent} opacity-25 blur-3xl`}
+                  />
+                  <div
+                    className="flex h-full flex-col justify-between"
+                    style={{ position: "relative", zIndex: 1 }}
+                  >
                     <span
                       className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${p.accent} text-black shadow-[0_12px_32px_rgba(0,212,255,0.35)]`}
                     >

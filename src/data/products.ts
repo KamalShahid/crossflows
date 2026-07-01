@@ -77,6 +77,12 @@ export interface Product {
   heroDescription: string;
   /** Hotlinked Unsplash photo used as the background of the right-side hero stats panel. Falls back to the existing dark gradient if it fails to load. */
   heroImageUrl: string;
+  /** Hotlinked Unsplash photo used as the background of the product's panel on the /products overview page. Falls back to the existing dark gradient if it fails to load. */
+  overviewImageUrl: string;
+  /** Marketing count shown on the hero panel — pre-formatted with the "+" suffix (e.g. "15+"). Overrides the array-length count. */
+  industriesStat: string;
+  /** Marketing count shown on the hero panel — pre-formatted with the "+" suffix (e.g. "21+"). Overrides the array-length count. */
+  useCasesStat: string;
   shortDescription: string;
   longDescription: string;
   icon: LucideIcon;
@@ -185,6 +191,10 @@ export const products: Product[] = [
     ],
     heroImageUrl:
       "https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?w=900&q=80&auto=format",
+    overviewImageUrl:
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&q=80&auto=format",
+    industriesStat: "15+",
+    useCasesStat: "21+",
     videoCaption: "See SmartTalk™ in action — live customer conversations, automated end to end",
   },
   {
@@ -326,6 +336,10 @@ export const products: Product[] = [
     ],
     heroImageUrl:
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&q=80&auto=format",
+    overviewImageUrl:
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=900&q=80&auto=format",
+    industriesStat: "12+",
+    useCasesStat: "25+",
     videoCaption: "See LearnMate™ support real student and learner workflows",
   },
   {
@@ -413,6 +427,10 @@ export const products: Product[] = [
     ],
     heroImageUrl:
       "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80&auto=format",
+    overviewImageUrl:
+      "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=900&q=80&auto=format",
+    industriesStat: "14+",
+    useCasesStat: "18+",
     videoCaption: "Watch WorkSync™ orchestrate a multi-system workflow, live",
   },
   {
@@ -570,6 +588,10 @@ export const products: Product[] = [
     ],
     heroImageUrl:
       "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=900&q=80&auto=format",
+    overviewImageUrl:
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80&auto=format",
+    industriesStat: "10+",
+    useCasesStat: "15+",
     videoCaption: "See DriveFlow™ run a live drive-thru order, end to end",
   },
 ];

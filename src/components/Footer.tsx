@@ -21,9 +21,6 @@ const sections = [
     title: "Resources",
     links: [
       { label: "Blog", to: "/blog" },
-      { label: "Documentation", to: "#" },
-      { label: "Trust Center", to: "#" },
-      { label: "Status", to: "#" },
     ],
   },
 ];
@@ -87,15 +84,24 @@ export default function Footer() {
             © {new Date().getFullYear()} Cross Flows Synergy. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-xs text-[var(--color-text-muted)]">
-            <a href="#" className="transition hover:text-[var(--color-text-primary)]">
+            <Link
+              to="/privacy-policy"
+              className="transition hover:text-[var(--color-text-primary)]"
+            >
               Privacy Policy
-            </a>
-            <a href="#" className="transition hover:text-[var(--color-text-primary)]">
+            </Link>
+            <Link
+              to="/terms-of-service"
+              className="transition hover:text-[var(--color-text-primary)]"
+            >
               Terms of Service
-            </a>
-            <a href="#" className="transition hover:text-[var(--color-text-primary)]">
+            </Link>
+            <Link
+              to="/cookies"
+              className="transition hover:text-[var(--color-text-primary)]"
+            >
               Cookies
-            </a>
+            </Link>
           </div>
         </div>
       </div>

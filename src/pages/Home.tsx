@@ -277,10 +277,12 @@ export default function Home() {
             heading={useCasesSection.headline}
             subheading={useCasesSection.subheading}
           />
-          <div className="mt-14 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {useCases.slice(0, 5).map((u, idx) => {
               const Icon = u.icon;
-              const span = idx === 0 ? "lg:col-span-2" : "";
+              // Top row (idx 0, 1) → 2 equal cards, each spanning 3 of 6 cols.
+              // Bottom row (idx 2, 3, 4) → 3 equal cards, each spanning 2 of 6 cols.
+              const span = idx <= 1 ? "lg:col-span-3" : "lg:col-span-2";
               return (
                 <motion.div
                   key={u.slug}

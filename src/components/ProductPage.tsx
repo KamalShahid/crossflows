@@ -8,7 +8,6 @@ import CTAButton from "./CTAButton";
 import CapabilitiesShowcase from "./CapabilitiesShowcase";
 import UseCasesInteractive from "./UseCasesInteractive";
 import type { Product, ProductSlug } from "../data/products";
-import { useCases } from "../data/useCases";
 import { industries } from "../data/industries";
 
 /** Per-product subheading shown above the Use Cases interactive panel. */
@@ -25,11 +24,6 @@ interface ProductPageProps {
 
 export default function ProductPage({ product }: ProductPageProps) {
   const Icon = product.icon;
-  // Use the curated `productUseCases` count when the product opts in;
-  // otherwise count the cross-product slugs resolved from the global use cases data.
-  const relatedUseCases = product.productUseCases
-    ? product.productUseCases
-    : useCases.filter((u) => product.useCaseSlugs.includes(u.slug));
   // Products may opt into a curated `industriesServed` list (e.g. DriveFlow's
   // restaurants/banks split where one industry slug needs to render as multiple
   // distinct cards). Otherwise we fall back to the industries data lookup.
@@ -171,10 +165,10 @@ export default function ProductPage({ product }: ProductPageProps) {
                     Live across
                   </div>
                   <div className="font-display text-2xl font-bold tracking-tight">
-                    {industryCards.length}+ industries
+                    {product.industriesStat} industries
                   </div>
                   <div className="font-display text-2xl font-bold tracking-tight">
-                    {relatedUseCases.length}+ use cases
+                    {product.useCasesStat} use cases
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 text-xs text-[var(--color-accent)]">
