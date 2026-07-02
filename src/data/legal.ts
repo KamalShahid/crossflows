@@ -9,6 +9,8 @@
  * `white-space: pre-line`.
  */
 
+import { CONTACT } from "./contact";
+
 export interface LegalListItem {
   /** Optional bold label rendered before the item text. */
   label?: string;
@@ -30,7 +32,7 @@ export interface LegalDocument {
 const contactBlock: LegalBlock[] = [
   {
     type: "paragraph",
-    text: "Cross Flows Synergy\n5063 North Service Rd, Suite 100-511\nBurlington, ON L7L 5H6, Canada\nEmail: **contact@crossflows.ca**\nPhone: **437-972-2716**\nWebsite: **www.crossflows.ca**",
+    text: `Cross Flows Synergy\n${CONTACT.address.line1}\n${CONTACT.address.line2}\nEmail: **${CONTACT.email}**\nPhone: **${CONTACT.phone}**\nWebsite: **${CONTACT.website}**`,
   },
 ];
 
@@ -120,7 +122,7 @@ export const privacyPolicy: LegalDocument = {
     },
     {
       type: "paragraph",
-      text: "To exercise any of these rights, contact us at **contact@crossflows.ca**",
+      text: `To exercise any of these rights, contact us at **${CONTACT.email}**`,
     },
 
     { type: "heading", text: "Security" },
@@ -310,10 +312,7 @@ export const termsOfService: LegalDocument = {
 
     { type: "heading", text: "Contact Us" },
     { type: "paragraph", text: "For questions about these Terms, contact us at:" },
-    {
-      type: "paragraph",
-      text: "Cross Flows Synergy\n5063 North Service Rd, Suite 100-511\nBurlington, ON L7L 5H6, Canada\nEmail: **contact@crossflows.ca**\nPhone: **437-972-2716**\nWebsite: **crossflows.ca**",
-    },
+    ...contactBlock,
   ],
 };
 

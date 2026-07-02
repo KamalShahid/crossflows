@@ -5,6 +5,7 @@ import PageShell from "../components/PageShell";
 import HeroBackground from "../components/HeroBackground";
 import CTAButton from "../components/CTAButton";
 import { bottomCTA } from "../data/home";
+import { CONTACT } from "../data/contact";
 
 const productInterestOptions = [
   { value: "smarttalk", label: "SmartTalk™ — AI Communication Platform" },
@@ -119,31 +120,31 @@ export default function Contact() {
 
             <div className="flex flex-col gap-4 text-sm">
               <a
-                href="mailto:hello@crossflowssynergy.ai"
+                href={CONTACT.emailHref}
                 className="flex items-center gap-3 text-[var(--color-text-primary)] hover:text-[var(--color-accent)]"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)]">
                   <Mail className="h-4 w-4" />
                 </span>
-                hello@crossflowssynergy.ai
+                {CONTACT.email}
               </a>
               <a
-                href="tel:+18005554387"
+                href={CONTACT.phoneHref}
                 className="flex items-center gap-3 text-[var(--color-text-primary)] hover:text-[var(--color-accent)]"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)]">
                   <Phone className="h-4 w-4" />
                 </span>
-                +1 (800) 555-CFS-AI
+                {CONTACT.phone}
               </a>
               <div className="flex items-start gap-3 text-[var(--color-text-primary)]/85">
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)]">
                   <MapPin className="h-4 w-4" />
                 </span>
                 <span className="leading-relaxed">
-                  HQ · 1100 Market Street, San Francisco · CA
+                  {CONTACT.address.line1}
                   <br />
-                  Offices in London · Singapore · São Paulo
+                  {CONTACT.address.line2}
                 </span>
               </div>
             </div>
